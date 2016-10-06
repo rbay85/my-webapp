@@ -2,6 +2,7 @@ package main.java;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -43,7 +44,7 @@ public class Client implements Serializable {
 
     // день рождения
     @Column( name = "date_of_birth" )
-    //@Past
+    @Temporal(value = TemporalType.DATE)
     private Date  birthDay;
 
     // номер паспорта
@@ -97,7 +98,10 @@ public class Client implements Serializable {
     public long getId()             { return id; }
     public String getFirstName()    { return firstName; }
     public String getLastName()     { return lastName; }
-    public Date getBirthDay()       { return birthDay; }
+    public String getBirthDay()       {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format( birthDay );
+    }
     public long getPassNo()         { return passNo; }
     public String getAddress()      { return address; }
     public String getNumbers()      { return numbers; }
@@ -107,11 +111,12 @@ public class Client implements Serializable {
     // выдать все одной строкой
     @Override
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return " \nClient: " + "\n" +
                 " ID = " + id + "\n" +
                 " First Name = " +  firstName + "\n" +
                 " Last Name = " + lastName + "\n" +
-                " Birth Day = " + birthDay + "\n" +
+                " Birth Day = " + dateFormat.format( birthDay ) + "\n" +
                 " Passport Number = " + passNo + "\n" +
                 " Address = " + address + "\n" +
                 " Numbers = " + numbers + "\n" +

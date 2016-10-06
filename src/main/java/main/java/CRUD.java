@@ -1,7 +1,6 @@
 
 package main.java;
 
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -13,7 +12,7 @@ public class CRUD {
                 5,
                 "Ivan",
                 "Boiko",
-                new Date(1985,6,25),
+                new Date(85,5,25),
                 1034080905,
                 "Moscow ....",
                 "+7(909)450-30-50",
@@ -21,6 +20,7 @@ public class CRUD {
                 "qwerty");
         // проверка геттера
         System.out.println( "\n " + client5.getAddress() );
+        System.out.println( "\n " + client5.getBirthDay() );
         // проверка сеттера: клиент переехал из Москвы в Домбай
         client5.setAddress("KCHR, Dombay ....");
         // все одной строкой
