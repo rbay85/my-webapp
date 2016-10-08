@@ -15,6 +15,8 @@ import java.io.Serializable;
 
 public class Option implements Serializable{
 
+    private static final long serialVersionUID = 4L;
+
     // идентификационный номер опции
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -30,23 +32,22 @@ public class Option implements Serializable{
     private double price;
 
     // Стоимость подключения
-    @Column( name = "сost_of_switching_on", nullable = false )
+    @Column( name = "onCost", nullable = false )
     private double onCost;
 
-    public Option(int i, String n, double p, double oC){
+    public Option( String name, double price, double onCost){
 
-        this.name = n;
-        this.price = p;
-        this.onCost = oC;
+        this.name = name;
+        this.price = price;
+        this.onCost = onCost;
     }
 
-    //сеттеры
-    public void setId( long value )         { id = value; }
+    // сеттеры
     public void setName( String value )     { name = value; }
     public void setPrice( double value )    { price = value; }
     public void setOnCost( double value )   { onCost = value; }
 
-    //геттеры
+    // геттеры
     public long getId()         { return id; }
     public String getName()     { return name; }
     public double getPrice()    { return price; }

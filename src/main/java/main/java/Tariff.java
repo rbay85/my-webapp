@@ -15,11 +15,13 @@ import java.io.Serializable;
 
 public class Tariff implements Serializable{
 
+    private static final long serialVersionUID = 3L;
+
     // идентификационный номер тарифа
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     @Column( name = "id", nullable = false )
-    private long id;
+    private int id;
 
     // Название
     @Column( name = "name", nullable = false )
@@ -29,28 +31,21 @@ public class Tariff implements Serializable{
     @Column( name = "price", nullable = false )
     private double price;
 
-    // Список возможных опций
-    @Column( name = "options" )
-    private String optionList;
 
-    public Tariff(int i, String n, double p, String oL){
+    public Tariff( String name, double price ){
 
-        this.name = n;
-        this.price = p;
-        this.optionList = oL;
+        this.name = name;
+        this.price = price;
     }
 
-    //сеттеры
-    public void setId( long value )             { id = value; }
+    // сеттеры
     public void setName( String value )         { name = value; }
     public void setPrice( double value )        { price = value; }
-    public void setOptionList( String value )   { optionList = value; }
 
-    //геттеры
-    public long getId()             { return id; }
+    // геттеры
+    public int getId()              { return id; }
     public String getName()         { return name; }
     public double getPrice()        { return price; }
-    public String getOptionList()   { return optionList; }
 
     // выдать все одной строкой
     @Override
@@ -58,8 +53,7 @@ public class Tariff implements Serializable{
         return " \nTariff: " + "\n" +
                 " ID = " + id + "\n" +
                 " Name = " +  name + "\n" +
-                " Price = " + price + "\n" +
-                " List of options = " + optionList + "\n"
+                " Price = " + price + "\n"
                 ;
     }
 }

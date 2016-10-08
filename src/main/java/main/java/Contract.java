@@ -11,7 +11,7 @@ import java.io.Serializable;
                 @UniqueConstraint(
                         columnNames = {
                                 "id",
-                                "numbers"
+                                "phone"
                         }
                 )
         }
@@ -24,6 +24,8 @@ import java.io.Serializable;
 
 public class Contract implements Serializable{
 
+    private static final long serialVersionUID = 2L;
+
     // идентификационный номер контракта
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -31,46 +33,53 @@ public class Contract implements Serializable{
     private long id;
 
     // Номер
-    @Column( name = "numbers", nullable = false )
+    @Column( name = "phone", nullable = false )
     //@Pattern( regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",
     //         message="{invalid.phonenumber}" )
-    private String number;
+    private String phone;
 
     // Тариф
-    @Column( name = "tariff", nullable = false )
-    private String tariff;
+    @Column( name = "tariff_id", nullable = false )
+    private int tariff_id;
 
     // Список выбранных опций
-    @Column( name = "list_of_chosen_options" )
-    private String chosenOptionList;
+    @Column( name = "option_id" )
+    private int option_id;
 
-    public Contract(int i, String no, String t, String chOL) {
+    // блокирока
+    @Column( name = "lock" )
+    private int lock;
 
-        this.number = no;
-        this.tariff = t;
-        this.chosenOptionList = chOL;
+    public Contract( String phone, int tariff_id, int option_id, int lock) {
+
+        this.phone = phone;
+        this.tariff_id = tariff_id;
+        this.option_id = option_id;
+        this.lock = lock;
     }
 
-    //сеттеры
-    public void setId( long value )                 { id = value; }
-    public void setNumber( String value )           { number = value; }
-    public void setTariff( String value )           { tariff = value; }
-    public void setChosenOptionList( String value ) { chosenOptionList = value; }
+    // сеттеры
+    public void setNumber( String value )     { phone = value; }
+    public void setTariff_id( int value )     { tariff_id = value; }
+    public void setOption_id( int value )     { option_id = value; }
+    public void setLock( int value )          { lock = value; }
 
-    //геттеры
-    public long getId()                 { return id; }
-    public String getNumber()           { return number; }
-    public String getTariff()           { return tariff; }
-    public String getChosenOptionList() { return chosenOptionList; }
+    // геттеры
+    public long getId()         { return id; }
+    public String getNumber()   { return phone; }
+    public int getTariff_id()   { return tariff_id; }
+    public int getOption_id()   { return option_id; }
+    public int getLock()        { return lock; }
 
     // выдать все одной строкой
     @Override
     public String toString() {
         return " \nContract: " + "\n" +
                 " ID = " + id + "\n" +
-                " Number = " +  number + "\n" +
-                " Tariff = " + tariff + "\n" +
-                " List of chosen options = " + chosenOptionList + "\n"
+                " Phone No = " +  phone + "\n" +
+                " Tariff Id = " + tariff_id + "\n" +
+                " Option Id = " + option_id + "\n" +
+                " Lock = " + lock + "\n"
                 ;
     }
 

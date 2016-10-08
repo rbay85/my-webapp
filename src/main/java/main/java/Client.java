@@ -12,9 +12,8 @@ import java.util.Date;
                 @UniqueConstraint(
                         columnNames = {
                                 "id",
-                                "passport_no",
-                                "numbers",
-                                "e-mail"
+                                "passport",
+                                "email"
                         }
                 )
         }
@@ -22,11 +21,13 @@ import java.util.Date;
 
 @NamedQueries({
         @NamedQuery( name = "Client.getAll", query = "SELECT c FROM Client c" ),
-        @NamedQuery( name = "Client.getAllByName", query = "SELECT c FROM Client c ORDER BY c.last_name, c.first_name" )
+        @NamedQuery( name = "Client.getByName", query = "SELECT c FROM Client c WHERE c.lastName = :name" )
 })
 
 
 public class Client implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     // идентификационный номер клиента
     @Id
@@ -43,26 +44,20 @@ public class Client implements Serializable {
     private String lastName;
 
     // день рождения
-    @Column( name = "date_of_birth" )
+    @Column( name = "date" )
     @Temporal(value = TemporalType.DATE)
     private Date  birthDay;
 
     // номер паспорта
-    @Column( name = "passport_no", length = 10, nullable = false )
+    @Column( name = "passport", length = 12, nullable = false )
 
-    private long passNo;
+    private String passNo;
     // Адрес
     @Column( name = "address" )
     private String address;
 
-    // номера телефонов
-    @Column( name = "numbers", nullable = false )
-    //@Pattern( regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",
-    //          message="{invalid.phonenumber}" )
-    private String numbers;
-
     // электронная почта
-    @Column( name = "e-mail" )
+    @Column( name = "email" )
     //@Email
     private String eMail;
 
@@ -70,27 +65,24 @@ public class Client implements Serializable {
     @Column( name = "password", nullable = false )
     private String passWord;
 
-    public Client(int i, String fN, String lN, Date dR, long pN, String adrs, String noms, String eM, String pW){
+    public Client( String fN, String lN, Date dR, String pN, String adrs, String eM, String pW){
 
         this.firstName = fN;
         this.lastName = lN;
         this.birthDay = dR;
         this.passNo = pN;
         this.address = adrs;
-        this.numbers = noms;
         this.eMail = eM;
         this.passWord = pW;
 
     }
 
     // сеттеры
-    public void setId( long value )             { id = value; }
     public void setFirstName( String value )    { firstName = value; }
     public void setLastName( String value )     { lastName = value; }
     public void setBirthDay( Date value )       { birthDay = value; }
-    public void setPassNo( long value )         { passNo = value; }
+    public void setPassNo( String value )       { passNo = value; }
     public void setAddress( String value )      { address = value; }
-    public void setNumbers( String value )      { numbers = value; }
     public void setEmail( String value )        { eMail = value; }
     public void setPassWord( String value )     { passWord = value; }
 
@@ -98,13 +90,12 @@ public class Client implements Serializable {
     public long getId()             { return id; }
     public String getFirstName()    { return firstName; }
     public String getLastName()     { return lastName; }
-    public String getBirthDay()       {
+    public String getBirthDay()     {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format( birthDay );
     }
-    public long getPassNo()         { return passNo; }
+    public String getPassNo()       { return passNo; }
     public String getAddress()      { return address; }
-    public String getNumbers()      { return numbers; }
     public String getEmail()        { return eMail; }
     public String getPassWord()     { return passWord; }
 
@@ -119,7 +110,6 @@ public class Client implements Serializable {
                 " Birth Day = " + dateFormat.format( birthDay ) + "\n" +
                 " Passport Number = " + passNo + "\n" +
                 " Address = " + address + "\n" +
-                " Numbers = " + numbers + "\n" +
                 " E-mail = " + eMail + "\n" +
                 " Password = " + passWord + "\n"
                 ;
