@@ -1,7 +1,5 @@
 <head>
-    <script
-            src="http://code.jquery.com/jquery-3.1.1.min.js">
-    </script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
     <span id="txtmsg"> no message still </span>
@@ -15,7 +13,7 @@
 
         var userNameInput;
         var span;
-        $(function(){
+        $( function(){
 
             userNameInput = $("#userName");
             userSecretInput = $("#userSecret");

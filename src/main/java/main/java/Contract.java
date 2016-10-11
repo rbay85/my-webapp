@@ -50,6 +50,9 @@ public class Contract implements Serializable{
     @Column( name = "lock" )
     private int lock;
 
+    // пустой конструктор
+    public Contract() {}
+
     public Contract( String phone, int tariff_id, int option_id, int lock) {
 
         this.phone = phone;

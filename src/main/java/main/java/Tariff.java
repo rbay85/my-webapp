@@ -31,6 +31,9 @@ public class Tariff implements Serializable{
     @Column( name = "price", nullable = false )
     private double price;
 
+    // пустой конструктор
+    public Tariff() {}
+
 
     public Tariff( String name, double price ){
 

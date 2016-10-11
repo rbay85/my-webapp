@@ -59,7 +59,6 @@ public class ClientServiceTest {
                 "vern_jambo@mail.ru",
                 "123123");
 
-
         //Записываем в БД
         service.add( client3 );
 
@@ -76,7 +75,6 @@ public class ClientServiceTest {
 
     @Test
     public void testGetAll() throws Exception {
-
 
         //Получаем всех клиентов с БД
         List<Client> clients = service.getAll();

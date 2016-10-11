@@ -35,6 +35,9 @@ public class Option implements Serializable{
     @Column( name = "onCost", nullable = false )
     private double onCost;
 
+    // пустой конструктор
+    public Option() {}
+
     public Option( String name, double price, double onCost){
 
         this.name = name;

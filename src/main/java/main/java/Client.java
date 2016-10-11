@@ -1,6 +1,7 @@
 package main.java;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,6 +65,9 @@ public class Client implements Serializable {
     // пароль
     @Column( name = "password", nullable = false )
     private String passWord;
+
+    // пустой конструктор
+    public Client() {}
 
     public Client( String fN, String lN, Date dR, String pN, String adrs, String eM, String pW){
 
