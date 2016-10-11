@@ -50,3 +50,18 @@ footer {
     clear: both;
     background-color: #ccc;
 }
+
+/* для формы логина */
+.form-element{
+    margin: 5px 0;
+}
+.form-element label{
+    float: left;
+    width: 90px;
+}
+input[type="submit"]{
+    background: #1F8E94;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}

@@ -1,25 +1,49 @@
-<%--
-
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--   -->
+<!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <!-- Объявляем заголовк, кодироку стили и т.д -->
+        <meta contentType="text/html" charset="utf-8">
         <title>Login form</title>
         <link href="style.css" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
-            <header> this is a header </header>
-            <nav> this is a navication bar </nav>
+            <!-- Обертка  -->
+            <header>
+                --this is a header--
+            </header>
+            <nav>
+                --this is a navigation bar--
+            </nav>
             <section id="content" class="clearfix">
-                <section id="page-content"> this is page content </section>
-                <aside> this is an aside block </aside>
+                <section id="page-content">
+                    --this is page content--
+                </section>
+                <aside> --this is an aside block--
+                    <h2>Login please</h2>
+                    <form name="formName" action="action.html">
+                        <div class="form-element">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username"/>
+                        </div>
+                        <div class="form-element">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password"/>
+                        </div>
+                        <div class="form-element">
+                            <input type="submit" value="Log in"/>
+                        </div>
+                    </form>
+                </aside>
+                </aside>
             </section>
             <div id="empty-div">
-            this is an "empty" div
+                --this is an "empty" div--
             </div>
         </div>
-        <footer> this is a footer </footer>
+        <footer>
+            --this is a footer--
+        </footer>
     </body>
 </html>
