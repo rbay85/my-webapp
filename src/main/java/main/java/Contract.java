@@ -18,7 +18,7 @@ import java.io.Serializable;
 )
 @NamedQueries({
         @NamedQuery( name = "Contract.getAll", query = "SELECT ct FROM Contract ct" ),
-        @NamedQuery( name = "Contract.getAllByName", query = "SELECT ct FROM Contract ct ORDER BY ct.name" )
+        @NamedQuery( name = "Contract.getByPhone", query = "SELECT ct FROM Contract ct WHERE ct.phone = :name" )
 })
 
 
@@ -35,7 +35,7 @@ public class Contract implements Serializable{
     // Номер
     @Column( name = "phone", nullable = false )
     //@Pattern( regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",
-    //         message="{invalid.phonenumber}" )
+    //        message="{invalid phonenumber}" )
     private String phone;
 
     // Тариф

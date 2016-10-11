@@ -49,11 +49,11 @@ public class ClientServiceTest {
 
     @Test
     public void testUpdate() throws Exception {
-        //Создаем автомобиль для записи в БД
+        //Создаем клиента для записи в БД
         Client client3 = new Client(
                 "Vern",
                 "Jambo",
-                new Date(73, 1, 13),
+                new Date( 73, 1, 13 ),
                 "1745 473498",
                 "Kiev.....",
                 "vern_jambo@mail.ru",
@@ -78,17 +78,17 @@ public class ClientServiceTest {
     public void testGetAll() throws Exception {
 
 
-        //Получаем все авто с БД
+        //Получаем всех клиентов с БД
         List<Client> clients = service.getAll();
 
-        //Выводим полученый список авто
-        for(Client c : clients){
-            System.out.println(c);
+        //Выводим полученый список клиентов
+        for( Client c : clients ){
+            System.out.println( c );
         }
     }
 
     @Test
-    public void testDeleteRecord() throws Exception {
+    public void testDelete() throws Exception {
 
         //Удалем первую запись в БД
         service.delete( 1 );

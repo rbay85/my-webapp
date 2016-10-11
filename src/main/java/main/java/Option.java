@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @NamedQueries({
         @NamedQuery( name = "Option.getAll", query = "SELECT o FROM Option o" ),
-        @NamedQuery( name = "Option.getAllByName", query = "SELECT o FROM Option o ORDER BY o.name" )
+        @NamedQuery( name = "Option.getByName", query = "SELECT o FROM Option o WHERE o.name = :name" )
 })
 
 

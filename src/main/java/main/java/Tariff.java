@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @NamedQueries({
         @NamedQuery( name = "Tariff.getAll", query = "SELECT t FROM Tariff t" ),
-        @NamedQuery( name = "Tariff.getAllByName", query = "SELECT t FROM Tariff t ORDER BY t.name" )
+        @NamedQuery( name = "Tariff.getByName", query = "SELECT t FROM Tariff t WHERE t.name = :name" )
 })
 
 
