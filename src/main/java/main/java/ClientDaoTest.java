@@ -5,9 +5,9 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.List;
 
-public class ClientServiceTest {
+public class ClientDaoTest {
 
-    ClientService service = new ClientService();
+    ClientDao service = new ClientDao();
 
     @Test
     public void testAdd() throws Exception {

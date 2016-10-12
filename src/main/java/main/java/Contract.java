@@ -47,32 +47,32 @@ public class Contract implements Serializable{
     private int option_id;
 
     // блокирока
-    @Column( name = "lock" )
-    private int lock;
+    @Column( name = "is_locked" )
+    private int is_locked;
 
     // пустой конструктор
     public Contract() {}
 
-    public Contract( String phone, int tariff_id, int option_id, int lock) {
+    public Contract( String phone, int tariff_id, int option_id, int is_locked) {
 
         this.phone = phone;
         this.tariff_id = tariff_id;
         this.option_id = option_id;
-        this.lock = lock;
+        this.is_locked = is_locked;
     }
 
     // сеттеры
     public void setNumber( String value )     { phone = value; }
     public void setTariff_id( int value )     { tariff_id = value; }
     public void setOption_id( int value )     { option_id = value; }
-    public void setLock( int value )          { lock = value; }
+    public void setIs_locked( int value )      { is_locked = value; }
 
     // геттеры
     public long getId()         { return id; }
     public String getNumber()   { return phone; }
     public int getTariff_id()   { return tariff_id; }
     public int getOption_id()   { return option_id; }
-    public int getLock()        { return lock; }
+    public int getIs_locked()    { return is_locked; }
 
     // выдать все одной строкой
     @Override
@@ -82,8 +82,7 @@ public class Contract implements Serializable{
                 " Phone No = " +  phone + "\n" +
                 " Tariff Id = " + tariff_id + "\n" +
                 " Option Id = " + option_id + "\n" +
-                " Lock = " + lock + "\n"
+                " Lock = " + is_locked + "\n"
                 ;
     }
-
 }

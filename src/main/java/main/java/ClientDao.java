@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ClientService {
+public class ClientDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
