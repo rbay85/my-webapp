@@ -11,10 +11,9 @@ public class ClientServlet extends HttpServlet{
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
-        resp.setContentType("text/html");
+        resp.setContentType( "text/html" );
 
-        String userName = "Roman";
-        req.setAttribute( "name", userName );
+        req.setAttribute( "name", "Roman" );
 
         req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
 
