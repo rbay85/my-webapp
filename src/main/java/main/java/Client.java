@@ -1,7 +1,8 @@
 package main.java;
 
+import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
-//import javax.validation.constraints.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class Client implements Serializable {
     // день рождения
     @Column( name = "date" )
     @Temporal(value = TemporalType.DATE)
+    @Past
     private Date  birthDay;
 
     // номер паспорта
@@ -59,7 +61,7 @@ public class Client implements Serializable {
 
     // электронная почта
     @Column( name = "email" )
-    //@Email
+    @Email
     private String eMail;
 
     // пароль
