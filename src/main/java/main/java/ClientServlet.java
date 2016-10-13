@@ -11,18 +11,14 @@ public class ClientServlet extends HttpServlet{
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
-        resp.setContentType( "text/html" );
+        ClientDao client4 = new ClientDao();
 
-        req.setAttribute( "name", "Roman" );
+        req.setAttribute( "client", client4.get(4) );
 
         req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
-
-        //resp.getWriter().print( "
-        // <h1>
-        //      Hello from Servlet
-        // </h1>
-        // " );
     }
+
+
 
     /*
     @Override
