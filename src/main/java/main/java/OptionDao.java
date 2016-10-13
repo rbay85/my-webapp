@@ -6,16 +6,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ClientDao {
+public class OptionDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
-    // добавляем клиента
-    public void add( Client client ) {
+    // добавляем опцию
+    public void add( Option option ) {
         try {
             trx.begin();
-            em.persist( client );
+            em.persist( option );
             trx.commit();
         }
         finally {
@@ -23,12 +23,12 @@ public class ClientDao {
         }
     }
 
-    // удаляем клиента
+    // удаляем опцию
     public void delete( long id ){
         try {
             trx.begin();
-            Client client = em.find( Client.class, id );
-            em.remove( client );
+            Option option = em.find( Option.class, id );
+            em.remove( option );
             trx.commit();
         }
         finally {
@@ -36,26 +36,26 @@ public class ClientDao {
         }
     }
 
-    // редактируем клиента
-    public void update( Client client ){
+    // редактируем опцию
+    public void update( Option option ){
         try {
-            trx.begin();
-            em.merge( client );
-            trx.commit();
+            em.getTransaction().begin();
+            em.merge( option );
+            em.getTransaction().commit();
         }
         finally {
             if (trx.isActive()) trx.rollback();
         }
     }
 
-    // ищем клиента
-    public Client get(long id){
-        return em.find(Client.class, id);
+    // ищем опцию
+    public Option get( long id ){
+        return em.find( Option.class, id );
     }
 
-    // выводим всех
-    public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery("Client.getAll", Client.class);
+    // выводим все опции
+    public List<Option> getAll(){
+        TypedQuery<Option> namedQuery = em.createNamedQuery("Option.getAll", Option.class);
         return namedQuery.getResultList();
     }
 }

@@ -5,6 +5,6 @@
     <title>myTitle</title>
 </head>
     <body>
-        <c:out value="Hello ${name}" />
+        <h1>"Hello ${name}" <h1/>
     </body>
 </html>

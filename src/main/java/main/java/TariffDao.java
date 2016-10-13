@@ -6,16 +6,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ClientDao {
+public class TariffDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
     // добавляем клиента
-    public void add( Client client ) {
+    public void add( Tariff tariff ) {
         try {
             trx.begin();
-            em.persist( client );
+            em.persist( tariff );
             trx.commit();
         }
         finally {
@@ -27,8 +27,8 @@ public class ClientDao {
     public void delete( long id ){
         try {
             trx.begin();
-            Client client = em.find( Client.class, id );
-            em.remove( client );
+            Tariff tariff = em.find( Tariff.class, id );
+            em.remove( tariff );
             trx.commit();
         }
         finally {
@@ -37,10 +37,10 @@ public class ClientDao {
     }
 
     // редактируем клиента
-    public void update( Client client ){
+    public void update( Tariff tariff ){
         try {
             trx.begin();
-            em.merge( client );
+            em.merge( tariff );
             trx.commit();
         }
         finally {
@@ -49,13 +49,13 @@ public class ClientDao {
     }
 
     // ищем клиента
-    public Client get(long id){
-        return em.find(Client.class, id);
+    public Tariff get( long id ){
+        return em.find( Tariff.class, id );
     }
 
     // выводим всех
-    public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery("Client.getAll", Client.class);
+    public List<Tariff> getAll(){
+        TypedQuery<Tariff> namedQuery = em.createNamedQuery("Tariff.getAll", Tariff.class);
         return namedQuery.getResultList();
     }
 }

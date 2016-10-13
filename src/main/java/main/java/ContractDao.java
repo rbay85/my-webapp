@@ -6,16 +6,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ClientDao {
+public class ContractDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
-    // добавляем клиента
-    public void add( Client client ) {
+    // добавляем контракт
+    public void add( Contract contract ) {
         try {
             trx.begin();
-            em.persist( client );
+            em.persist( contract );
             trx.commit();
         }
         finally {
@@ -23,12 +23,12 @@ public class ClientDao {
         }
     }
 
-    // удаляем клиента
+    // удаляем контракт
     public void delete( long id ){
         try {
             trx.begin();
-            Client client = em.find( Client.class, id );
-            em.remove( client );
+            Contract contract = em.find( Contract.class, id );
+            em.remove( contract );
             trx.commit();
         }
         finally {
@@ -36,11 +36,11 @@ public class ClientDao {
         }
     }
 
-    // редактируем клиента
-    public void update( Client client ){
+    // редактируем контракт
+    public void update( Contract contract ){
         try {
             trx.begin();
-            em.merge( client );
+            em.merge( contract );
             trx.commit();
         }
         finally {
@@ -48,14 +48,14 @@ public class ClientDao {
         }
     }
 
-    // ищем клиента
-    public Client get(long id){
-        return em.find(Client.class, id);
+    // ищем контракт
+    public Contract get( long id ){
+        return em.find( Contract.class, id );
     }
 
-    // выводим всех
-    public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery("Client.getAll", Client.class);
+    // выводим все контракты
+    public List<Contract> getAll(){
+        TypedQuery<Contract> namedQuery = em.createNamedQuery( "Contract.getAll", Contract.class );
         return namedQuery.getResultList();
     }
 }
