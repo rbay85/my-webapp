@@ -36,7 +36,6 @@
                         </div>
                     </form>
                 </aside>
-                </aside>
             </section>
             <div id="empty-div">
                 --this is an "empty" div--
