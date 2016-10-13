@@ -19,7 +19,7 @@ public class TariffDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -32,7 +32,7 @@ public class TariffDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -44,7 +44,7 @@ public class TariffDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -55,7 +55,7 @@ public class TariffDao {
 
     // выводим всех
     public List<Tariff> getAll(){
-        TypedQuery<Tariff> namedQuery = em.createNamedQuery("Tariff.getAll", Tariff.class);
+        TypedQuery<Tariff> namedQuery = em.createNamedQuery( "Tariff.getAll", Tariff.class );
         return namedQuery.getResultList();
     }
 }

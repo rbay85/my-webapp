@@ -19,7 +19,7 @@ public class ClientDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -32,7 +32,7 @@ public class ClientDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -44,18 +44,18 @@ public class ClientDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
     // ищем клиента
-    public Client get(long id){
-        return em.find(Client.class, id);
+    public Client get( long id ){
+        return em.find( Client.class, id );
     }
 
     // выводим всех
     public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery("Client.getAll", Client.class);
+        TypedQuery<Client> namedQuery = em.createNamedQuery( "Client.getAll", Client.class );
         return namedQuery.getResultList();
     }
 }

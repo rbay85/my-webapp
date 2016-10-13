@@ -19,7 +19,7 @@ public class OptionDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -32,7 +32,7 @@ public class OptionDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -44,7 +44,7 @@ public class OptionDao {
             em.getTransaction().commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -55,7 +55,7 @@ public class OptionDao {
 
     // выводим все опции
     public List<Option> getAll(){
-        TypedQuery<Option> namedQuery = em.createNamedQuery("Option.getAll", Option.class);
+        TypedQuery<Option> namedQuery = em.createNamedQuery( "Option.getAll", Option.class );
         return namedQuery.getResultList();
     }
 }

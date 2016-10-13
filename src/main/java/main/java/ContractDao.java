@@ -19,7 +19,7 @@ public class ContractDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -32,7 +32,7 @@ public class ContractDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
@@ -44,7 +44,7 @@ public class ContractDao {
             trx.commit();
         }
         finally {
-            if (trx.isActive()) trx.rollback();
+            if ( trx.isActive() ) trx.rollback();
         }
     }
 
