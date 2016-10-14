@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table( name = "tariffs", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
+@Table( name = "tariff", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
 
 @NamedQueries({
         @NamedQuery( name = "Tariff.getAll", query = "SELECT t FROM Tariff t" ),

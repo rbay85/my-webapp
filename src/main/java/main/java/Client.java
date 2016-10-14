@@ -6,10 +6,11 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(
-        name = "clients",
+        name = "client",
         uniqueConstraints = {
                 @UniqueConstraint(
                         columnNames = {
@@ -35,7 +36,7 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     @Column( name = "id", nullable = false )
-    private long id;
+    private int id;
 
     // Имя
     @Column( name = "first_name", nullable = false )
@@ -59,10 +60,14 @@ public class Client implements Serializable {
     @Column( name = "address" )
     private String address;
 
+    // номера контрактов
+    @OneToMany( mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private Set<Contract> contractSet;
+
     // электронная почта
     @Column( name = "email" )
     @Email
-    private String eMail;
+    private String email;
 
     // пароль
     @Column( name = "password", nullable = false )
@@ -71,39 +76,29 @@ public class Client implements Serializable {
     // пустой конструктор
     public Client() {}
 
-    public Client( String fN, String lN, Date dR, String pN, String adrs, String eM, String pW){
-
-        this.firstName = fN;
-        this.lastName = lN;
-        this.birthDay = dR;
-        this.passNo = pN;
-        this.address = adrs;
-        this.eMail = eM;
-        this.passWord = pW;
-
-    }
-
     // сеттеры
-    public void setFirstName( String value )    { firstName = value; }
-    public void setLastName( String value )     { lastName = value; }
-    public void setBirthDay( Date value )       { birthDay = value; }
-    public void setPassNo( String value )       { passNo = value; }
-    public void setAddress( String value )      { address = value; }
-    public void setEmail( String value )        { eMail = value; }
-    public void setPassWord( String value )     { passWord = value; }
+    public void setFirstName    ( String firstName )            { this.firstName = firstName; }
+    public void setLastName     ( String lastName )             { this.lastName = lastName; }
+    public void setBirthDay     ( Date birthDay )               { this.birthDay = birthDay; }
+    public void setPassNo       ( String passNo )               { this.passNo = passNo; }
+    public void setAddress      ( String address )              { this.address = address; }
+    public void setContractSet  ( Set<Contract> contractSet )   { this.contractSet = contractSet; }
+    public void setEmail        ( String email )                { this.email = email; }
+    public void setPassWord     ( String passWord )             { this.passWord = passWord; }
 
     // геттеры
-    public long getId()             { return id; }
-    public String getFirstName()    { return firstName; }
-    public String getLastName()     { return lastName; }
-    public String getBirthDay()     {
+    public int getId()                      { return id; }
+    public String getFirstName()            { return firstName; }
+    public String getLastName()             { return lastName; }
+    public String getPassNo()               { return passNo; }
+    public String getAddress()              { return address; }
+    public Set<Contract> getContractSet()   { return contractSet; }
+    public String getEmail()                { return email; }
+    public String getPassWord()             { return passWord; }
+    public String getBirthDay() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format( birthDay );
     }
-    public String getPassNo()       { return passNo; }
-    public String getAddress()      { return address; }
-    public String getEmail()        { return eMail; }
-    public String getPassWord()     { return passWord; }
 
     // выдать все одной строкой
     @Override
@@ -116,8 +111,11 @@ public class Client implements Serializable {
                 " Birth Day = " + dateFormat.format( birthDay ) + "\n" +
                 " Passport Number = " + passNo + "\n" +
                 " Address = " + address + "\n" +
-                " E-mail = " + eMail + "\n" +
+                " Contracts = " + contractSet + "\n" +
+                " E-mail = " + email + "\n" +
                 " Password = " + passWord + "\n"
                 ;
     }
+
+    // переопределить equals, hashCode !
 }

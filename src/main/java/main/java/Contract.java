@@ -2,11 +2,13 @@
 package main.java;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(
-        name = "contracts",
+        name = "contract",
         uniqueConstraints = {
                 @UniqueConstraint(
                         columnNames = {
@@ -30,21 +32,30 @@ public class Contract implements Serializable{
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     @Column( name = "id", nullable = false )
-    private long id;
+    private int id;
 
     // Номер
     @Column( name = "phone", nullable = false )
-    //@Pattern( regexp="\\(\\d{3}\\)\\d{3}-\\d{4}",
-    //        message="{invalid phonenumber}" )
+    @Pattern( regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}", message = "{invalid phone number!}" )
     private String phone;
 
-    // Тариф
-    @Column( name = "tariff_id", nullable = false )
-    private int tariff_id;
+    // идентификационный номер соответсвующего контракта
+    @ManyToOne
+    @JoinColumn( name = "client_id" )
+    private Client client;
 
-    // Список выбранных опций
-    @Column( name = "option_id" )
-    private int option_id;
+    // Тариф
+    @OneToOne
+    @JoinColumn( name = "tariff_id", nullable = false )
+    private Tariff tariff;
+
+    // Выбранные опций
+    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @JoinTable(
+            name = "contract_option",
+            joinColumns = @JoinColumn( name = "contract_id" ),
+            inverseJoinColumns = @JoinColumn( name = "option_id" ) )
+    private Set<Option> optionSet;
 
     // блокирока
     @Column( name = "is_locked" )
@@ -53,26 +64,18 @@ public class Contract implements Serializable{
     // пустой конструктор
     public Contract() {}
 
-    public Contract( String phone, int tariff_id, int option_id, int is_locked) {
-
-        this.phone = phone;
-        this.tariff_id = tariff_id;
-        this.option_id = option_id;
-        this.is_locked = is_locked;
-    }
-
     // сеттеры
-    public void setNumber( String value )     { phone = value; }
-    public void setTariff_id( int value )     { tariff_id = value; }
-    public void setOption_id( int value )     { option_id = value; }
-    public void setIs_locked( int value )      { is_locked = value; }
+    public void setPhone        ( String phone )            { this.phone = phone; }
+    public void setTariff       ( Tariff tariff )           { this.tariff = tariff; }
+    public void setOptionSet    ( Set<Option> optionSet )   { this.optionSet = optionSet; }
+    public void setIs_locked    ( int is_locked )           { this.is_locked = is_locked; }
 
     // геттеры
-    public long getId()         { return id; }
-    public String getNumber()   { return phone; }
-    public int getTariff_id()   { return tariff_id; }
-    public int getOption_id()   { return option_id; }
-    public int getIs_locked()    { return is_locked; }
+    public int getId()                  { return id; }
+    public String getPhone()            { return phone; }
+    public Tariff getTariff()           { return tariff; }
+    public Set<Option> getOptionSet()   { return optionSet; }
+    public int getIs_locked()           { return is_locked; }
 
     // выдать все одной строкой
     @Override
@@ -80,8 +83,8 @@ public class Contract implements Serializable{
         return " \nContract: " + "\n" +
                 " ID = " + id + "\n" +
                 " Phone No = " +  phone + "\n" +
-                " Tariff Id = " + tariff_id + "\n" +
-                " Option Id = " + option_id + "\n" +
+                " Tariff = " + tariff + "\n" +
+                " Options = " + optionSet + "\n" +
                 " Lock = " + is_locked + "\n"
                 ;
     }

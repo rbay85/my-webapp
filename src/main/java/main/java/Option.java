@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table( name = "options", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
+@Table( name = "option", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
 
 @NamedQueries({
         @NamedQuery( name = "Option.getAll", query = "SELECT o FROM Option o" ),
@@ -38,17 +38,10 @@ public class Option implements Serializable{
     // пустой конструктор
     public Option() {}
 
-    public Option( String name, double price, double onCost){
-
-        this.name = name;
-        this.price = price;
-        this.onCost = onCost;
-    }
-
     // сеттеры
-    public void setName( String value )     { name = value; }
-    public void setPrice( double value )    { price = value; }
-    public void setOnCost( double value )   { onCost = value; }
+    public void setName     ( String name )     { this.name = name; }
+    public void setPrice    ( double price )    { this.price = price; }
+    public void setOnCost   ( double onCost )   { this.onCost = onCost; }
 
     // геттеры
     public long getId()         { return id; }
