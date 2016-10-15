@@ -2,7 +2,9 @@
 package main.java;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table( name = "tariff", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
@@ -29,26 +31,31 @@ public class Tariff implements Serializable{
 
     // Цена
     @Column( name = "price", nullable = false )
+    @Min(value = 0, message = "must be positive!")
     private double price;
+
+    // список доступных опций
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "tariff_option",
+            joinColumns = @JoinColumn(name = "tariff_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id")
+    )
+    private Set<Option> optionSet;
 
     // пустой конструктор
     public Tariff() {}
 
-
-    public Tariff( String name, double price ){
-
-        this.name = name;
-        this.price = price;
-    }
-
     // сеттеры
-    public void setName( String value )         { name = value; }
-    public void setPrice( double value )        { price = value; }
+    public void setName      ( String name )           { this.name = name; }
+    public void setPrice     ( double price )          { this.price = price; }
+    public void setOptionSet ( Set<Option> optionSet ) { this.optionSet = optionSet; }
 
     // геттеры
-    public int getId()              { return id; }
-    public String getName()         { return name; }
-    public double getPrice()        { return price; }
+    public int getId()                 { return id; }
+    public String getName()            { return name; }
+    public double getPrice()           { return price; }
+    public Set<Option> getOptionSet()  { return optionSet; }
 
     // выдать все одной строкой
     @Override
