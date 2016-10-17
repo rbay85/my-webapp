@@ -4,10 +4,11 @@ package main.java;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
-@Table( name = "tariff", uniqueConstraints = { @UniqueConstraint( columnNames = {"id"} ) } )
+@Table( name = "tariff", uniqueConstraints = { @UniqueConstraint( columnNames = {"id", "name"} ) } )
 
 @NamedQueries({
         @NamedQuery( name = "Tariff.getAll", query = "SELECT t FROM Tariff t" ),
@@ -41,29 +42,55 @@ public class Tariff implements Serializable{
             joinColumns = @JoinColumn(name = "tariff_id"),
             inverseJoinColumns = @JoinColumn(name = "option_id")
     )
-    private Set<Option> optionSet;
+    private List<Option> optionList;
 
     // пустой конструктор
     public Tariff() {}
 
     // сеттеры
-    public void setName      ( String name )           { this.name = name; }
-    public void setPrice     ( double price )          { this.price = price; }
-    public void setOptionSet ( Set<Option> optionSet ) { this.optionSet = optionSet; }
+    public void setName       ( String name )              { this.name = name; }
+    public void setPrice      ( double price )             { this.price = price; }
+    public void setOptionList ( List<Option> optionList )  { this.optionList = optionList; }
 
     // геттеры
-    public int getId()                 { return id; }
-    public String getName()            { return name; }
-    public double getPrice()           { return price; }
-    public Set<Option> getOptionSet()  { return optionSet; }
+    public int getId()                   { return id; }
+    public String getName()              { return name; }
+    public double getPrice()             { return price; }
+    public List<Option> getOptionList()  { return optionList; }
 
-    // выдать все одной строкой
+    // переопределения
     @Override
     public String toString() {
         return " \nTariff: " + "\n" +
                 " ID = " + id + "\n" +
                 " Name = " +  name + "\n" +
-                " Price = " + price + "\n"
+                " Price = " + price + "\n" +
+                " Options = " + optionList + "\n"
                 ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tariff)) return false;
+
+        Tariff tariff = (Tariff) o;
+
+        if (id != tariff.id) return false;
+        if (Double.compare(tariff.price, price) != 0) return false;
+        return name.equals(tariff.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        /*
+        long temp;
+        result = 31 * result + name.hashCode();
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        */
+        return result;
     }
 }

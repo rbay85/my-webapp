@@ -6,21 +6,11 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
-@Table(
-        name = "client",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        columnNames = {
-                                "id",
-                                "passport",
-                                "email"
-                        }
-                )
-        }
-)
+@Table( name = "client", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "passport", "email" } ) } )
 
 @NamedQueries({
         @NamedQuery( name = "Client.getAll", query = "SELECT c FROM Client c" ),
@@ -62,7 +52,7 @@ public class Client implements Serializable {
 
     // номера контрактов
     @OneToMany( mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    private Set<Contract> contractSet;
+    private List<Contract> contractList;
 
     // электронная почта
     @Column( name = "email" )
@@ -82,7 +72,7 @@ public class Client implements Serializable {
     public void setBirthDay     ( Date birthDay )               { this.birthDay = birthDay; }
     public void setPassNo       ( String passNo )               { this.passNo = passNo; }
     public void setAddress      ( String address )              { this.address = address; }
-    public void setContractSet  ( Set<Contract> contractSet )   { this.contractSet = contractSet; }
+    public void setContractList ( List<Contract> contractList ) { this.contractList = contractList; }
     public void setEmail        ( String email )                { this.email = email; }
     public void setPassWord     ( String passWord )             { this.passWord = passWord; }
 
@@ -92,7 +82,7 @@ public class Client implements Serializable {
     public String getLastName()             { return lastName; }
     public String getPassNo()               { return passNo; }
     public String getAddress()              { return address; }
-    public Set<Contract> getContractSet()   { return contractSet; }
+    public List<Contract> getContractList() { return contractList; }
     public String getEmail()                { return email; }
     public String getPassWord()             { return passWord; }
     public String getBirthDay() {
@@ -100,7 +90,7 @@ public class Client implements Serializable {
         return dateFormat.format( birthDay );
     }
 
-    // выдать все одной строкой
+    // переопределения
     @Override
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -111,11 +101,42 @@ public class Client implements Serializable {
                 " Birth Day = " + dateFormat.format( birthDay ) + "\n" +
                 " Passport Number = " + passNo + "\n" +
                 " Address = " + address + "\n" +
-                " Contracts = " + contractSet + "\n" +
+                " Contracts = " + contractList + "\n" +
                 " E-mail = " + email + "\n" +
                 " Password = " + passWord + "\n"
                 ;
     }
 
-    // переопределить equals, hashCode !
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+
+        Client client = (Client) o;
+
+        if (id != client.id) return false;
+        if (!firstName.equals(client.firstName)) return false;
+        if (!lastName.equals(client.lastName)) return false;
+        if (birthDay != null ? !birthDay.equals(client.birthDay) : client.birthDay != null) return false;
+        if (!passNo.equals(client.passNo)) return false;
+        if (address != null ? !address.equals(client.address) : client.address != null) return false;
+        if (email != null ? !email.equals(client.email) : client.email != null) return false;
+        return passWord.equals(client.passWord);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        /*
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + (birthDay != null ? birthDay.hashCode() : 0);
+        result = 31 * result + passNo.hashCode();
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + passWord.hashCode();
+        */
+        return result;
+    }
 }
