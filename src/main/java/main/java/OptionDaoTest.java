@@ -6,16 +6,16 @@ import java.util.List;
 
 public class OptionDaoTest {
 
-    OptionDao optionDao= new OptionDao();
+    OptionDao optionDao = new OptionDao();
 
     @Test
     public void testAdd() throws Exception {
 
         //Создаем контракт для записи в БД
         Option option1 = new Option();
-        option1.setName("2 GB internet");
-        option1.setPrice( 100 );
-        option1.setOnCost( 30 );
+        option1.setName( "sms service" );
+        option1.setPrice( 0 );
+        option1.setOnCost( 0 );
         //option1.setNecessaryOptionList(  );
         //option1.setIncompatibleOptionList(  );
 

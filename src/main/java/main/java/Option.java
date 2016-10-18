@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table( name = "option", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "name" } ) } )
+@Table( name = "options", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "name" } ) } )
 
 @NamedQueries({
         @NamedQuery( name = "Option.getAll", query = "SELECT o FROM Option o" ),
@@ -37,7 +37,7 @@ public class Option implements Serializable{
     private double onCost;
 
     // список необходимых опций
-    @ManyToMany( fetch = FetchType.EAGER )
+    @ManyToMany( fetch = FetchType.LAZY )
     @JoinTable( name = "necessary_option",
             joinColumns = @JoinColumn( name = "option1_id" ),
             inverseJoinColumns = @JoinColumn( name = "option2_id" )
@@ -45,7 +45,7 @@ public class Option implements Serializable{
     private List<Option> necessaryOptionList;
 
     // список несовместимых опций
-    @ManyToMany( fetch = FetchType.EAGER )
+    @ManyToMany( fetch = FetchType.LAZY )
     @JoinTable( name = "incompatible_option",
             joinColumns = @JoinColumn( name = "option1_id" ),
             inverseJoinColumns = @JoinColumn( name = "option2_id" )

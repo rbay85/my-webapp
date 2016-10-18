@@ -1,6 +1,8 @@
 package main.java;
 
 import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +16,18 @@ public class ClientDaoTest {
 
         //Создаем клиента для записи в БД
         Client client1 = new Client();
+        Contract contract1 = new Contract();
+        List<Contract> contractList = Arrays.asList( contract1 );
+
+        contract1.setPhone( "(901)456-4275" );
+        contract1.setIs_locked( 0 );
+
         client1.setFirstName( "Dima" );
         client1.setLastName( "Kotov" );
         client1.setBirthDay( new Date( 89, 1, 13 ));
         client1.setPassNo( "0405 215487" );
         client1.setAddress( "Lugi..." );
+        client1.setContractList( contractList );
         client1.setEmail( "d.kotov@ya.ru" );
         client1.setPassWord( "qazqaz" );
 

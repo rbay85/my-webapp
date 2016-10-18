@@ -42,7 +42,7 @@ public class Contract implements Serializable{
     private Tariff tariff;
 
     // Выбранные опций
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     @JoinTable(
             name = "contract_option",
             joinColumns = @JoinColumn( name = "contract_id" ),

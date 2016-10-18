@@ -13,8 +13,8 @@ public class TariffDaoTest {
 
         //Создаем контракт для записи в БД
         Tariff tariff1 = new Tariff();
-        tariff1.setName( "Minimum" );
-        tariff1.setPrice( 150 );
+        tariff1.setName( "Maximum" );
+        tariff1.setPrice( 250 );
         //tariff1.setOptionList( );
 
         //Записали в БД

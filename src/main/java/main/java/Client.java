@@ -51,7 +51,7 @@ public class Client implements Serializable {
     private String address;
 
     // номера контрактов
-    @OneToMany( mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @OneToMany( mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Contract> contractList;
 
     // электронная почта
