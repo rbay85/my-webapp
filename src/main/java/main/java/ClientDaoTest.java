@@ -1,10 +1,9 @@
 package main.java;
 
 import org.junit.Test;
-
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 
 public class ClientDaoTest {
 
@@ -32,14 +31,13 @@ public class ClientDaoTest {
 
         // создаем клиента для записи в БД
         Client client2 = new Client();
-                //"Petr",
-                //"Semko",
-                //new Date( 87, 11, 15 ),
-                //"0987 245907",
-                //"Spb.....",
-                //"petr_semko@mail.ru",
-                //"asdasd"
-
+        client2.setFirstName( "Petr" );
+        client2.setLastName( "Semko" );
+        client2.setBirthDay( new Date( 87, 11, 15 ));
+        client2.setPassNo( "0987 245907" );
+        client2.setAddress( "Spb....." );
+        client2.setEmail( "petr_semko@mail.ru" );
+        client2.setPassWord( "asdasd" );
 
         //Записываем в БД
         clientDao.add( client2 );
@@ -51,16 +49,16 @@ public class ClientDaoTest {
 
     @Test
     public void testUpdate() throws Exception {
+
         //Создаем клиента для записи в БД
         Client client3 = new Client();
-                //"Vern",
-                //"Jambo",
-                //new Date( 73, 1, 13 ),
-                //"1745 473498",
-                //"Kiev.....",
-                //"vern_jambo@mail.ru",
-                //"123123"
-
+        client3.setFirstName( "Vern" );
+        client3.setLastName( "Jambo" );
+        client3.setBirthDay( new Date( 73, 1, 13 ));
+        client3.setPassNo( "1745 473498" );
+        client3.setAddress( "Kiev....." );
+        client3.setEmail( "vern_jambo@mail.ru" );
+        client3.setPassWord( "123123" );
 
         //Записываем в БД
         clientDao.add( client3 );
