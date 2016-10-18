@@ -16,20 +16,13 @@ public class ClientDaoTest {
 
         //Создаем клиента для записи в БД
         Client client1 = new Client();
-        Contract contract1 = new Contract();
-        List<Contract> contractList = Arrays.asList( contract1 );
-
-        contract1.setPhone( "(901)456-4275" );
-        contract1.setIs_locked( 0 );
-
-        client1.setFirstName( "Dima" );
-        client1.setLastName( "Kotov" );
-        client1.setBirthDay( new Date( 89, 1, 13 ));
-        client1.setPassNo( "0405 215487" );
-        client1.setAddress( "Lugi..." );
-        client1.setContractList( contractList );
-        client1.setEmail( "d.kotov@ya.ru" );
-        client1.setPassWord( "qazqaz" );
+        client1.setFirstName( "Ivan" );
+        client1.setLastName( "Boiko" );
+        client1.setBirthDay( new Date( 85,5,25 ));
+        client1.setPassNo( "0904 080905" );
+        client1.setAddress( "Moscow ...." );
+        client1.setEmail( "i.boiko@bk.ru" );
+        client1.setPassWord( "qwerty" );
 
         //Записали в БД
         clientDao.add( client1 );
@@ -45,7 +38,7 @@ public class ClientDaoTest {
         client2.setBirthDay( new Date( 87, 11, 15 ));
         client2.setPassNo( "0987 245907" );
         client2.setAddress( "Spb....." );
-        client2.setEmail( "petr_semko@mail.ru" );
+        client2.setEmail( "petr.semko@mail.ru" );
         client2.setPassWord( "asdasd" );
 
         //Записываем в БД

@@ -24,7 +24,7 @@ public class OptionDao {
     }
 
     // удаляем опцию
-    public void delete( long id ){
+    public void delete( int id ){
         try {
             trx.begin();
             Option option = em.find( Option.class, id );
@@ -49,7 +49,7 @@ public class OptionDao {
     }
 
     // ищем опцию
-    public Option get( long id ){
+    public Option get( int id ){
         return em.find( Option.class, id );
     }
 

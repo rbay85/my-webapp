@@ -24,7 +24,7 @@ public class ClientDao {
     }
 
     // удаляем клиента
-    public void delete( long id ){
+    public void delete( int id ){
         try {
             trx.begin();
             Client client = em.find( Client.class, id );
@@ -49,7 +49,7 @@ public class ClientDao {
     }
 
     // ищем клиента
-    public Client get( long id ){
+    public Client get( int id ){
         return em.find( Client.class, id );
     }
 

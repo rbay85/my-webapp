@@ -24,7 +24,7 @@ public class TariffDao {
     }
 
     // удаляем клиента
-    public void delete( long id ){
+    public void delete( int id ){
         try {
             trx.begin();
             Tariff tariff = em.find( Tariff.class, id );
@@ -49,7 +49,7 @@ public class TariffDao {
     }
 
     // ищем клиента
-    public Tariff get( long id ){
+    public Tariff get( int id ){
         return em.find( Tariff.class, id );
     }
 

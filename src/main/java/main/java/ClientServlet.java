@@ -13,7 +13,7 @@ public class ClientServlet extends HttpServlet{
 
         try {
             String parameter = req.getParameter( "id" );
-            long id = new Long( parameter );
+            int id = new Integer( parameter );
 
             ClientDao client4 = new ClientDao();
             req.setAttribute( "client", client4.get( id ) );

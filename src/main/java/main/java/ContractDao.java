@@ -24,7 +24,7 @@ public class ContractDao {
     }
 
     // удаляем контракт
-    public void delete( long id ){
+    public void delete( int id ){
         try {
             trx.begin();
             Contract contract = em.find( Contract.class, id );
@@ -49,7 +49,7 @@ public class ContractDao {
     }
 
     // ищем контракт
-    public Contract get( long id ){
+    public Contract get( int id ){
         return em.find( Contract.class, id );
     }
 
