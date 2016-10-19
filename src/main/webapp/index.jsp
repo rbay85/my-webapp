@@ -4,7 +4,9 @@
 <body>
     <span id="txtmsg"> no message still </span>
     <br/>
+    <form>
 
+    </form>
     <input type="text" id="userName"/>
     <br/>
 

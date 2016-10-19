@@ -1,5 +1,5 @@
 
-package main.java;
+package main.java.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -58,6 +58,7 @@ public class Contract implements Serializable{
 
     // сеттеры
     public void setPhone        ( String phone )            { this.phone = phone; }
+    public void setClient       ( Client client )           { this.client = client; }
     public void setTariff       ( Tariff tariff )           { this.tariff = tariff; }
     public void setOptionList   ( List<Option> optionList ) { this.optionList = optionList; }
     public void setIs_locked    ( int is_locked )           { this.is_locked = is_locked; }
@@ -65,6 +66,7 @@ public class Contract implements Serializable{
     // геттеры
     public int getId()                  { return id; }
     public String getPhone()            { return phone; }
+    public Client getClient()           { return client; }
     public Tariff getTariff()           { return tariff; }
     public List<Option> getOptionList() { return optionList; }
     public int getIs_locked()           { return is_locked; }

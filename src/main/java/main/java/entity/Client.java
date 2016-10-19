@@ -1,4 +1,4 @@
-package main.java;
+package main.java.entity;
 
 import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;

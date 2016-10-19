@@ -1,5 +1,5 @@
 
-package main.java;
+package main.java.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

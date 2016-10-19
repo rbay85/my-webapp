@@ -1,4 +1,6 @@
-package main.java;
+package main.java.dao;
+
+import main.java.entity.Option;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -6,16 +8,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class TariffDao {
+public class OptionDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
-    // добавляем клиента
-    public void add( Tariff tariff ) {
+    // добавляем опцию
+    public void add( Option option ) {
         try {
             trx.begin();
-            em.persist( tariff );
+            em.persist( option );
             trx.commit();
         }
         finally {
@@ -23,12 +25,12 @@ public class TariffDao {
         }
     }
 
-    // удаляем клиента
+    // удаляем опцию
     public void delete( int id ){
         try {
             trx.begin();
-            Tariff tariff = em.find( Tariff.class, id );
-            em.remove( tariff );
+            Option option = em.find( Option.class, id );
+            em.remove( option );
             trx.commit();
         }
         finally {
@@ -36,26 +38,26 @@ public class TariffDao {
         }
     }
 
-    // редактируем клиента
-    public void update( Tariff tariff ){
+    // редактируем опцию
+    public void update( Option option ){
         try {
-            trx.begin();
-            em.merge( tariff );
-            trx.commit();
+            em.getTransaction().begin();
+            em.merge( option );
+            em.getTransaction().commit();
         }
         finally {
             if ( trx.isActive() ) trx.rollback();
         }
     }
 
-    // ищем клиента
-    public Tariff get( int id ){
-        return em.find( Tariff.class, id );
+    // ищем опцию
+    public Option get( int id ){
+        return em.find( Option.class, id );
     }
 
-    // выводим всех
-    public List<Tariff> getAll(){
-        TypedQuery<Tariff> namedQuery = em.createNamedQuery( "Tariff.getAll", Tariff.class );
+    // выводим все опции
+    public List<Option> getAll(){
+        TypedQuery<Option> namedQuery = em.createNamedQuery( "Option.getAll", Option.class );
         return namedQuery.getResultList();
     }
 }

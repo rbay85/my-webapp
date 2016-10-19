@@ -10,7 +10,7 @@
 
   <servlet>
     <servlet-name>ClientServlet</servlet-name>
-    <servlet-class>main.java.ClientServlet</servlet-class>
+    <servlet-class>main.java.controller.ClientServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

@@ -1,4 +1,6 @@
-package main.java;
+package main.java.dao;
+
+import main.java.entity.Contract;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -6,16 +8,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class OptionDao {
+public class ContractDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
-    // добавляем опцию
-    public void add( Option option ) {
+    // добавляем контракт
+    public void add( Contract contract ) {
         try {
             trx.begin();
-            em.persist( option );
+            em.persist( contract );
             trx.commit();
         }
         finally {
@@ -23,12 +25,12 @@ public class OptionDao {
         }
     }
 
-    // удаляем опцию
+    // удаляем контракт
     public void delete( int id ){
         try {
             trx.begin();
-            Option option = em.find( Option.class, id );
-            em.remove( option );
+            Contract contract = em.find( Contract.class, id );
+            em.remove( contract );
             trx.commit();
         }
         finally {
@@ -36,26 +38,26 @@ public class OptionDao {
         }
     }
 
-    // редактируем опцию
-    public void update( Option option ){
+    // редактируем контракт
+    public void update( Contract contract ){
         try {
-            em.getTransaction().begin();
-            em.merge( option );
-            em.getTransaction().commit();
+            trx.begin();
+            em.merge( contract );
+            trx.commit();
         }
         finally {
             if ( trx.isActive() ) trx.rollback();
         }
     }
 
-    // ищем опцию
-    public Option get( int id ){
-        return em.find( Option.class, id );
+    // ищем контракт
+    public Contract get( int id ){
+        return em.find( Contract.class, id );
     }
 
-    // выводим все опции
-    public List<Option> getAll(){
-        TypedQuery<Option> namedQuery = em.createNamedQuery( "Option.getAll", Option.class );
+    // выводим все контракты
+    public List<Contract> getAll(){
+        TypedQuery<Contract> namedQuery = em.createNamedQuery( "Contract.getAll", Contract.class );
         return namedQuery.getResultList();
     }
 }

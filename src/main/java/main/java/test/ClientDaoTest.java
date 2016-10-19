@@ -1,8 +1,9 @@
-package main.java;
+package main.java.test;
 
+import main.java.dao.ClientDao;
+import main.java.entity.Client;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

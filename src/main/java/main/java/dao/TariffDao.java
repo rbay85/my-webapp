@@ -1,4 +1,6 @@
-package main.java;
+package main.java.dao;
+
+import main.java.entity.Tariff;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -6,16 +8,17 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ContractDao {
+
+public class TariffDao {
 
     public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
     EntityTransaction trx = em.getTransaction();
 
-    // добавляем контракт
-    public void add( Contract contract ) {
+    // добавляем клиента
+    public void add( Tariff tariff ) {
         try {
             trx.begin();
-            em.persist( contract );
+            em.persist( tariff );
             trx.commit();
         }
         finally {
@@ -23,12 +26,12 @@ public class ContractDao {
         }
     }
 
-    // удаляем контракт
+    // удаляем клиента
     public void delete( int id ){
         try {
             trx.begin();
-            Contract contract = em.find( Contract.class, id );
-            em.remove( contract );
+            Tariff tariff = em.find( Tariff.class, id );
+            em.remove( tariff );
             trx.commit();
         }
         finally {
@@ -36,11 +39,11 @@ public class ContractDao {
         }
     }
 
-    // редактируем контракт
-    public void update( Contract contract ){
+    // редактируем клиента
+    public void update( Tariff tariff ){
         try {
             trx.begin();
-            em.merge( contract );
+            em.merge( tariff );
             trx.commit();
         }
         finally {
@@ -48,14 +51,14 @@ public class ContractDao {
         }
     }
 
-    // ищем контракт
-    public Contract get( int id ){
-        return em.find( Contract.class, id );
+    // ищем клиента
+    public Tariff get( int id ){
+        return em.find( Tariff.class, id );
     }
 
-    // выводим все контракты
-    public List<Contract> getAll(){
-        TypedQuery<Contract> namedQuery = em.createNamedQuery( "Contract.getAll", Contract.class );
+    // выводим всех
+    public List<Tariff> getAll(){
+        TypedQuery<Tariff> namedQuery = em.createNamedQuery( "Tariff.getAll", Tariff.class );
         return namedQuery.getResultList();
     }
 }

@@ -19,12 +19,16 @@
     </nav>
     <section id="content" class="clearfix">
         <section id="page-content">
+
             <form action="" method="GET">
                 <p>Input client ID: <input type="number" name="id"></p>
                 <input type="submit" value="Submit" />
             </form>
+            ${clientFN} ${error}
             <br/>
-            ${client}
+            ${clientLN}
+
+
         </section>
         <aside>
             --this is an aside block--

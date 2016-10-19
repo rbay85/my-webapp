@@ -1,4 +1,6 @@
-package main.java;
+package main.java.dao;
+
+import main.java.entity.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

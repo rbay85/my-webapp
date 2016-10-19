@@ -1,34 +1,38 @@
-package main.java;
+package main.java.test;
 
+import main.java.dao.OptionDao;
+import main.java.entity.Option;
 import org.junit.Test;
 import java.util.List;
 
 
-public class TariffDaoTest {
+public class OptionDaoTest {
 
-    TariffDao tariffDao= new TariffDao();
+    OptionDao optionDao = new OptionDao();
 
     @Test
     public void testAdd() throws Exception {
 
         //Создаем контракт для записи в БД
-        Tariff tariff1 = new Tariff();
-        tariff1.setName( "Maximum" );
-        tariff1.setPrice( 250 );
-        //tariff1.setOptionList( );
+        Option option1 = new Option();
+        option1.setName( "call service" );
+        option1.setPrice( 0 );
+        option1.setOnCost( 0 );
+        //option1.setNecessaryOptionList(  );
+        //option1.setIncompatibleOptionList(  );
 
         //Записали в БД
-        tariffDao.add( tariff1 );
+        optionDao.add( option1 );
     }
 
     @Test
     public void testGetAll() throws Exception {
 
         //Получаем всех клиентов с БД
-        List<Tariff> tariffs = tariffDao.getAll();
+        List<Option> options = optionDao.getAll();
 
         //Выводим полученый список клиентов
-        for( Tariff c : tariffs ){
+        for( Option c : options ){
             System.out.println( c );
         }
     }
@@ -37,6 +41,6 @@ public class TariffDaoTest {
     public void testDelete() throws Exception {
 
         //Удалем первую запись в БД
-        tariffDao.delete( 1 );
+        optionDao.delete( 12 );
     }
 }

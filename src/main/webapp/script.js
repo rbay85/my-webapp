@@ -1,4 +1,5 @@
 var userNameInput;
+var userSecretInput;
 var span;
 $( function(){
 
