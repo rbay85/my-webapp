@@ -20,13 +20,13 @@
     <section id="content" class="clearfix">
         <section id="page-content">
 
+
             <form action="" method="GET">
-                <p>Input client ID: <input type="number" name="id"></p>
+                <p>Input phone number:<br/> <input type="text" name="phone"></p>
                 <input type="submit" value="Submit" />
             </form>
-            ${clientFN} ${error}
+            ${contractByPhone_client} ${error}
             <br/>
-            ${clientLN}
 
 
         </section>

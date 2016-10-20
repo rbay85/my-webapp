@@ -2,10 +2,7 @@ package main.java.dao;
 
 import main.java.entity.Contract;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 public class ContractDao {
@@ -50,9 +47,15 @@ public class ContractDao {
         }
     }
 
-    // ищем контракт
+    // ищем контракт по ID
     public Contract get( int id ){
         return em.find( Contract.class, id );
+    }
+
+    // ищем контракт по номеру
+    public Contract getByPhone( String phone ) {
+        Query query = em.createQuery( "SELECT co FROM Contract co WHERE co.phone = :phone" ).setParameter( "phone", phone );
+        return (Contract) query.getSingleResult() ;
     }
 
     // выводим все контракты

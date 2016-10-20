@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ClientServlet extends HttpServlet{
+public class ClientByID extends HttpServlet{
 
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
@@ -17,7 +17,7 @@ public class ClientServlet extends HttpServlet{
         String parameter = req.getParameter( "id" );
         if ( parameter == null ) {
             req.setAttribute( "client", "" );
-            req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );
         }
         else {
             try{
@@ -29,13 +29,13 @@ public class ClientServlet extends HttpServlet{
                 req.setAttribute( "clientLN", client.getLastName() );
                 req.setAttribute( "error", "" );
                 //закидываем в .jsp
-                req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
+                req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );
             } catch ( NumberFormatException e) {
-                req.setAttribute( "error", "error: parameter mustn't be null" );
-                req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
+                req.setAttribute( "error", "error: fill in the field, please !" );
+                req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );
             } catch ( NullPointerException e) {
                 req.setAttribute( "error", "client not found" );
-                req.getRequestDispatcher( "/fromServlet.jsp" ).forward( req, resp );
+                req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );
             }
         }
     }

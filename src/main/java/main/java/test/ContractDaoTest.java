@@ -64,12 +64,22 @@ public class ContractDaoTest {
     }
 
     @Test
+    public void testGetByPhone() throws Exception {
+
+        //Получаем все контракты с БД
+        Contract contract = contractDao.getByPhone( "(906)200-1100" );
+
+        //Выводим полученый контракт
+        System.out.println( contract.getClient() );
+    }
+
+    @Test
     public void testGetAll() throws Exception {
 
-        //Получаем всех клиентов с БД
+        // Получаем все контракты с БД
         List<Contract> contracts = contractDao.getAll();
 
-        //Выводим полученый список клиентов
+        // Выводим полученый список контрактов
         for( Contract c : contracts ){
             System.out.println( c );
         }

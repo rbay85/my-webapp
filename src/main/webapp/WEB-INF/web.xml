@@ -5,17 +5,25 @@
          version="3.1">
 
   <display-name>
-    Archetype Created Web Application
+      Archetype Created Web Application
   </display-name>
 
-  <servlet>
-    <servlet-name>ClientServlet</servlet-name>
-    <servlet-class>main.java.controller.ClientServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>ClientByID</servlet-name>
+        <servlet-class>main.java.controller.ClientByID</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientByID</servlet-name>
+        <url-pattern>/ClientByID</url-pattern>
+    </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>ClientServlet</servlet-name>
-    <url-pattern>/ClientServlet</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>ContractByPhone</servlet-name>
+        <servlet-class>main.java.controller.ContractByPhone</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContractByPhone</servlet-name>
+        <url-pattern>/ContractByPhone</url-pattern>
+    </servlet-mapping>
 
 </web-app>
