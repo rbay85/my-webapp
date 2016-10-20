@@ -27,6 +27,7 @@ public class ClientByID extends HttpServlet{
                 Client client = clientDao.get( id );
                 req.setAttribute( "clientFN", client.getFirstName() );
                 req.setAttribute( "clientLN", client.getLastName() );
+                req.setAttribute( "clientBD", client.getBirthDay() );
                 req.setAttribute( "error", "" );
                 //закидываем в .jsp
                 req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );

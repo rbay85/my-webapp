@@ -15,7 +15,9 @@
         --this is a header--
     </header>
     <nav>
-        --this is a navigation bar--
+
+        <jsp:include page="NavBar.jsp" />
+
     </nav>
     <section id="content" class="clearfix">
         <section id="page-content">
@@ -28,6 +30,8 @@
             ${clientFN} ${error}
             <br/>
             ${clientLN}
+            <br/>
+            ${clientBD}
 
 
         </section>

@@ -26,4 +26,13 @@
         <url-pattern>/ContractByPhone</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ShowAllClients</servlet-name>
+        <servlet-class>main.java.controller.ShowAllClients</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllClients</servlet-name>
+        <url-pattern>/ShowAllClients</url-pattern>
+    </servlet-mapping>
+
 </web-app>

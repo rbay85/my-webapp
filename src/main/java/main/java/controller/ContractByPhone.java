@@ -14,8 +14,9 @@ import java.io.IOException;
 public class ContractByPhone extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+    protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
+        // принимаем параметр со страницы
         String phone = req.getParameter( "phone" );
         if ( phone == null ) {
             req.setAttribute( "contractByPhone", "" );
@@ -25,11 +26,14 @@ public class ContractByPhone extends HttpServlet {
             try{
                 ContractDao contractDao = new ContractDao();
                 Contract contract = contractDao.getByPhone( phone );
-                req.setAttribute( "contractByPhone_client", contract.getClient() );
+                req.setAttribute( "contractByPhone_clientFN", contract.getClient().getFirstName() );
+                req.setAttribute( "contractByPhone_clientLN", contract.getClient().getLastName() );
+                req.setAttribute( "contractByPhone_clientBD", contract.getClient().getBirthDay() );
                 req.setAttribute( "error", "" );
                 // закидываем в .jsp
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
-                // ловим возможные ошибки
+
+            // ловим возможные ошибки
             } catch ( NumberFormatException e) {
                 req.setAttribute( "error", "error: fill in the field, please !" );
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
