@@ -10,8 +10,8 @@ import java.util.List;
 
 public class OptionDao {
 
-    public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    EntityTransaction trx = em.getTransaction();
+    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
+    private EntityTransaction trx = em.getTransaction();
 
     // добавляем опцию
     public void add( Option option ) {

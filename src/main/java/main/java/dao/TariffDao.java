@@ -11,8 +11,8 @@ import java.util.List;
 
 public class TariffDao {
 
-    public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    EntityTransaction trx = em.getTransaction();
+    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
+    private EntityTransaction trx = em.getTransaction();
 
     // добавляем клиента
     public void add( Tariff tariff ) {

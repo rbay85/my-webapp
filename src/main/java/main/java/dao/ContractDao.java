@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ContractDao {
 
-    public EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    EntityTransaction trx = em.getTransaction();
+    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
+    private EntityTransaction trx = em.getTransaction();
 
     // добавляем контракт
     public void add( Contract contract ) {

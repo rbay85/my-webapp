@@ -35,4 +35,13 @@
         <url-pattern>/ShowAllClients</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LockUnlock</servlet-name>
+        <servlet-class>main.java.controller.LockUnlock</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LockUnlock</servlet-name>
+        <url-pattern>/LockUnlock</url-pattern>
+    </servlet-mapping>
+
 </web-app>

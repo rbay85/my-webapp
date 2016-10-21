@@ -18,6 +18,7 @@ public class ContractByPhone extends HttpServlet {
 
         // принимаем параметр со страницы
         String phone = req.getParameter( "phone" );
+
         if ( phone == null ) {
             req.setAttribute( "contractByPhone", "" );
             req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
