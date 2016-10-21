@@ -94,17 +94,16 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return " \nClient: " + "\n" +
-                " ID = " + id + "\n" +
-                " First Name = " +  firstName + "\n" +
-                " Last Name = " + lastName + "\n" +
-                " Birth Day = " + dateFormat.format( birthDay ) + "\n" +
-                " Passport Number = " + passNo + "\n" +
-                " Address = " + address + "\n" +
-                " Contracts = " + contractList + "\n" +
-                " E-mail = " + email + "\n" +
-                " Password = " + passWord + "\n"
-                ;
+        return " <br>----------------------------------------------------------" +
+                " <br>client: " + id + "<br>" +
+                " " +  firstName + "<br>" +
+                " " + lastName + "<br>" +
+                " " + dateFormat.format( birthDay ) + "<br>" +
+                " passport: " + passNo + "<br>" +
+                " address: " + address + "<br>" +
+                " contracts: <br>" + contractList + "<br>" +
+                " e-mail: " + email + "<br>" +
+                " password:" + passWord + "<br>";
     }
 
     @Override

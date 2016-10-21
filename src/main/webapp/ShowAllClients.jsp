@@ -23,7 +23,13 @@
         <section id="page-content">
 
 
-            ${All_clients} ${error}
+            <table>
+                <c:forEach var="client" items="${clientList}">
+                    <tr>
+                        <td>${client}</td>
+                    </tr>
+                </c:forEach>
+            </table>
 
 
         </section>

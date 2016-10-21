@@ -61,12 +61,9 @@ public class Tariff implements Serializable{
     // переопределения
     @Override
     public String toString() {
-        return " \nTariff: " + "\n" +
-                " ID = " + id + "\n" +
-                " Name = " +  name + "\n" +
-                " Price = " + price + "\n" +
-                " Options = " + optionList + "\n"
-                ;
+        return " <br> tariff " + id + ". " + name + "<br>" +
+                " price: " + price + "<br>" +
+                " options: " + optionList + "<br>";
     }
 
     @Override

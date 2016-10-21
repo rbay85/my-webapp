@@ -75,12 +75,9 @@ public class Option implements Serializable{
     // переопределения
     @Override
     public String toString() {
-        return " \nOption: " + "\n" +
-                " ID = " + id + "\n" +
-                " Name = " +  name + "\n" +
-                " Price = " + price + "\n" +
-                " Cost of switching on = " + onCost + "\n"
-                ;
+        return " <br>option: " + id + "<br>"  +  name + "<br>" +
+                " price: " + price + "<br>" +
+                " switch on cost: " + onCost + "<br>";
     }
 
     @Override

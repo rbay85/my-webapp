@@ -74,13 +74,11 @@ public class Contract implements Serializable{
     // переопределения
     @Override
     public String toString() {
-        return " \nContract: " + "\n" +
-                " ID = " + id + "\n" +
-                " Phone No = " +  phone + "\n" +
-                " Tariff = " + tariff + "\n" +
-                " Options = " + optionList + "\n" +
-                " Lock = " + is_locked + "\n"
-                ;
+        return " <br>contract: " + id + "<br>" +
+                " phone no: " +  phone + "<br>" +
+                " " + tariff + "<br>" +
+                " " + optionList + "<br>" +
+                " lock: " + is_locked + "<br>";
     }
 
     @Override
