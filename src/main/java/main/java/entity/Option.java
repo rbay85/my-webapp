@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table( name = "options", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "name" } ) } )
+@Table( name = "options" )
 
 @NamedQueries({
         @NamedQuery( name = "Option.getAll", query = "SELECT o FROM Option o" ),

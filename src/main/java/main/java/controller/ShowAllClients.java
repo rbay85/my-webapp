@@ -18,7 +18,7 @@ public class ShowAllClients extends HttpServlet {
         try{
             ClientDao clientDao = new ClientDao();
 
-            req.setAttribute( "clientList", clientDao.getAll().toString() );
+            req.setAttribute( "clientList", clientDao.getAll() );
 
             // закидываем в .jsp
             req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );

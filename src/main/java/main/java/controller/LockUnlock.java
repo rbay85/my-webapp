@@ -32,15 +32,15 @@ public class LockUnlock extends HttpServlet {
                 if ( condition.equals( "lock" )){
                     contract.setIs_locked( 2 );
                     contractDao.update( contract );
-                    req.setAttribute( "message", " contract was successfully locked" );
+                    req.setAttribute( "message", " Contract was successfully locked" );
                     req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
                 } else if ( condition.equals( "unlock" ) ) {
                     contract.setIs_locked( 0 );
                     contractDao.update( contract );
-                    req.setAttribute( "message", " contract was successfully unlocked" );
+                    req.setAttribute( "message", " Contract was successfully unlocked" );
                     req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
                 } else {
-                    req.setAttribute( "error", " choose an action, please! " );
+                    req.setAttribute( "error", " Choose an action, please! " );
                     req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
                 }
 
@@ -49,10 +49,10 @@ public class LockUnlock extends HttpServlet {
                 req.setAttribute( "error", "Sorry, NumberFormatException " );
                 req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             } catch ( NullPointerException e) {
-                req.setAttribute( "error", " choose an action, please! " );
+                req.setAttribute( "error", " Choose an action, please! " );
                 req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             } catch ( NoResultException e) {
-                req.setAttribute( "error", " fill in the field, please!" );
+                req.setAttribute( "error", " Fill in the field, please!" );
                 req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             }
         }

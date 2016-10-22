@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@Table( name = "tariff", uniqueConstraints = { @UniqueConstraint( columnNames = {"id", "name"} ) } )
+@Table( name = "tariff" )
 
 @NamedQueries({
         @NamedQuery( name = "Tariff.getAll", query = "SELECT t FROM Tariff t" ),

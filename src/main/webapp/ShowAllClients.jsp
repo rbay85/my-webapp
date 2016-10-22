@@ -24,10 +24,26 @@
 
 
             <table>
+                <tr>
+                    <td>ID</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Phones</td>
+                    <td>Date of birth</td>
+                </tr>
                 <c:forEach var="client" items="${clientList}">
-                    <tr>
-                        <td>${client}</td>
-                    </tr>
+                        <tr>
+                            <td>${client.getId()}</td>
+                            <td>${client.getFirstName()}</td>
+                            <td>${client.getLastName()}</td>
+                            <td>
+                                <c:forEach var="contract" items="${client.getContractList()}">
+                                    ${contract.getPhone()}
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>${client.getBirthDay()}</td>
+                        </tr>
                 </c:forEach>
             </table>
 

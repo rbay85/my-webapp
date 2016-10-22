@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-@Table( name = "client", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "passport", "email" } ) } )
+@Table( name = "client" )
 
 @NamedQueries({
         @NamedQuery( name = "Client.getAll", query = "SELECT c FROM Client c" ),
@@ -94,7 +94,7 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return " <br>----------------------------------------------------------" +
+        return " <br>" +
                 " <br>client: " + id + "<br>" +
                 " " +  firstName + "<br>" +
                 " " + lastName + "<br>" +

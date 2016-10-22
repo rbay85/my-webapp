@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@Table( name = "contract", uniqueConstraints = { @UniqueConstraint( columnNames = { "id", "phone" } ) } )
+@Table( name = "contract" )
 
 @NamedQueries({
         @NamedQuery( name = "Contract.getAll", query = "SELECT ct FROM Contract ct" ),
@@ -27,7 +27,7 @@ public class Contract implements Serializable{
     private int id;
 
     // Номер
-    @Column( name = "phone", nullable = false )
+    @Column( name = "phone", nullable = false, unique = true )
     @Pattern( regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}", message = "{invalid phone number!}" )
     private String phone;
 
