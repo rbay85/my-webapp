@@ -46,10 +46,10 @@ public class LockUnlock extends HttpServlet {
 
                 // ловим возможные ошибки
             } catch ( NumberFormatException e) {
-                req.setAttribute( "error", "Sorry, NumberFormatException" );
+                req.setAttribute( "error", "Sorry, NumberFormatException " );
                 req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             } catch ( NullPointerException e) {
-                req.setAttribute( "error", "Sorry, NullPointerException" );
+                req.setAttribute( "error", " choose an action, please! " );
                 req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             } catch ( NoResultException e) {
                 req.setAttribute( "error", " fill in the field, please!" );

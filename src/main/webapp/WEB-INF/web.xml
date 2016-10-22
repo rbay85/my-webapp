@@ -44,4 +44,13 @@
         <url-pattern>/LockUnlock</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ManageOptionRelations</servlet-name>
+        <servlet-class>main.java.controller.ManageOptionRelations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageOptionRelations</servlet-name>
+        <url-pattern>/ManageOptionRelations</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -28,9 +28,9 @@
                     <input type="text" name="phone"><br>
                     <small>(xxx)xxx-xxxx for example</small>
                 </p>
-                <p><b>action:</b><Br>
-                    <input type="radio" name="condition" value="lock">lock<Br>
-                    <input type="radio" name="condition" value="unlock">unlock<Br>
+                <p><b>action:</b><br>
+                    <input type="radio" name="condition" value="lock">lock<br>
+                    <input type="radio" name="condition" value="unlock">unlock<br>
                 </p>
                 <input type="submit" value="Apply"/>
             </form>
