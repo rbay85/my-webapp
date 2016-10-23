@@ -34,13 +34,13 @@ public class ClientDaoTest {
 
         // создаем клиента для записи в БД
         Client client2 = new Client();
-        client2.setFirstName( "Petr" );
-        client2.setLastName( "Semko" );
-        client2.setBirthDay( new Date( 87, 11, 15 ));
-        client2.setPassNo( "0987 245907" );
-        client2.setAddress( "Spb....." );
-        client2.setEmail( "petr.semko@mail.ru" );
-        client2.setPassWord( "asdasd" );
+        client2.setFirstName( "Anna" );
+        client2.setLastName( "Smith" );
+        client2.setBirthDay( new Date( 90, 9, 1 ));
+        client2.setPassNo( "0967 357583" );
+        client2.setAddress( "Lviv....." );
+        client2.setEmail( "a.smith@ya.ru" );
+        client2.setPassWord( "trewq" );
 
         //Записываем в БД
         clientDao.add( client2 );

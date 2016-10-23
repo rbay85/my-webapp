@@ -25,11 +25,11 @@
 
             <table>
                 <tr>
-                    <td>ID</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Phones</td>
-                    <td>Date of birth</td>
+                        <td><b>ID</b></td>
+                        <td><b>First Name</b></td>
+                        <td><b>Last Name</b></td>
+                        <td><b>Phones</b></td>
+                        <td><b>Date of birth</b></td>
                 </tr>
                 <c:forEach var="client" items="${clientList}">
                         <tr>

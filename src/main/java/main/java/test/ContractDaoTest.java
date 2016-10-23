@@ -22,10 +22,10 @@ public class ContractDaoTest {
         //Создаем контракт для записи в БД
         Contract contract1 = new Contract();
         // добавляем номер телефона
-        contract1.setPhone( "(906)011-7777" );
+        contract1.setPhone( "(907)034-0101" );
         // добавляем клиента
         ClientDao clientDao = new ClientDao();
-        contract1.setClient( clientDao.get( 6 ));
+        contract1.setClient( clientDao.get( 7 ));
         //добавляем тариф
         TariffDao tariffDao = new TariffDao();
         contract1.setTariff( tariffDao.get( 1 ));
