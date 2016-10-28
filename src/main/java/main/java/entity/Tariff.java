@@ -36,7 +36,7 @@ public class Tariff implements Serializable{
     private double price;
 
     // список доступных опций
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany( fetch = FetchType.LAZY )
     @JoinTable(
             name = "tariff_option",
             joinColumns = @JoinColumn(name = "tariff_id"),

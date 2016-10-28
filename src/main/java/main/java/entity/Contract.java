@@ -46,7 +46,8 @@ public class Contract implements Serializable{
     @JoinTable(
             name = "contract_option",
             joinColumns = @JoinColumn( name = "contract_id" ),
-            inverseJoinColumns = @JoinColumn( name = "option_id" ) )
+            inverseJoinColumns = @JoinColumn( name = "option_id" )
+    )
     private List<Option> optionList;
 
     // блокирока

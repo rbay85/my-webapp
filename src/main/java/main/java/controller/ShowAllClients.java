@@ -1,6 +1,6 @@
 package main.java.controller;
 
-import main.java.dao.ClientDao;
+import main.java.service.ClientService;
 
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
@@ -15,24 +15,26 @@ public class ShowAllClients extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
-        try{
-            ClientDao clientDao = new ClientDao();
+        String url = "/ShowAllClients.jsp";
 
-            req.setAttribute( "clientList", clientDao.getAll() );
+        try{
+            ClientService clientService = new ClientService();
+
+            req.setAttribute( "clientList", clientService.getAll() );
 
             // закидываем в .jsp
-            req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( url ).forward( req, resp );
 
             // ловим возможные ошибки
         } catch ( NumberFormatException e) {
             req.setAttribute( "error", "error: NumberFormatException" );
-            req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( url ).forward( req, resp );
         } catch ( NullPointerException e) {
             req.setAttribute( "error", "error: NullPointerException" );
-            req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( url ).forward( req, resp );
         } catch ( NoResultException e) {
             req.setAttribute( "error", "error: NoResultException" );
-            req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( url ).forward( req, resp );
         }
     }
 }
