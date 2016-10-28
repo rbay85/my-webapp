@@ -44,11 +44,11 @@ html, body{
 }
 header{
     height: 70px;
-    background: #1f8e94;
+    background: #e20074;
 }
 nav{
     height: 40px;
-    background: #acebee;
+    background: #ff80c2;
 }
 #content{
     margin-top: 30px;
@@ -58,13 +58,13 @@ nav{
     width: 70%;
     margin-right: 5%;
     min-height: 300px;
-    background: #e9e9ce;
+    background: #FDF5E6;
 }
 aside{
     float: right;
     width: 25%;
     min-height: 300px;
-    background: #e9e9ce;
+    background: #FDF5E6;
 }
 footer {
     position: absolute;
@@ -72,7 +72,7 @@ footer {
     height: 50px;
     margin-top: -50px;
     clear: both;
-    background-color: #e9e9ce;
+    background-color: #FDF5E6;
 }
 
 /* для формы логина */
@@ -84,7 +84,7 @@ footer {
     width: 90px;
 }
 input[type="submit"]{
-    background: #1F8E94;
+    background: #e20074;
     color: #fff;
     padding: 5px 10px;
     border: 1px solid #ccc;

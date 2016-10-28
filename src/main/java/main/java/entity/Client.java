@@ -37,7 +37,7 @@ public class Client implements Serializable {
     private String lastName;
 
     // день рождения
-    @Column( name = "date" )
+    @Column( name = "date" , nullable = false )
     @Temporal(value = TemporalType.DATE)
     @Past
     private Date  birthDay;

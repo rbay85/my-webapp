@@ -12,7 +12,7 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
-        --this is a header--
+        <jsp:include page="Header.jsp" />
     </header>
     <nav>
 
@@ -30,11 +30,22 @@
                 </p>
                 <input type="submit" value="Submit" />
             </form>
-            ${contractByPhone_clientFN} ${error}
+            ${contractByPhone_phone} ${error}
+            <br/><br/>
+            ${contractByPhone_tariff}
+            <br/><br/>
+            ${contractByPhone_clientFN}
             <br/>
             ${contractByPhone_clientLN}
             <br/>
             ${contractByPhone_clientBD}
+            <br/><br/>
+            <c:forEach var="option" items="${contractByPhone_optionList}">
+                ${option.getName()}
+                <br/>
+            </c:forEach>
+            <br/>
+            <br/>
 
 
         </section>

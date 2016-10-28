@@ -12,7 +12,7 @@
         <div id="wrapper">
             <!-- Обертка  -->
             <header>
-                --this is a header--
+                <jsp:include page="Header.jsp" />
             </header>
             <nav>
 

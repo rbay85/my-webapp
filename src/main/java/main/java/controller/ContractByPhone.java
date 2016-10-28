@@ -27,22 +27,25 @@ public class ContractByPhone extends HttpServlet {
             try{
                 ContractDao contractDao = new ContractDao();
                 Contract contract = contractDao.getByPhone( phone );
+                req.setAttribute( "contractByPhone_phone", contract.getPhone() );
+                req.setAttribute( "contractByPhone_tariff", contract.getTariff().getName() );
                 req.setAttribute( "contractByPhone_clientFN", contract.getClient().getFirstName() );
                 req.setAttribute( "contractByPhone_clientLN", contract.getClient().getLastName() );
                 req.setAttribute( "contractByPhone_clientBD", contract.getClient().getBirthDay() );
+                req.setAttribute( "contractByPhone_optionList", contract.getOptionList() );
                 req.setAttribute( "error", "" );
                 // закидываем в .jsp
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
 
             // ловим возможные ошибки
             } catch ( NumberFormatException e) {
-                req.setAttribute( "error", "error: fill in the field, please !" );
+                req.setAttribute( "error", "error: Fill in the field, please !" );
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
             } catch ( NullPointerException e) {
-                req.setAttribute( "error", "client not found" );
+                req.setAttribute( "error", "Client not found" );
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
             } catch ( NoResultException e) {
-                req.setAttribute( "error", "client with such phone number not found" );
+                req.setAttribute( "error", "Client with such phone number not found" );
                 req.getRequestDispatcher( "/ContractByPhone.jsp" ).forward( req, resp );
             }
 

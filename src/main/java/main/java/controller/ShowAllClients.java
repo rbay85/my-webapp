@@ -25,13 +25,13 @@ public class ShowAllClients extends HttpServlet {
 
             // ловим возможные ошибки
         } catch ( NumberFormatException e) {
-            req.setAttribute( "error", "error: fill in the field, please !" );
+            req.setAttribute( "error", "error: NumberFormatException" );
             req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
         } catch ( NullPointerException e) {
-            req.setAttribute( "error", "client not found" );
+            req.setAttribute( "error", "error: NullPointerException" );
             req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
         } catch ( NoResultException e) {
-            req.setAttribute( "error", "client with such phone number not found" );
+            req.setAttribute( "error", "error: NoResultException" );
             req.getRequestDispatcher( "/ShowAllClients.jsp" ).forward( req, resp );
         }
     }

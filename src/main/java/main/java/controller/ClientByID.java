@@ -32,6 +32,7 @@ public class ClientByID extends HttpServlet{
                 req.setAttribute( "clientLN", client.getLastName() );
                 req.setAttribute( "clientBD", client.getBirthDay() );
                 req.setAttribute( "error", "" );
+
                 //закидываем в .jsp
                 req.getRequestDispatcher( "/ClientByID.jsp" ).forward( req, resp );
                 logger.info(" everything is OK ");

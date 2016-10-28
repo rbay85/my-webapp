@@ -2,6 +2,7 @@
 package main.java.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
 import java.util.List;
 
@@ -52,7 +53,16 @@ public class Option implements Serializable{
     )
     private List<Option> incompatibleOptionList;
 
-    // ДОБАВИТЬ ПРОВЕРКУ, ЧТОБ ОДНА И ТА ЖЕ ОПЦИЯ НЕ ОКАЗАЛАСЬ В ОБОИХ СПИСКАХ !!!
+    // проверка что список несовместимых опций не содержит необходимую опцию ( нужна ли обратна я проверка?? )
+    @AssertTrue ( message = "Sorry, an option can't be necessary for another option and incompatible with it at the same time !" )
+    public boolean areListsContradict() {
+        for ( Option necessaryOption : necessaryOptionList ) {
+            if (incompatibleOptionList.contains( necessaryOption )) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // пустой конструктор
     public Option() {}

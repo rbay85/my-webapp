@@ -12,7 +12,7 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
-        --this is a header--
+        <jsp:include page="Header.jsp" />
     </header>
     <nav>
 
@@ -25,7 +25,7 @@
 
             <form action="" method="GET">
                 <p>choose an option to manage</p>
-                <select name="option1" required>
+                <select name="optionId1" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
                     <option value="2">3 GB internet</option>
@@ -41,7 +41,7 @@
                 </select>
 
                 <p>choose another option to manage</p>
-                <select name="option2" required>
+                <select name="optionId2" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
                     <option value="2">3 GB internet</option>
@@ -57,14 +57,15 @@
                 </select>
 
                 <p><b>action:</b><br>
-                    <input type="radio" name="action" value="required">set as 1st required 2nd option<br>
+                    <input type="radio" name="action" value="required">set as 1st requires 2nd option<br>
                     <input type="radio" name="action" value="incompatible">set as incompatible options<br>
                 </p>
 
                 <input type="submit" value="Apply">
-            </form>
+            </form><br>
             ${message} ${error}
-
+            <br>
+            <br>
 
         </section>
         <aside>
