@@ -26,31 +26,38 @@
             <table>
                 <tr>
                     <td><b>ID</b></td>
-                    <td><b>First Name</b></td>
-                    <td><b>Last Name</b></td>
+                    <td><b>First name</b></td>
+                    <td><b>Last name</b></td>
                     <td><b>Date of birth</b></td>
-                    <td><b>Phones</b></td>
+                    <td><b>Contract</b></td>
+                    <td><b>Tariff</b></td>
                     <td><b>Lock</b></td>
                 </tr>
                 <c:forEach var="client" items="${clientList}">
-                        <tr>
-                            <td>${client.getId()}</td>
-                            <td>${client.getFirstName()}</td>
-                            <td>${client.getLastName()}</td>
-                            <td>${client.getBirthDay()}</td>
-                            <td>
-                                <c:forEach var="contract" items="${client.getContractList()}">
-                                    ${contract.getPhone()}
-                                    <br/>
-                                </c:forEach>
-                            </td>
-                            <td>
-                                <c:forEach var="contract" items="${client.getContractList()}">
-                                    ${contract.getIs_locked()}
-                                    <br/>
-                                </c:forEach>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>${client.getId()}</td>
+                        <td>${client.getFirstName()}</td>
+                        <td>${client.getLastName()}</td>
+                        <td>${client.getBirthDay()}</td>
+                        <td>
+                            <c:forEach var="contract" items="${client.getContractList()}">
+                                ${contract.getPhone()}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="contract" items="${client.getContractList()}">
+                                ${contract.getTariff().getName()}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="contract" items="${client.getContractList()}">
+                                ${contract.getIs_locked()}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                    </tr>
                 </c:forEach>
             </table>
 

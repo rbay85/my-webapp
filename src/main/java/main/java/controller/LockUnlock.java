@@ -1,7 +1,6 @@
 package main.java.controller;
 
-import main.java.dao.ContractDao;
-import main.java.entity.Contract;
+import main.java.service.ContractService;
 
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
@@ -18,42 +17,28 @@ public class LockUnlock extends HttpServlet {
         // принимаем параметр со страницы
         String phone = req.getParameter( "phone" );
         String condition = req.getParameter( "condition" );
+        String url = "/LockUnlock.jsp";
 
         if ( phone == null ) {
             req.setAttribute( "message", "" );
-            req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( url ).forward( req, resp );
         }
         else {
             try{
 
-                ContractDao contractDao = new ContractDao();
-                Contract contract = contractDao.getByPhone( phone );
+                ContractService contractService = new ContractService();
+                String message = contractService.adminLock( phone, condition );
 
-                if ( condition.equals( "lock" )){
-                    contract.setIs_locked( 2 );
-                    contractDao.update( contract );
-                    req.setAttribute( "message", " Contract was successfully locked" );
-                    req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
-                } else if ( condition.equals( "unlock" ) ) {
-                    contract.setIs_locked( 0 );
-                    contractDao.update( contract );
-                    req.setAttribute( "message", " Contract was successfully unlocked" );
-                    req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
-                } else {
-                    req.setAttribute( "error", " Choose an action, please! " );
-                    req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
-                }
+                req.setAttribute( "message", message );
+                req.getRequestDispatcher( url ).forward( req, resp );
 
                 // ловим возможные ошибки
-            } catch ( NumberFormatException e) {
-                req.setAttribute( "error", "Sorry, NumberFormatException " );
-                req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
             } catch ( NullPointerException e) {
                 req.setAttribute( "error", " Choose an action, please! " );
-                req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
+                req.getRequestDispatcher( url ).forward( req, resp );
             } catch ( NoResultException e) {
-                req.setAttribute( "error", " Fill in the field, please!" );
-                req.getRequestDispatcher( "/LockUnlock.jsp" ).forward( req, resp );
+                req.setAttribute( "error", " Fill in the field properly, please!" );
+                req.getRequestDispatcher( url ).forward( req, resp );
             }
         }
     }
