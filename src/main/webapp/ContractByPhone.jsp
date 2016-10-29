@@ -44,8 +44,9 @@
                 ${option.getName()}
                 <br/>
             </c:forEach>
-            <br/>
-            <br/>
+            <br/>lock condition:
+            ${contractByPhone_isLocked}
+            <br/><br/><br/>
 
 
         </section>
