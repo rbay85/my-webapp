@@ -1,10 +1,8 @@
 package main.java.service;
 
 import main.java.dao.ContractDao;
-import main.java.entity.Client;
 import main.java.entity.Contract;
 
-import java.util.List;
 
 public class ContractService {
 
