@@ -26,8 +26,8 @@
             <form action="" method="GET">
                 <p>
                     Your contract(s):<br/>
-                    <c:forEach var="contract" items="${client.getContractList()}" varStatus = "contractLoopCount">
-                        <input type="checkbox" name="phoneCount" value="${contractLoopCount.count}">${contract.getPhone()}
+                    <c:forEach var="contract" items="${client.getContractList()}">
+                        <input type="radio" name="contractId" value="${contract.getId()}">${contract.getPhone()}
                         <br/>
                     </c:forEach>
                 </p>

@@ -1,7 +1,10 @@
 package main.java.service;
 
 import main.java.dao.ContractDao;
+import main.java.entity.Client;
 import main.java.entity.Contract;
+
+import java.util.List;
 
 public class ContractService {
 
@@ -39,6 +42,30 @@ public class ContractService {
 
         String message = "";
 
+        ContractDao contractDao = new ContractDao();
+        Contract contract = contractDao.get( id );
+
+        if ( condition.equals( "lock" )){
+            if ( contract.getIs_locked() != 2 ) {
+                contract.setIs_locked( 1 );
+                contractDao.update( contract );
+                message = " Your contract was successfully locked";
+            } else {
+                message = " Your contract is already locked by our operator";
+            }
+
+        } else if ( condition.equals( "unlock" ) ) {
+            if ( contract.getIs_locked() != 2 ) {
+                contract.setIs_locked( 0 );
+                contractDao.update( contract );
+                message = " Your contract was successfully unlocked";
+            } else {
+                message = " Sorry, but your contract is locked by our operator";
+            }
+
+        } else {
+            message = " Choose an action, please! ";
+        }
         return message;
     }
 }

@@ -4,6 +4,8 @@ import main.java.dao.ClientDao;
 import main.java.dao.ContractDao;
 import main.java.entity.Client;
 import main.java.entity.Contract;
+import main.java.service.ClientService;
+import main.java.service.ContractService;
 
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
@@ -28,50 +30,17 @@ public class LockUnlock1 extends HttpServlet{
 
         try{
 
-            ClientDao clientDao = new ClientDao();
-            Client client = clientDao.get( id );
-            ContractDao contractDao = new ContractDao();
+            ClientService clientService = new ClientService();
+            Client client = clientService.getById( id );
 
             req.setAttribute( "client", client );
             req.getRequestDispatcher( url ).forward( req, resp );
 
-            List<Contract> contractList = client.getContractList();
+            int contractId = Integer.parseInt( req.getParameter( "contractId" ) );
 
-            int i = 1;
-            for( Contract contract : contractList ){
+            ContractService contractService = new ContractService();
+            contractService.clientLock( contractId, condition );
 
-                String phoneCount = req.getParameter( "phoneCount" );
-
-                if ( i == Integer.parseInt( phoneCount )){
-                    if ( condition.equals( "lock" )){
-                        if ( contract.getIs_locked() != 2 ) {
-                            contract.setIs_locked( 1 );
-                            contractDao.update( contract );
-                            req.setAttribute( "message", " Your contract was successfully locked" );
-                            req.getRequestDispatcher( url ).forward( req, resp );
-                        } else {
-                            req.setAttribute( "message", " Your contract is already locked by our operator" );
-                            req.getRequestDispatcher( url ).forward( req, resp );
-                        }
-
-                    } else if ( condition.equals( "unlock" ) ) {
-                        if ( contract.getIs_locked() != 2 ) {
-                            contract.setIs_locked( 0 );
-                            contractDao.update( contract );
-                            req.setAttribute( "message", " Your contract was successfully unlocked" );
-                            req.getRequestDispatcher( url ).forward( req, resp );
-                        } else {
-                            req.setAttribute( "message", " Sorry, but your contract locked by our operator" );
-                            req.getRequestDispatcher( url ).forward( req, resp );
-                        }
-
-                    } else {
-                        req.setAttribute( "error", " Choose an action, please! " );
-                        req.getRequestDispatcher( url ).forward( req, resp );
-                    }
-                }
-                i++;
-            }
 
             // ловим возможные ошибки
         } catch ( NumberFormatException e) {
