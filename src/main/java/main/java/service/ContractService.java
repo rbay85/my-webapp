@@ -38,7 +38,7 @@ public class ContractService {
     // клиент блокирует и разблокирует
     public String clientLock ( int id, String condition ) {
 
-        String message = "";
+        String message;
 
         ContractDao contractDao = new ContractDao();
         Contract contract = contractDao.get( id );

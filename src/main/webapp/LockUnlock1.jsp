@@ -12,7 +12,9 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
+
         <jsp:include page="Header.jsp" />
+
     </header>
     <nav>
 
@@ -37,10 +39,11 @@
                     <input type="radio" name="condition" value="unlock">unlock<br>
                 </p>
                 <input type="submit" value="Apply"/>
-
+                <br>
+                <br>
+                ${message}
+                <br>
             </form>
-            ${message} ${error}
-            <br/>
 
 
         </section>

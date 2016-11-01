@@ -25,7 +25,6 @@ public class LockUnlock extends HttpServlet {
         }
         else {
             try{
-
                 ContractService contractService = new ContractService();
                 String message = contractService.adminLock( phone, condition );
 

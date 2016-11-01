@@ -1,9 +1,7 @@
 package main.java.controller;
 
-import main.java.dao.ClientDao;
-import main.java.dao.ContractDao;
+
 import main.java.entity.Client;
-import main.java.entity.Contract;
 import main.java.service.ClientService;
 import main.java.service.ContractService;
 
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 
 public class LockUnlock1 extends HttpServlet{
@@ -22,10 +20,8 @@ public class LockUnlock1 extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
         // на примере Анны Смитт
-        int id = 7;
+        int id = 6;
 
-        // принимаем параметр со страницы
-        String condition = req.getParameter( "condition" );
         String url = "/LockUnlock1.jsp";
 
         try{
@@ -37,20 +33,23 @@ public class LockUnlock1 extends HttpServlet{
             req.getRequestDispatcher( url ).forward( req, resp );
 
             int contractId = Integer.parseInt( req.getParameter( "contractId" ) );
+            String condition = req.getParameter( "condition" );
 
             ContractService contractService = new ContractService();
-            contractService.clientLock( contractId, condition );
+            String message = contractService.clientLock( contractId, condition );
 
+            req.setAttribute( "message", message );
+            req.getRequestDispatcher( url ).forward( req, resp );
 
             // ловим возможные ошибки
         } catch ( NumberFormatException e) {
-            req.setAttribute( "error", "Sorry, NumberFormatException " );
+            req.setAttribute( "message", "Sorry, NumberFormatException " );
             req.getRequestDispatcher( url ).forward( req, resp );
         } catch ( NullPointerException e) {
-            req.setAttribute( "error", "Sorry, NullPointerException " );
+            req.setAttribute( "message", "Sorry, NullPointerException " );
             req.getRequestDispatcher( url ).forward( req, resp );
         } catch ( NoResultException e) {
-            req.setAttribute( "error", "Sorry, NoResultException" );
+            req.setAttribute( "message", "Sorry, NoResultException" );
             req.getRequestDispatcher( url ).forward( req, resp );
         }
     }

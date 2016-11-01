@@ -26,12 +26,12 @@
             <form action="" method="GET">
                 <p>Input client ID: <input type="number" name="id"></p>
                 <input type="submit" value="Submit" />
+                ${clientFN} ${error}
+                <br/>
+                ${clientLN}
+                <br/>
+                ${clientBD}
             </form>
-            ${clientFN} ${error}
-            <br/>
-            ${clientLN}
-            <br/>
-            ${clientBD}
 
 
         </section>

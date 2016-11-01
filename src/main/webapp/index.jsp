@@ -12,7 +12,9 @@
         <div id="wrapper">
             <!-- Обертка  -->
             <header>
+
                 <jsp:include page="Header.jsp" />
+
             </header>
             <nav>
 
@@ -24,8 +26,10 @@
                     --this is page content--
                 </section>
                 <aside>
-                    <h2>Login please</h2>
-                    <form name="formName" action="action.html">
+
+
+                    <form action="action.html">
+                        <h2>Login please</h2>
                         <div class="form-element">
                             <label for="username">Username:</label>
                             <input type="text" name="username"/>
@@ -38,6 +42,8 @@
                             <input type="submit" value="Log in"/>
                         </div>
                     </form>
+
+
                 </aside>
             </section>
             <div id="empty-div">

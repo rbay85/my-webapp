@@ -29,24 +29,24 @@
                     <small>(xxx)xxx-xxxx for example</small>
                 </p>
                 <input type="submit" value="Submit" />
-            </form>
-            ${contractByPhone_phone} ${error}
-            <br/><br/>
-            ${contractByPhone_tariff}
-            <br/><br/>
-            ${contractByPhone_clientFN}
-            <br/>
-            ${contractByPhone_clientLN}
-            <br/>
-            ${contractByPhone_clientBD}
-            <br/><br/>
-            <c:forEach var="option" items="${contractByPhone_optionList}">
-                ${option.getName()}
+                ${contractByPhone_phone} ${error}
+                <br/><br/>
+                ${contractByPhone_tariff}
+                <br/><br/>
+                ${contractByPhone_clientFN}
                 <br/>
-            </c:forEach>
-            <br/>lock condition:
-            ${contractByPhone_isLocked}
-            <br/><br/><br/>
+                ${contractByPhone_clientLN}
+                <br/>
+                ${contractByPhone_clientBD}
+                <br/><br/>
+                <c:forEach var="option" items="${contractByPhone_optionList}">
+                    ${option.getName()}
+                    <br/>
+                </c:forEach>
+                <br/>${message}
+                ${contractByPhone_isLocked}
+                <br/><br/><br/>
+            </form>
 
 
         </section>

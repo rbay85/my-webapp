@@ -49,10 +49,11 @@
                 <br>
                 <input type="submit" value="Add a new client" />
 
+                ${message} ${error}
+                <br/>
+                <br/>
             </form>
-            ${message} ${error}
-            <br/>
-            <br/>
+
 
 
         </section>

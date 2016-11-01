@@ -33,8 +33,10 @@
                     <input type="radio" name="condition" value="unlock">unlock<br>
                 </p>
                 <input type="submit" value="Apply"/>
+                <br>
+                <br>
+                ${message} ${error}
             </form>
-            ${message} ${error}
 
 
         </section>

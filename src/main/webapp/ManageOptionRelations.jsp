@@ -62,10 +62,12 @@
                 </p>
 
                 <input type="submit" value="Apply">
-            </form><br>
-            ${message} ${error}
-            <br>
-            <br>
+                <br>
+                ${message} ${error}
+                <br>
+                <br>
+            </form>
+
 
         </section>
         <aside>
