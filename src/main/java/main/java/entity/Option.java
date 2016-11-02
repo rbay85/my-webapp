@@ -1,6 +1,9 @@
 
 package main.java.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
@@ -38,7 +41,8 @@ public class Option implements Serializable{
     private double onCost;
 
     // список необходимых опций
-    @ManyToMany( fetch = FetchType.LAZY )
+    @ManyToMany
+    @LazyCollection( LazyCollectionOption.FALSE )
     @JoinTable( name = "necessary_option",
             joinColumns = @JoinColumn( name = "option1_id" ),
             inverseJoinColumns = @JoinColumn( name = "option2_id" )
@@ -46,14 +50,15 @@ public class Option implements Serializable{
     private List<Option> necessaryOptionList;
 
     // список несовместимых опций
-    @ManyToMany( fetch = FetchType.LAZY )
+    @ManyToMany
+    @LazyCollection( LazyCollectionOption.FALSE )
     @JoinTable( name = "incompatible_option",
             joinColumns = @JoinColumn( name = "option1_id" ),
             inverseJoinColumns = @JoinColumn( name = "option2_id" )
     )
     private List<Option> incompatibleOptionList;
 
-    // проверка что список несовместимых опций не содержит необходимую опцию ( нужна ли обратна я проверка?? )
+    // ПЕРЕДЕЛАТЬ
     @AssertTrue ( message = "Sorry, an option can't be necessary for another option and incompatible with it at the same time !" )
     public boolean areListsContradict() {
         for ( Option necessaryOption : necessaryOptionList ) {

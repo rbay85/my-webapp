@@ -1,6 +1,9 @@
 
 package main.java.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
@@ -36,7 +39,8 @@ public class Tariff implements Serializable{
     private double price;
 
     // список доступных опций
-    @ManyToMany( fetch = FetchType.LAZY )
+    @ManyToMany
+    @LazyCollection( LazyCollectionOption.FALSE )
     @JoinTable(
             name = "tariff_option",
             joinColumns = @JoinColumn(name = "tariff_id"),

@@ -1,6 +1,9 @@
 
 package main.java.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -42,7 +45,8 @@ public class Contract implements Serializable{
     private Tariff tariff;
 
     // Выбранные опций
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToMany( cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
     @JoinTable(
             name = "contract_option",
             joinColumns = @JoinColumn( name = "contract_id" ),

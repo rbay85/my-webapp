@@ -1,5 +1,7 @@
 package main.java.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -51,7 +53,8 @@ public class Client implements Serializable {
     private String address;
 
     // номера контрактов
-    @OneToMany( mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "client", cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
     private List<Contract> contractList;
 
     // электронная почта
