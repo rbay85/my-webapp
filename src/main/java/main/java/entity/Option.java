@@ -58,7 +58,7 @@ public class Option implements Serializable{
     )
     private List<Option> incompatibleOptionList;
 
-    // ПЕРЕДЕЛАТЬ
+    // ПЕРЕДЕЛАТЬ !!!
     @AssertTrue ( message = "Sorry, an option can't be necessary for another option and incompatible with it at the same time !" )
     public boolean areListsContradict() {
         for ( Option necessaryOption : necessaryOptionList ) {

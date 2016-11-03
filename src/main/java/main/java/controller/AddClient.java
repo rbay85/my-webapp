@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 
 public class AddClient extends HttpServlet {
@@ -68,6 +69,10 @@ public class AddClient extends HttpServlet {
                 req.setAttribute( "error", "error: Please, input valid date in YYYY-MM-DD format" );
                 req.getRequestDispatcher( url ).forward( req, resp );
                 logger.error( "StringIndexOutOfBoundsException: wrong date !" );
+            } catch ( ConstraintViolationException e ){
+                req.setAttribute( "error", "error: Please, input valid e-mail !" );
+                req.getRequestDispatcher( url ).forward( req, resp );
+                logger.error( "ConstraintViolationException: wrong e-mail !" );
             }
         }
     }

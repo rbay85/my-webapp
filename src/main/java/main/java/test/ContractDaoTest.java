@@ -22,13 +22,13 @@ public class ContractDaoTest {
         //Создаем контракт для записи в БД
         Contract contract1 = new Contract();
         // добавляем номер телефона
-        contract1.setPhone( "(907)034-0101" );
+        contract1.setPhone( "(910)005-0022" );  // ловить MySQLIntegrityConstraintViolationException, ConstraintViolationException, PersistenceException
         // добавляем клиента
         ClientDao clientDao = new ClientDao();
-        contract1.setClient( clientDao.get( 7 ));
+        contract1.setClient( clientDao.get( 10 ));
         //добавляем тариф
         TariffDao tariffDao = new TariffDao();
-        contract1.setTariff( tariffDao.get( 1 ));
+        contract1.setTariff( tariffDao.get( 2 ));
         // добавляем опции
         OptionDao optionDao = new OptionDao();
         Option option1 = optionDao.get( 1 );

@@ -49,9 +49,10 @@
                 <br>
                 <input type="submit" value="Add a new client" />
 
+                <br><br>
                 ${message} ${error}
-                <br/>
-                <br/>
+                <br><br>
+
             </form>
 
 
