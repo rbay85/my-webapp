@@ -12,7 +12,9 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
+
         <jsp:include page="Header.jsp" />
+
     </header>
     <nav>
 
@@ -28,8 +30,8 @@
                 <select name="optionId1" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
-                    <option value="2">3 GB internet</option>
-                    <option value="3">4 GB internet</option>
+                    <option value="2">4 GB internet</option>
+                    <option value="3">10 GB internet</option>
                     <option value="4">100 sms</option>
                     <option value="5">200 sms</option>
                     <option value="6">400 sms</option>
@@ -44,8 +46,8 @@
                 <select name="optionId2" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
-                    <option value="2">3 GB internet</option>
-                    <option value="3">4 GB internet</option>
+                    <option value="2">4 GB internet</option>
+                    <option value="3">10 GB internet</option>
                     <option value="4">100 sms</option>
                     <option value="5">200 sms</option>
                     <option value="6">400 sms</option>
@@ -63,10 +65,9 @@
                 </p>
 
                 <input type="submit" value="Apply">
-                <br>
+                <br><br>
                 ${message} ${error}
-                <br>
-                <br>
+                <br><br>
             </form>
 
 

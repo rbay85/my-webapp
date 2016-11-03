@@ -1,7 +1,6 @@
 package main.java.controller;
 
-import main.java.dao.OptionDao;
-import main.java.entity.Option;
+import main.java.service.OptionService;
 
 import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 public class ManageOptionRelations extends HttpServlet{
 
@@ -27,54 +26,17 @@ public class ManageOptionRelations extends HttpServlet{
             req.setAttribute( "error", "" );
             req.getRequestDispatcher( url ).forward( req, resp );
         }
-        int id1 = Integer.parseInt( optionId1 );
+        int id1 = Integer.parseInt( optionId1 );   // перекинуть в сервисы!!!
         int id2 = Integer.parseInt( optionId2 );
 
         try{
-            if ( id1 == 0 || id2 == 0 ) {
-                req.setAttribute( "error", " error: Choose TWO options, please !" );
-                req.getRequestDispatcher(url).forward(req, resp);
+            OptionService optionService = new OptionService();
+            String message = optionService.setOptionRelations( id1, id2, action);
 
-            } else if ( id1 == id2 ) {
-                req.setAttribute( "error", " error: Choose two DIFFERENT options, please !" );
-                req.getRequestDispatcher(url).forward(req, resp);
+            req.setAttribute( "message", message );
+            req.getRequestDispatcher( url ).forward( req, resp );
 
-            } else {
-
-                OptionDao optionDao = new OptionDao();
-
-                Option option1 = optionDao.get( id1 );
-                Option option2 = optionDao.get( id2 );
-
-                if ( action.equals( "required" )) {
-                    List<Option> option1NecessaryList = option1.getNecessaryOptionList();
-                    option1NecessaryList.add( option2 );
-                    option1.setNecessaryOptionList( option1NecessaryList ); // ДОБАВИТЬ ПРОВЕРКУ ( option.areListsContradict() ) Где добавить??
-                    optionDao.update( option1 );
-
-                    req.setAttribute( "message", " Options requirements successfully set" );
-                    req.getRequestDispatcher( url ).forward( req, resp );
-
-                } else if ( action.equals( "incompatible" )) {
-                    List<Option> option1IncompatibleList = option1.getIncompatibleOptionList();
-                    option1IncompatibleList.add( option2 );
-                    option1.setIncompatibleOptionList( option1IncompatibleList );
-                    optionDao.update( option1 );
-
-                    List<Option> option2IncompatibleList = option2.getIncompatibleOptionList();
-                    option2IncompatibleList.add( option1 );
-                    option2.setIncompatibleOptionList( option2IncompatibleList );
-                    optionDao.update( option2 );
-
-                    req.setAttribute( "message", " Options incompatibility successfully set" );
-                    req.getRequestDispatcher( url ).forward( req, resp );
-
-                } else {
-                    req.setAttribute( "error", " error: Choose an action, please!" );
-                    req.getRequestDispatcher( url ).forward( req, resp );
-
-                }
-            }
+            // ловим возможные ошибки
         } catch ( NullPointerException e) {
             req.setAttribute( "error", " error: Choose an action, please!" );
             req.getRequestDispatcher( url ).forward( req, resp );
