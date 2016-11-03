@@ -24,7 +24,7 @@
 
 
             <form action="" method="GET">
-                <p>choose an option to manage</p>
+                choose an option to manage<br>
                 <select name="optionId1" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
@@ -40,7 +40,7 @@
                     <option value="11">sms service</option>
                 </select>
 
-                <p>choose another option to manage</p>
+                <br><br>choose another option to manage<br>
                 <select name="optionId2" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
@@ -59,6 +59,7 @@
                 <p><b>action:</b><br>
                     <input type="radio" name="action" value="required">set as 1st requires 2nd option<br>
                     <input type="radio" name="action" value="incompatible">set as incompatible options<br>
+                    <input type="radio" name="action" value="remove">remove any relations of selected options<br>
                 </p>
 
                 <input type="submit" value="Apply">

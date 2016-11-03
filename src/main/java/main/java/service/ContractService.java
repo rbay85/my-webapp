@@ -66,4 +66,6 @@ public class ContractService {
         }
         return message;
     }
+
+    // перенести сюда действия из ContractDaoTest !
 }

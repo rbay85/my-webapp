@@ -22,7 +22,7 @@ public class ContractDaoTest {
         //Создаем контракт для записи в БД
         Contract contract1 = new Contract();
         // добавляем номер телефона
-        contract1.setPhone( "(910)005-0022" );  // ловить MySQLIntegrityConstraintViolationException, ConstraintViolationException, PersistenceException
+        contract1.setPhone( "(910)005-0022" );  // ловить MySQLIntegrityConstraintViolationException - неуникальный номер, ConstraintViolationException - неверный номер
         // добавляем клиента
         ClientDao clientDao = new ClientDao();
         contract1.setClient( clientDao.get( 10 ));
@@ -55,9 +55,9 @@ public class ContractDaoTest {
     public void testUpdate1() throws Exception {
 
         // достаем контракт из БД
-        Contract contract = contractDao.get( 6 );
+        Contract contract = contractDao.get( 12 ); // ловить NullPointerException
         // меняем номер телефона
-        contract.setPhone( "(906)200-1100" );
+        contract.setPhone( "(902)090-1177" );
 
         //Записали в БД
         contractDao.update( contract );
@@ -67,7 +67,7 @@ public class ContractDaoTest {
     public void testGetByPhone() throws Exception {
 
         //Получаем все контракты с БД
-        Contract contract = contractDao.getByPhone( "(906)200-1100" );
+        Contract contract = contractDao.getByPhone( "(906)hgk" ); // ловить NoResultException
 
         //Выводим полученый контракт
         System.out.println( contract.getClient() );
@@ -89,6 +89,6 @@ public class ContractDaoTest {
     public void testDelete() throws Exception {
 
         //Удалем первую запись в БД
-        contractDao.delete( 1 );
+        contractDao.delete( 1 );     // ловить IllegalArgumentException
     }
 }

@@ -32,11 +32,11 @@ public class ManageOptionRelations extends HttpServlet{
 
         try{
             if ( id1 == 0 || id2 == 0 ) {
-                req.setAttribute("error", " error: Choose TWO options, please !");
+                req.setAttribute( "error", " error: Choose TWO options, please !" );
                 req.getRequestDispatcher(url).forward(req, resp);
 
             } else if ( id1 == id2 ) {
-                req.setAttribute("error", " error: Choose two DIFFERENT options, please !");
+                req.setAttribute( "error", " error: Choose two DIFFERENT options, please !" );
                 req.getRequestDispatcher(url).forward(req, resp);
 
             } else {
