@@ -92,7 +92,7 @@ public class ClientDaoTest {
     @Test
     public void testDelete() throws Exception {
 
-        //Удалем первую запись в БД
+        //Удалем запись в БД
         clientDao.delete( 12 );
     }
 }

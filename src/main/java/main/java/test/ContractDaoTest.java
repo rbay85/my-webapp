@@ -67,7 +67,7 @@ public class ContractDaoTest {
     public void testGetByPhone() throws Exception {
 
         //Получаем все контракты с БД
-        Contract contract = contractDao.getByPhone( "(906)hgk" ); // ловить NoResultException
+        Contract contract = contractDao.getByPhone( "(910)005-0022" ); // ловить NoResultException
 
         //Выводим полученый контракт
         System.out.println( contract.getClient() );
