@@ -12,11 +12,23 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <!-- Настраивает управление транзакциями с помощью аннотации @Transactional ( удалено ) -->
+    <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
+    <tx:annotation-driven transaction-manager="txManager" />
 
-    <!-- Менеджер транзакций ( удалено ) -->
+    <!-- Менеджер транзакций -->
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf" />
+        <property name="jpaDialect" ref="jpaDialect"/>
+    </bean>
 
-    <!-- Настройки фабрики сессий Хибернейта ( удалено ) -->
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+
+    <!-- Настройки фабрики сессий Хибернейта -->
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
+        <property name="persistenceUnitName" value="myPersUnit"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="main.java.entity"/>
+    </bean>
 
     <!-- Настройки бина dataSource будем хранить в отдельном файле -->
     <bean id="propertyConfigurer"
