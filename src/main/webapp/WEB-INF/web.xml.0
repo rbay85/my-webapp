@@ -1,0 +1,76 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+  <display-name>
+      Archetype Created Web Application
+  </display-name>
+
+    <servlet>
+        <servlet-name>ClientByID</servlet-name>
+        <servlet-class>main.java.controller.ClientByID</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientByID</servlet-name>
+        <url-pattern>/ClientByID</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ContractByPhone</servlet-name>
+        <servlet-class>main.java.controller.ContractByPhone</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContractByPhone</servlet-name>
+        <url-pattern>/ContractByPhone</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowAllClients</servlet-name>
+        <servlet-class>main.java.controller.ShowAllClients</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllClients</servlet-name>
+        <url-pattern>/ShowAllClients</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LockUnlock</servlet-name>
+        <servlet-class>main.java.controller.LockUnlock</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LockUnlock</servlet-name>
+        <url-pattern>/LockUnlock</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageOptionRelations</servlet-name>
+        <servlet-class>main.java.controller.ManageOptionRelations</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ManageOptionRelations</servlet-name>
+        <url-pattern>/ManageOptionRelations</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddClient</servlet-name>
+        <servlet-class>main.java.controller.AddClient</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddClient</servlet-name>
+        <url-pattern>/AddClient</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LockUnlock1</servlet-name>
+        <servlet-class>main.java.controller.LockUnlock1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LockUnlock1</servlet-name>
+        <url-pattern>/LockUnlock1</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

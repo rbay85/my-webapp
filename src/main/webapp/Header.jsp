@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta contentType="text/html" charset="utf-8">
-    <link href="styleH.css" rel="stylesheet">
+    <link href="resources/styleH.css" rel="stylesheet">
 </head>
 <body>
     <h1>Welcome to My-Mobile</h1>
