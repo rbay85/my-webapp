@@ -3,32 +3,41 @@ package main.java.service;
 import main.java.dao.ClientDao;
 import main.java.entity.Client;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+
+@Service
 public class ClientService {
+
+    @Autowired
+    private ClientDao clientDao;
 
     // подключаем логгер
     private static Logger logger = Logger.getLogger(ClientService.class);
 
     // возвращаем клиента по id
+    @Transactional
     public Client getById ( int id ){
 
-        ClientDao clientDao = new ClientDao();
         Client client = clientDao.get( id );
         return client;
     }
 
     // возвращаем всех клиентов
+    @Transactional
     public List<Client> getAll() {
 
-        ClientDao clientDao = new ClientDao();
         List<Client> clientList = clientDao.getAll();
         return clientList;
     }
 
     // создаем нового клиента
+    @Transactional
     public void addClient ( String firstName,
                             String lastName,
                             String birthDay,
@@ -37,7 +46,6 @@ public class ClientService {
                             String email,
                             String password ) {
 
-        ClientDao clientDao = new ClientDao();
         Client client = new Client();
 
         client.setFirstName( firstName );

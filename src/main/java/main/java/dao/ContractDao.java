@@ -1,50 +1,32 @@
 package main.java.dao;
 
 import main.java.entity.Contract;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
 
+
+@Repository
 public class ContractDao {
 
-    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    private EntityTransaction trx = em.getTransaction();
+    @PersistenceContext
+    private EntityManager em;
 
     // добавляем контракт
     public void add( Contract contract ) {
-        try {
-            trx.begin();
-            em.persist( contract );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.persist( contract );
     }
 
     // удаляем контракт
     public void delete( int id ){
-        try {
-            trx.begin();
-            Contract contract = em.find( Contract.class, id );
-            em.remove( contract );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        Contract contract = em.find( Contract.class, id );
+        em.remove( contract );
     }
 
     // редактируем контракт
     public void update( Contract contract ){
-        try {
-            trx.begin();
-            em.merge( contract );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.merge( contract );
     }
 
     // ищем контракт по ID
@@ -59,6 +41,7 @@ public class ContractDao {
     }
 
     // выводим все контракты
+    @SuppressWarnings( "unchecked" )
     public List<Contract> getAll(){
         TypedQuery<Contract> namedQuery = em.createNamedQuery( "Contract.getAll", Contract.class );
         return namedQuery.getResultList();

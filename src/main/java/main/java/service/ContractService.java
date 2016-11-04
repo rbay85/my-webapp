@@ -2,22 +2,29 @@ package main.java.service;
 
 import main.java.dao.ContractDao;
 import main.java.entity.Contract;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
+@Service
 public class ContractService {
 
+    @Autowired
+    private ContractDao contractDao;
+
     // возврещаем контрак по номеру телефона
+    @Transactional
     public Contract getByPhone ( String phone ){
 
-        ContractDao contractDao = new ContractDao();
         Contract contract = contractDao.getByPhone( phone );
         return contract;
     }
 
     // администратор блокирует и разблокирует
+    @Transactional
     public String adminLock (String phone, String condition) {
 
-        ContractDao contractDao = new ContractDao();
         Contract contract = contractDao.getByPhone( phone );
         String message;
 
@@ -36,11 +43,11 @@ public class ContractService {
     }
 
     // клиент блокирует и разблокирует
+    @Transactional
     public String clientLock ( int id, String condition ) {
 
         String message;
 
-        ContractDao contractDao = new ContractDao();
         Contract contract = contractDao.get( id );
 
         if ( condition.equals( "lock" )){

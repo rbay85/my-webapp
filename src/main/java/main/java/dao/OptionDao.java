@@ -1,53 +1,32 @@
 package main.java.dao;
 
 import main.java.entity.Option;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
+
+@Repository
 public class OptionDao {
 
-    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    private EntityTransaction trx = em.getTransaction();
+    @PersistenceContext
+    private EntityManager em;
 
     // добавляем опцию
     public void add( Option option ) {
-        try {
-            trx.begin();
-            em.persist( option );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.persist( option );
     }
 
     // удаляем опцию
     public void delete( int id ){
-        try {
-            trx.begin();
-            Option option = em.find( Option.class, id );
-            em.remove( option );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        Option option = em.find( Option.class, id );
+        em.remove( option );
     }
 
     // редактируем опцию
     public void update( Option option ){
-        try {
-            em.getTransaction().begin();
-            em.merge( option );
-            em.getTransaction().commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.merge( option );
     }
 
     // ищем опцию
@@ -56,6 +35,7 @@ public class OptionDao {
     }
 
     // выводим все опции
+    @SuppressWarnings( "unchecked" )
     public List<Option> getAll(){
         TypedQuery<Option> namedQuery = em.createNamedQuery( "Option.getAll", Option.class );
         return namedQuery.getResultList();

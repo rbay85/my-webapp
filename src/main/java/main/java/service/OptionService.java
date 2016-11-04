@@ -2,11 +2,21 @@ package main.java.service;
 
 import main.java.dao.OptionDao;
 import main.java.entity.Option;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Service
 public class OptionService {
 
+    @Autowired
+    private OptionDao optionDao;
+
+    // устанавливаем отношения опций
+    @Transactional
     public String setOptionRelations ( int id1, int id2, String action ) {
 
         String message = "";
@@ -19,15 +29,13 @@ public class OptionService {
 
         } else {
 
-            OptionDao optionDao = new OptionDao();
-
             Option option1 = optionDao.get( id1 );
             Option option2 = optionDao.get( id2 );
 
             if ( action.equals( "required" )) {
                 List<Option> option1NecessaryList = option1.getNecessaryOptionList();
                 option1NecessaryList.add( option2 );
-                option1.setNecessaryOptionList( option1NecessaryList ); // ДОБАВИТЬ ПРОВЕРКУ ( option.areListsContradict() ) Где добавить??
+                option1.setNecessaryOptionList( option1NecessaryList ); // ДОБАВИТЬ ПРОВЕРКУ ( option.areListsContradict ) Где добавить??
                 optionDao.update( option1 );
 
                 message = " Options requirements successfully set";

@@ -1,53 +1,33 @@
 package main.java.dao;
 
 import main.java.entity.Client;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
+
+@Repository
 public class ClientDao {
 
-    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    private EntityTransaction trx = em.getTransaction();
+    @PersistenceContext
+    private EntityManager em;
+
 
     // добавляем клиента
-    public void add( Client client ) {
-        try {
-            trx.begin();
-            em.persist( client );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+    public void add( Client client ){
+        em.persist( client );
     }
 
     // удаляем клиента
     public void delete( int id ){
-        try {
-            trx.begin();
-            Client client = em.find( Client.class, id );
-            em.remove( client );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        Client client = em.find( Client.class, id );
+        em.remove( client );
     }
 
     // редактируем клиента
     public void update( Client client ){
-        try {
-            trx.begin();
-            em.merge( client );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.merge( client );
     }
 
     // ищем клиента
@@ -56,6 +36,7 @@ public class ClientDao {
     }
 
     // выводим всех
+    @SuppressWarnings( "unchecked" )
     public List<Client> getAll(){
         TypedQuery<Client> namedQuery = em.createNamedQuery( "Client.getAll", Client.class );
         return namedQuery.getResultList();

@@ -1,54 +1,32 @@
 package main.java.dao;
 
 import main.java.entity.Tariff;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 
+@Repository
 public class TariffDao {
 
-    private EntityManager em = Persistence.createEntityManagerFactory( "myPersUnit" ).createEntityManager();
-    private EntityTransaction trx = em.getTransaction();
+    @PersistenceContext
+    private EntityManager em ;
 
     // добавляем клиента
     public void add( Tariff tariff ) {
-        try {
-            trx.begin();
-            em.persist( tariff );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.persist( tariff );
     }
 
     // удаляем клиента
     public void delete( int id ){
-        try {
-            trx.begin();
-            Tariff tariff = em.find( Tariff.class, id );
-            em.remove( tariff );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        Tariff tariff = em.find( Tariff.class, id );
+        em.remove( tariff );
     }
 
     // редактируем клиента
     public void update( Tariff tariff ){
-        try {
-            trx.begin();
-            em.merge( tariff );
-            trx.commit();
-        }
-        finally {
-            if ( trx.isActive() ) trx.rollback();
-        }
+        em.merge( tariff );
     }
 
     // ищем клиента
@@ -57,6 +35,7 @@ public class TariffDao {
     }
 
     // выводим всех
+    @SuppressWarnings( "unchecked" )
     public List<Tariff> getAll(){
         TypedQuery<Tariff> namedQuery = em.createNamedQuery( "Tariff.getAll", Tariff.class );
         return namedQuery.getResultList();
