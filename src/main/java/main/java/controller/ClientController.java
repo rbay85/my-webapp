@@ -37,10 +37,10 @@ public class ClientController {
         return "clientById";
     }
 
+    @RequestMapping( value = "showAllClients", method = RequestMethod.GET )
     public String showAllClients ( Model model ){
 
-        List<Client> clientList = clientService.getAll();
-        model.addAttribute( "clientList", );
+        model.addAttribute( "clientList", clientService.getAll() );
         return "showAllClients";
     }
 }

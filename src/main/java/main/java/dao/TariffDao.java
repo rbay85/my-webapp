@@ -35,7 +35,7 @@ public class TariffDao {
     }
 
     // выводим всех //
-
+    @SuppressWarnings( "unchecked" )
     public List<Tariff> getAll(){
         Query query = em.createNativeQuery( "Tariff.getAll", Tariff.class );
         return query.getResultList();

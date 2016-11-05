@@ -36,6 +36,7 @@ public class ClientDao {
     }
 
     // выводим всех
+    @SuppressWarnings( "unchecked" )
     public List<Client> getAll(){
         Query query = em.createNativeQuery( "Client.getAll", Client.class );
         return query.getResultList();

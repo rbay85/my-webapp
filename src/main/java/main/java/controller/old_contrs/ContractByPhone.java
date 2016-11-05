@@ -1,4 +1,4 @@
-package main.java.controller;
+package main.java.controller.old_contrs;
 
 
 import main.java.entity.Contract;

@@ -35,6 +35,7 @@ public class OptionDao {
     }
 
     // выводим все опции
+    @SuppressWarnings( "unchecked" )
     public List<Option> getAll(){
         Query query = em.createNativeQuery( "Option.getAll", Option.class );
         return query.getResultList();

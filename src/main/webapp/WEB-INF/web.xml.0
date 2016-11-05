@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>ClientByID</servlet-name>
-        <servlet-class>main.java.controller.ClientByID</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.ClientByID</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClientByID</servlet-name>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>ContractByPhone</servlet-name>
-        <servlet-class>main.java.controller.ContractByPhone</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.ContractByPhone</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ContractByPhone</servlet-name>
@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>ShowAllClients</servlet-name>
-        <servlet-class>main.java.controller.ShowAllClients</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.ShowAllClients</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShowAllClients</servlet-name>
@@ -37,7 +37,7 @@
 
     <servlet>
         <servlet-name>LockUnlock</servlet-name>
-        <servlet-class>main.java.controller.LockUnlock</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.LockUnlock</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LockUnlock</servlet-name>
@@ -46,7 +46,7 @@
 
     <servlet>
         <servlet-name>ManageOptionRelations</servlet-name>
-        <servlet-class>main.java.controller.ManageOptionRelations</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.ManageOptionRelations</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>AddClient</servlet-name>
-        <servlet-class>main.java.controller.AddClient</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.AddClient</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddClient</servlet-name>
@@ -65,7 +65,7 @@
 
     <servlet>
         <servlet-name>LockUnlock1</servlet-name>
-        <servlet-class>main.java.controller.LockUnlock1</servlet-class>
+        <servlet-class>main.java.controller.old_contrs.LockUnlock1</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LockUnlock1</servlet-name>
