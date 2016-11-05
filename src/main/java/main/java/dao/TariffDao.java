@@ -37,7 +37,8 @@ public class TariffDao {
     // выводим всех //
     @SuppressWarnings( "unchecked" )
     public List<Tariff> getAll(){
-        Query query = em.createNativeQuery( "Tariff.getAll", Tariff.class );
+        //Query query = em.createNativeQuery( "Tariff.getAll", Tariff.class );
+        Query query = em.createQuery( "SELECT t FROM Tariff t" );
         return query.getResultList();
     }
 }
