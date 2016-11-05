@@ -35,9 +35,8 @@ public class OptionDao {
     }
 
     // выводим все опции
-    @SuppressWarnings( "unchecked" )
     public List<Option> getAll(){
-        TypedQuery<Option> namedQuery = em.createNamedQuery( "Option.getAll", Option.class );
-        return namedQuery.getResultList();
+        Query query = em.createNativeQuery( "Option.getAll", Option.class );
+        return query.getResultList();
     }
 }

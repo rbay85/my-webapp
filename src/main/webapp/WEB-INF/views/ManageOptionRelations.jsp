@@ -6,7 +6,7 @@
     <!-- Объявляем заголовк, кодироку стили и т.д -->
     <meta contentType="text/html" charset="utf-8">
     <title>--This is a title--</title>
-    <link href="resources/style.css" rel="stylesheet">
+    <link href="../../resources/style.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrapper">

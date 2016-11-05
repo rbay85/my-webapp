@@ -34,10 +34,10 @@ public class TariffDao {
         return em.find( Tariff.class, id );
     }
 
-    // выводим всех
-    @SuppressWarnings( "unchecked" )
+    // выводим всех //
+
     public List<Tariff> getAll(){
-        TypedQuery<Tariff> namedQuery = em.createNamedQuery( "Tariff.getAll", Tariff.class );
-        return namedQuery.getResultList();
+        Query query = em.createNativeQuery( "Tariff.getAll", Tariff.class );
+        return query.getResultList();
     }
 }

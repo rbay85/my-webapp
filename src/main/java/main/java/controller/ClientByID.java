@@ -12,12 +12,12 @@ import java.io.IOException;
 
 public class ClientByID extends HttpServlet{
 
-    private static Logger logger = Logger.getLogger(ClientByID.class);
+    private static Logger logger = Logger.getLogger( ClientByID.class );
 
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
-        String url = "/ClientByID.jsp";
+        String url = "/clientById.jsp";
 
         String parameter = req.getParameter( "id" );
         if ( parameter == null ) {

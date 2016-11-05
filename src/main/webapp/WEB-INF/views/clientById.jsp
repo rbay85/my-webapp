@@ -6,7 +6,7 @@
     <!-- Объявляем заголовк, кодироку стили и т.д -->
     <meta contentType="text/html" charset="utf-8">
     <title>--This is a title--</title>
-    <link href="resources/style.css" rel="stylesheet">
+    <link href="../../resources/style.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrapper">
@@ -24,28 +24,15 @@
 
 
             <form action="" method="GET">
-                <p>Input phone number:<br/>
-                    <input type="text" name="phone"><br>
-                    <small>(xxx)xxx-xxxx for example</small>
-                </p>
+                <p>Input client ID: <input type="number" name="id"></p>
                 <input type="submit" value="Submit" />
-                ${contractByPhone_phone} ${error}
-                <br/><br/>
-                ${contractByPhone_tariff}
-                <br/><br/>
-                ${contractByPhone_clientFN}
                 <br/>
-                ${contractByPhone_clientLN}
                 <br/>
-                ${contractByPhone_clientBD}
-                <br/><br/>
-                <c:forEach var="option" items="${contractByPhone_optionList}">
-                    ${option.getName()}
-                    <br/>
-                </c:forEach>
-                <br/>${message}
-                ${contractByPhone_isLocked}
-                <br/><br/><br/>
+                ${client.getFirstName()} ${error}
+                <br/>
+                ${client.getLastName()}
+                <br/>
+                ${client.getBirthDay()}
             </form>
 
 

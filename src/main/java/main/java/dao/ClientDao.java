@@ -36,9 +36,8 @@ public class ClientDao {
     }
 
     // выводим всех
-    @SuppressWarnings( "unchecked" )
     public List<Client> getAll(){
-        TypedQuery<Client> namedQuery = em.createNamedQuery( "Client.getAll", Client.class );
-        return namedQuery.getResultList();
+        Query query = em.createNativeQuery( "Client.getAll", Client.class );
+        return query.getResultList();
     }
 }
