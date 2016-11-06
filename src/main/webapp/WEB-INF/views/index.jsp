@@ -27,7 +27,6 @@
                 </section>
                 <aside>
 
-
                     <form action="action.html">
                         <h2>Login please</h2>
                         <div class="form-element">
@@ -42,7 +41,6 @@
                             <input type="submit" value="Log in"/>
                         </div>
                     </form>
-
 
                 </aside>
             </section>
