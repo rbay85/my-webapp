@@ -1,6 +1,6 @@
 package main.java.controller;
 
-import main.java.entity.Client;
+
 import main.java.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,9 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+    @RequestMapping( value = "/", method = RequestMethod.GET )
+    public String index( ){ return "index"; }
 
     @RequestMapping( value = "/clientById", method = RequestMethod.GET )
     public String clientById( @RequestParam( value = "id", required = false ) String id, Model model ){

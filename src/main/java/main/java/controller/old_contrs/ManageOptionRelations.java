@@ -26,12 +26,10 @@ public class ManageOptionRelations extends HttpServlet{
             req.setAttribute( "error", "" );
             req.getRequestDispatcher( url ).forward( req, resp );
         }
-        int id1 = Integer.parseInt( optionId1 );   // перекинуть в сервисы!!!
-        int id2 = Integer.parseInt( optionId2 );
 
         try{
             OptionService optionService = new OptionService();
-            String message = optionService.setOptionRelations( id1, id2, action);
+            String message = optionService.setOptionRelations( optionId1, optionId2, action);
 
             req.setAttribute( "message", message );
             req.getRequestDispatcher( url ).forward( req, resp );

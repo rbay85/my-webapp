@@ -26,7 +26,7 @@
 
 
             <form action="" method="GET">
-                choose an option to manage<br>
+                choose an option <br>
                 <select name="optionId1" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
@@ -42,7 +42,7 @@
                     <option value="11">sms service</option>
                 </select>
 
-                <br><br>choose another option to manage<br>
+                <br><br>choose another option <br>
                 <select name="optionId2" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>

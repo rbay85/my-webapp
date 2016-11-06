@@ -17,9 +17,11 @@ public class OptionService {
 
     // устанавливаем отношения опций
     @Transactional
-    public String setOptionRelations ( int id1, int id2, String action ) {
+    public String setOptionRelations ( String optionId1, String optionId2, String action ) {
 
-        String message = "";
+        String message;
+        int id1 = Integer.parseInt( optionId1 );
+        int id2 = Integer.parseInt( optionId2 );
 
         if ( id1 == 0 || id2 == 0 ) {
             message = " error: Choose TWO options, please !";
