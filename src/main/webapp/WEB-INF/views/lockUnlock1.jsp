@@ -41,7 +41,7 @@
                 <input type="submit" value="Apply"/>
                 <br>
                 <br>
-                ${message}
+                ${message}${error}
                 <br>
             </form>
 

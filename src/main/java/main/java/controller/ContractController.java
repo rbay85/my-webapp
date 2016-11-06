@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.service.ClientService;
 import main.java.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class ContractController {
 
     @Autowired
     private ContractService contractService;
+
+    @Autowired
+    private ClientService clientService;
 
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )
     public String contractByPhone( @RequestParam( value = "phone", required = false ) String phone, Model model ){
@@ -43,5 +47,24 @@ public class ContractController {
         return "lockUnlock";
     }
 
+    @RequestMapping( value = "/lockUnlock1", method = RequestMethod.GET )
+    public String lockUnlock1 ( @RequestParam( value = "contractId", required = false ) String contractId,
+                               @RequestParam( value = "condition", required = false ) String condition,
+                               Model model ){
 
+        int clientId = 6;
+        try {
+            model.addAttribute(clientService.getById(clientId));
+            int id = new Integer(contractId);
+            String message = contractService.clientLock(id, condition);
+            model.addAttribute("message", message);
+        } catch ( NumberFormatException e ){
+            model.addAttribute( "error", " " );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " choose an action, please! " );
+        } catch ( NoResultException e ) {
+            model.addAttribute( "error", " NoResultException " );
+        }
+        return "lockUnlock1";
+    }
 }
