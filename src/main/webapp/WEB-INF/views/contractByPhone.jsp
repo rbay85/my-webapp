@@ -29,22 +29,23 @@
                     <small>(xxx)xxx-xxxx for example</small>
                 </p>
                 <input type="submit" value="Submit" />
-                ${contractByPhone_phone} ${error}
                 <br/><br/>
-                ${contractByPhone_tariff}
+                ${contract.getPhone()} ${error}
                 <br/><br/>
-                ${contractByPhone_clientFN}
+                ${contract.getTariff().getName()}
+                <br/><br/>
+                ${contract.getClient().getFirstName()}
                 <br/>
-                ${contractByPhone_clientLN}
+                ${contract.getClient().getLastName()}
                 <br/>
-                ${contractByPhone_clientBD}
+                ${contract.getClient().getBirthDay()}
                 <br/><br/>
-                <c:forEach var="option" items="${contractByPhone_optionList}">
+                <c:forEach var="option" items="${contract.getOptionList()}">
                     ${option.getName()}
                     <br/>
                 </c:forEach>
-                <br/>${message}
-                ${contractByPhone_isLocked}
+                <br/>
+                ${contract.getIs_locked()}
                 <br/><br/><br/>
             </form>
 

@@ -37,7 +37,7 @@ public class ContractByPhone extends HttpServlet {
                 req.setAttribute( "contractByPhone_optionList", contract.getOptionList() );
                 req.setAttribute( "message", "lock condition:" );
                 req.setAttribute( "contractByPhone_isLocked", contract.getIs_locked() );
-                req.setAttribute( "error", "" );
+                req.setAttribute( "error", " " );
 
                 // закидываем в .jsp
                 req.getRequestDispatcher( url ).forward( req, resp );
@@ -47,10 +47,10 @@ public class ContractByPhone extends HttpServlet {
                 req.setAttribute( "error", "error: Fill in the field, please !" );
                 req.getRequestDispatcher( url ).forward( req, resp );
             } catch ( NullPointerException e) {
-                req.setAttribute( "error", "Client not found" );
+                req.setAttribute( "error", "Contract not found" );
                 req.getRequestDispatcher( url ).forward( req, resp );
             } catch ( NoResultException e) {
-                req.setAttribute( "error", "Client with such phone number not found" );
+                req.setAttribute( "error", "Contract not found" );
                 req.getRequestDispatcher( url ).forward( req, resp );
             }
         }

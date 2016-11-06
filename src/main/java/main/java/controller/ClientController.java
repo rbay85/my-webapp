@@ -22,8 +22,7 @@ public class ClientController {
         try{
             int clientId = new Integer( id );
 
-            Client client = clientService.getById( clientId );
-            model.addAttribute( client );
+            model.addAttribute( clientService.getById( clientId ));
         } catch ( IllegalArgumentException e ){
             model.addAttribute( "error", "client not found" );
         }
