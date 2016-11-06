@@ -22,7 +22,7 @@ public class LockUnlock1 extends HttpServlet{
         // на примере Анны Смитт
         int id = 6;
 
-        String url = "/LockUnlock1.jsp";
+        String url = "/lockUnlock1.jsp";
 
         try{
 

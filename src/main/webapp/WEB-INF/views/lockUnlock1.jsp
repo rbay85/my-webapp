@@ -13,12 +13,12 @@
     <!-- Обертка  -->
     <header>
 
-        <jsp:include page="Header.jsp" />
+        <jsp:include page="header.jsp" />
 
     </header>
     <nav>
 
-        <jsp:include page="NavBar1.jsp" />
+        <jsp:include page="navBar1.jsp" />
 
     </nav>
     <section id="content" class="clearfix">

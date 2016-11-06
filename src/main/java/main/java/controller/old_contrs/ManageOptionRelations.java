@@ -20,7 +20,7 @@ public class ManageOptionRelations extends HttpServlet{
         String optionId1 = req.getParameter( "optionId1" );
         String optionId2 = req.getParameter( "optionId2" );
         String action = req.getParameter( "action" );
-        String url = "/ManageOptionRelations.jsp";
+        String url = "/manageOptionRelations.jsp";
 
         if ( optionId1 == null ) {
             req.setAttribute( "error", "" );

@@ -23,8 +23,25 @@ public class ContractController {
         try {
             model.addAttribute( contractService.getByPhone( phone ));
         } catch ( NoResultException e) {
-            model.addAttribute( "error", " client not found" );
+            model.addAttribute( "error", " contract not found" );
         }
         return "contractByPhone";
     }
+
+    @RequestMapping( value = "/lockUnlock", method = RequestMethod.GET )
+    public String lockUnlock ( @RequestParam( value = "phone", required = false ) String phone,
+                               @RequestParam( value = "condition", required = false ) String condition,
+                               Model model ){
+
+        try{
+            model.addAttribute( "message", contractService.adminLock( phone, condition ));
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " Choose an action, please! " );
+        } catch ( NoResultException e ) {
+            model.addAttribute( "error", " Fill in the field properly, please! " );
+        }
+        return "lockUnlock";
+    }
+
+
 }

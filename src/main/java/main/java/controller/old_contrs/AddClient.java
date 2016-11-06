@@ -25,12 +25,12 @@ public class AddClient extends HttpServlet {
         String email = req.getParameter( "email" );
         String password = req.getParameter( "password" );
 
-        String url = "/AddClient.jsp";
+        String url = "/addClient.jsp";
 
 
         if ( firstName == null ) {
             req.setAttribute( "message", "" );
-            req.getRequestDispatcher( "/AddClient.jsp" ).forward( req, resp );
+            req.getRequestDispatcher( "/addClient.jsp" ).forward( req, resp );
 
         // проверяем чтоб поля не были пустыми
         } else if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){

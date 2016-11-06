@@ -12,11 +12,11 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
-        <jsp:include page="Header.jsp" />
+        <jsp:include page="header.jsp" />
     </header>
     <nav>
 
-        <jsp:include page="NavBar.jsp" />
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">

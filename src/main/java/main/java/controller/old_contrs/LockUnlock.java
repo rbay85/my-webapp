@@ -17,7 +17,7 @@ public class LockUnlock extends HttpServlet {
         // принимаем параметр со страницы
         String phone = req.getParameter( "phone" );
         String condition = req.getParameter( "condition" );
-        String url = "/LockUnlock.jsp";
+        String url = "/lockUnlock.jsp";
 
         if ( phone == null ) {
             req.setAttribute( "message", "" );
