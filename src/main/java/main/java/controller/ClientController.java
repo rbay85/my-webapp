@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.ConstraintViolationException;
+
 
 @Controller
 public class ClientController {
@@ -37,5 +39,34 @@ public class ClientController {
 
         model.addAttribute( "clientList", clientService.getAll() );
         return "showAllClients";
+    }
+
+    @RequestMapping( value = "addClient", method = RequestMethod.GET )
+    public String addClient ( @RequestParam( value = "firstName", required = false ) String firstName,
+                              @RequestParam( value = "lastName", required = false ) String lastName,
+                              @RequestParam( value = "birthDay", required = false ) String birthDay,
+                              @RequestParam( value = "passport", required = false ) String passport,
+                              @RequestParam( value = "address", required = false ) String address,
+                              @RequestParam( value = "email", required = false ) String email,
+                              @RequestParam( value = "password", required = false ) String password,
+                              Model model ){
+
+        if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
+            model.addAttribute( "error", "error: Fill in all * fields, please !" );
+        } else {
+            try {
+                clientService.addClient( firstName,
+                                         lastName,
+                                         birthDay,
+                                         passport,
+                                         address,
+                                         email,
+                                         password);
+                model.addAttribute( "message", "New client was successfully added" );
+            } catch (  ConstraintViolationException e ){
+                model.addAttribute( "error", "error: Please, input valid e-mail !" );
+            }
+        }
+        return "addClient";
     }
 }
