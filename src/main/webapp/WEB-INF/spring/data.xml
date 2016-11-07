@@ -23,14 +23,14 @@
 
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
 
-    <!-- Настройки фабрики сессий Хибернейта -->
+    <!-- Настройки фабрики менеджеров сущностей -->
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
         <property name="persistenceUnitName" value="myPersUnit"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="main.java.entity"/>
     </bean>
 
-    <!-- Настройки бина dataSource будем хранить в отдельном файле -->
+    <!-- Настройки бина dataSource хранятся в отдельном файле -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
           p:location="/WEB-INF/jdbc.properties" />

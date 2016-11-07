@@ -39,28 +39,28 @@
     </servlet-mapping>
 
     <!-- Фильтр для перекодировки в utf8 -->
-    <filter>
-        <filter-name>charsetFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-        <init-param>
-            <param-name>forceEncoding</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>charsetFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>charsetFilter</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>forceEncoding</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
 
-    <!-- фильтр безопасности, действующий на всё приложение
+    <!--<filter-mapping>-->
+        <!--<filter-name>charsetFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
     <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
@@ -75,7 +75,7 @@
         <error-code>403</error-code>
         <location>/403.jsp</location>
     </error-page>
-    -->
+
 
 
 </web-app>

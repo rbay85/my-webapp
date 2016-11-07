@@ -18,10 +18,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping( value = "/", method = RequestMethod.GET )
-    public String index( ){ return "index"; }
-
-    @RequestMapping( value = "/clientById", method = RequestMethod.GET )
+    @RequestMapping( value = "clientById", method = RequestMethod.GET )
     public String clientById( @RequestParam( value = "id", required = false ) String id, Model model ){
 
         try{
@@ -43,18 +40,18 @@ public class ClientController {
 
     @RequestMapping( value = "addClient", method = RequestMethod.GET )
     public String addClient ( @RequestParam( value = "firstName", required = false ) String firstName,
-                              @RequestParam( value = "lastName", required = false ) String lastName,
-                              @RequestParam( value = "birthDay", required = false ) String birthDay,
-                              @RequestParam( value = "passport", required = false ) String passport,
-                              @RequestParam( value = "address", required = false ) String address,
-                              @RequestParam( value = "email", required = false ) String email,
-                              @RequestParam( value = "password", required = false ) String password,
+                              @RequestParam( value = "lastName",  required = false ) String lastName,
+                              @RequestParam( value = "birthDay",  required = false ) String birthDay,
+                              @RequestParam( value = "passport",  required = false ) String passport,
+                              @RequestParam( value = "address",   required = false ) String address,
+                              @RequestParam( value = "email",     required = false ) String email,
+                              @RequestParam( value = "password",  required = false ) String password,
                               Model model ){
+        try {
+            if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
+                model.addAttribute( "error", "error: Fill in all * fields, please !" );
+            } else {
 
-        if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
-            model.addAttribute( "error", "error: Fill in all * fields, please !" );
-        } else {
-            try {
                 clientService.addClient( firstName,
                                          lastName,
                                          birthDay,
@@ -63,10 +60,19 @@ public class ClientController {
                                          email,
                                          password);
                 model.addAttribute( "message", "New client was successfully added" );
-            } catch (  ConstraintViolationException e ){
-                model.addAttribute( "error", "error: Please, input valid e-mail !" );
             }
+        } catch (  NullPointerException e ) {
+            model.addAttribute("error", " ");
+        } catch (  ConstraintViolationException e ){
+            model.addAttribute( "error", "error: Please, input valid e-mail !" );
         }
         return "addClient";
     }
+
+    // что далее НЕ связано с клиентом !
+    @RequestMapping( value = "/", method = RequestMethod.GET )
+    public String index( ){ return "index"; }
+
+    //@RequestMapping( value = "login", method = RequestMethod.GET )
+    //public String login( ){ return "login"; }
 }
