@@ -36,7 +36,7 @@ public class ContractByPhone extends HttpServlet {
                 req.setAttribute( "contractByPhone_clientBD", contract.getClient().getBirthDay() );
                 req.setAttribute( "contractByPhone_optionList", contract.getOptionList() );
                 req.setAttribute( "message", "lock condition:" );
-                req.setAttribute( "contractByPhone_isLocked", contract.getIs_locked() );
+                req.setAttribute( "contractByPhone_isLocked", contract.getIsLocked() );
                 req.setAttribute( "error", " " );
 
                 // закидываем в .jsp

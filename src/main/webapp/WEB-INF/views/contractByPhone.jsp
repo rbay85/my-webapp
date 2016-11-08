@@ -45,7 +45,7 @@
                     <br/>
                 </c:forEach>
                 <br/>
-                ${contract.getIs_locked()}
+                ${contract.getIsLocked()}
                 <br/><br/><br/>
             </form>
 

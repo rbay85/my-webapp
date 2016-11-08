@@ -56,7 +56,7 @@ public class Contract implements Serializable{
 
     // блокирока
     @Column( name = "is_locked" )
-    private int is_locked;
+    private int isLocked;
 
     // пустой конструктор
     public Contract() {}
@@ -66,7 +66,7 @@ public class Contract implements Serializable{
     public void setClient       ( Client client )           { this.client = client; }
     public void setTariff       ( Tariff tariff )           { this.tariff = tariff; }
     public void setOptionList   ( List<Option> optionList ) { this.optionList = optionList; }
-    public void setIs_locked    ( int is_locked )           { this.is_locked = is_locked; }
+    public void setIs_locked    ( int is_locked )           { this.isLocked = is_locked; }
 
     // геттеры
     public int getId()                  { return id; }
@@ -74,7 +74,7 @@ public class Contract implements Serializable{
     public Client getClient()           { return client; }
     public Tariff getTariff()           { return tariff; }
     public List<Option> getOptionList() { return optionList; }
-    public int getIs_locked()           { return is_locked; }
+    public int getIsLocked()           { return isLocked; }
 
     // переопределения
     @Override
@@ -83,7 +83,7 @@ public class Contract implements Serializable{
                 " phone no: " +  phone + "<br>" +
                 " " + tariff + "<br>" +
                 " " + optionList + "<br>" +
-                " lock: " + is_locked + "<br>";
+                " lock: " + isLocked + "<br>";
     }
 
     @Override
@@ -103,11 +103,9 @@ public class Contract implements Serializable{
     @Override
     public int hashCode() {
         int result = id;
-        /*
         result = 31 * result + phone.hashCode();
         result = 31 * result + client.hashCode();
         result = 31 * result + tariff.hashCode();
-        */
         return result;
     }
 }

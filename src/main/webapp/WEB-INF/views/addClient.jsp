@@ -31,7 +31,7 @@
                 <td>last name: *</td><br>
                 <td><input type="text" name="lastName"></td><br>
 
-                <td>date of birth: *</td><td><br><small>yyyy-mm-dd</small></td><br>
+                <td>date of birth: *</td><br>
                 <td><input type="date" name="birthDay" value="" max="1999-12-31" min="1900-01-01"></td><br>
 
                 <td>passport number: *</td><br>

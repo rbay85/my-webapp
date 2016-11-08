@@ -86,12 +86,10 @@ public class Tariff implements Serializable{
     @Override
     public int hashCode() {
         int result = id;
-        /*
         long temp;
         result = 31 * result + name.hashCode();
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        */
         return result;
     }
 }

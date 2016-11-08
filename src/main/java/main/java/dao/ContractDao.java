@@ -43,7 +43,6 @@ public class ContractDao {
     // выводим все контракты
     @SuppressWarnings( "unchecked" )
     public List<Contract> getAll(){
-        //Query query = em.createNativeQuery( "Contract.getAll", Contract.class );
         Query query = em.createQuery( "SELECT c FROM Contract c" );
         return query.getResultList();
     }

@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <c:forEach var="contract" items="${client.getContractList()}">
-                                ${contract.getIs_locked()}
+                                ${contract.getIsLocked()}
                                 <br/>
                             </c:forEach>
                         </td>

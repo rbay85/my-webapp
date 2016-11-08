@@ -1,8 +1,10 @@
 package main.java.service;
 
 import main.java.dao.ClientDao;
+import main.java.dao.UserDao;
 import main.java.entity.Client;
-import org.apache.log4j.Logger;
+
+import main.java.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,9 @@ public class ClientService {
     @Autowired
     private ClientDao clientDao;
 
-    // подключаем логгер
-    private static Logger logger = Logger.getLogger(ClientService.class);
+    @Autowired
+    private UserDao userDao;
+
 
     // возвращаем клиента по id
     @Transactional
@@ -45,20 +48,36 @@ public class ClientService {
                             String address,
                             String email,
                             String password ) {
-
+        // создеам клиента
         Client client = new Client();
 
+        // заполняем поля клиента
         client.setFirstName( firstName );
         client.setLastName( lastName );
         String yyS = birthDay.substring( 2,4 );
         String mmS = birthDay.substring( 5,7 );
         String ddS = birthDay.substring( 8,10 );
-        client.setBirthDay( new Date( Integer.parseInt(yyS),Integer.parseInt(mmS) - 1, Integer.parseInt(ddS) ));
+        client.setBirthDay( new Date( Integer.parseInt( yyS ),Integer.parseInt( mmS ) - 1, Integer.parseInt( ddS )));
         client.setPassNo( passport );
         client.setAddress( address );
-        client.setEmail( email );
-        client.setPassWord( password );
 
+        // пихеам клиента в БД
         clientDao.add( client );
+
+        // создаем юзера
+        User user = new User();
+
+        // заполняем поля юзера
+        user.setEmail( email );
+        user.setPassWord( password );
+
+        // получаем по уникальному номеру паспорта клиента, только что засунутого в БД уже с присвоенным ID
+        Client client1 = clientDao.getByPassNo( passport );
+
+        // связывваем клиента с юзером внешним ключем
+        user.setClient( client1 );
+
+        // пихеам клиента в БД
+        userDao.add( user );
     }
 }

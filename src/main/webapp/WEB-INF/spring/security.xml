@@ -7,33 +7,37 @@
                 http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
 
-    <http realm="myWebApp" use-expressions="false">
+    <!--<http use-expressions="false" >-->
 
-        <intercept-url pattern="/*"             access="ROLE_ADMIN"/>
-        <intercept-url pattern="/lockUnlock1*"  access="ROLE_USER"/>
+        <!--<intercept-url pattern="/*"             access="ROLE_ADMIN"/>-->
+        <!--<intercept-url pattern="/lockUnlock1*"  access="ROLE_USER"/>-->
 
-        <intercept-url pattern="/"              access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/login.jsp*"    access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/logout.jsp"    access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <!--<intercept-url pattern="/"              access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <!--<intercept-url pattern="/login.jsp*"    access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <!--<intercept-url pattern="/logout.jsp"    access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
 
-        <form-login login-page="/login.jsp"
-                    authentication-failure-url="/login.jsp?login_error=1"/>
-        <http-basic/>
-        <logout logout-success-url="/logout.jsp"/>
-        <remember-me/>
-        <headers/>
-        <csrf/>
-    </http>
+        <!--<form-login login-page="/login.jsp"-->
+                    <!--default-target-url="/"-->
+                    <!--authentication-failure-url="/login.jsp?login_error=1"/>-->
 
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="admin" password="aaaa" authorities="ROLE_USER, ROLE_ADMIN" />
-                <user name="user"  password="uuuu" authorities="ROLE_USER" />
-                <user name="guest" password="gggg" authorities="ROLE_GUEST" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+        <!--<logout logout-success-url="/logout.jsp"/>-->
+        <!--<access-denied-handler error-page="/403.jsp" />-->
+
+        <!--<http-basic/>-->
+        <!--<remember-me/>-->
+        <!--<headers/>-->
+        <!--<csrf/>-->
+    <!--</http>-->
+
+    <!--<authentication-manager>-->
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="aaaa" authorities="ROLE_USER, ROLE_ADMIN" />-->
+                <!--<user name="user"  password="uuuu" authorities="ROLE_USER" />-->
+                <!--<user name="guest" password="gggg" authorities="ROLE_GUEST" />-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
+    <!--</authentication-manager>-->
 
     <!-- настройки авторизации из БД
     <authentication-manager>

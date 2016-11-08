@@ -22,8 +22,6 @@ public class ClientDaoTest {
         client1.setBirthDay( new Date( 85,5,25 ));
         client1.setPassNo( "0904 080905" );
         client1.setAddress( "Moscow ...." );
-        client1.setEmail( "i.boiko@bk.ru" );
-        client1.setPassWord( "qwerty" );
 
         //Записали в БД
         clientDao.add( client1 );
@@ -39,8 +37,6 @@ public class ClientDaoTest {
         client2.setBirthDay( new Date( 90, 9, 1 ));
         client2.setPassNo( "0967 357583" );
         client2.setAddress( "Lviv....." );
-        client2.setEmail( "a.smith@ya.ru" );
-        client2.setPassWord( "trewq" );
 
         //Записываем в БД
         clientDao.add( client2 );
@@ -60,8 +56,6 @@ public class ClientDaoTest {
         client3.setBirthDay( new Date( 73, 1, 13 ));
         client3.setPassNo( "1745 473498" );
         client3.setAddress( "Kiev....." );
-        client3.setEmail( "vern_jambo@mail.ru" );
-        client3.setPassWord( "123123" );
 
         //Записываем в БД
         clientDao.add( client3 );

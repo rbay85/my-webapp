@@ -2,7 +2,6 @@ package main.java.entity;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -45,7 +44,7 @@ public class Client implements Serializable {
     private Date  birthDay;
 
     // номер паспорта
-    @Column( name = "passport", length = 12, nullable = false )
+    @Column( name = "passNo", length = 12, nullable = false )
 
     private String passNo;
     // Адрес
@@ -57,14 +56,6 @@ public class Client implements Serializable {
     @LazyCollection( LazyCollectionOption.FALSE )
     private List<Contract> contractList;
 
-    // электронная почта
-    @Column( name = "email" )
-    @Email
-    private String email;
-
-    // пароль
-    @Column( name = "password", nullable = false )
-    private String passWord;
 
     // пустой конструктор
     public Client() {}
@@ -76,8 +67,7 @@ public class Client implements Serializable {
     public void setPassNo       ( String passNo )               { this.passNo = passNo; }
     public void setAddress      ( String address )              { this.address = address; }
     public void setContractList ( List<Contract> contractList ) { this.contractList = contractList; }
-    public void setEmail        ( String email )                { this.email = email; }
-    public void setPassWord     ( String passWord )             { this.passWord = passWord; }
+
 
     // геттеры
     public int getId()                      { return id; }
@@ -86,8 +76,6 @@ public class Client implements Serializable {
     public String getPassNo()               { return passNo; }
     public String getAddress()              { return address; }
     public List<Contract> getContractList() { return contractList; }
-    public String getEmail()                { return email; }
-    public String getPassWord()             { return passWord; }
     public String getBirthDay() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format( birthDay );
@@ -104,9 +92,7 @@ public class Client implements Serializable {
                 " " + dateFormat.format( birthDay ) + "<br>" +
                 " passport: " + passNo + "<br>" +
                 " address: " + address + "<br>" +
-                " contracts: <br>" + contractList + "<br>" +
-                " e-mail: " + email + "<br>" +
-                " password:" + passWord + "<br>";
+                " contracts: <br>" + contractList + "<br>";
     }
 
     @Override
@@ -122,23 +108,19 @@ public class Client implements Serializable {
         if (birthDay != null ? !birthDay.equals(client.birthDay) : client.birthDay != null) return false;
         if (!passNo.equals(client.passNo)) return false;
         if (address != null ? !address.equals(client.address) : client.address != null) return false;
-        if (email != null ? !email.equals(client.email) : client.email != null) return false;
-        return passWord.equals(client.passWord);
+        return contractList != null ? contractList.equals(client.contractList) : client.contractList == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        /*
         result = 31 * result + firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + (birthDay != null ? birthDay.hashCode() : 0);
         result = 31 * result + passNo.hashCode();
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + passWord.hashCode();
-        */
+        result = 31 * result + (contractList != null ? contractList.hashCode() : 0);
         return result;
     }
 }

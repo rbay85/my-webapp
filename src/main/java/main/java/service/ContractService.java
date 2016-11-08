@@ -51,7 +51,7 @@ public class ContractService {
         Contract contract = contractDao.get( id );
 
         if ( condition.equals( "lock" )){
-            if ( contract.getIs_locked() != 2 ) {
+            if ( contract.getIsLocked() != 2 ) {
                 contract.setIs_locked( 1 );
                 contractDao.update( contract );
                 message = " Your contract was successfully locked";
@@ -60,7 +60,7 @@ public class ContractService {
             }
 
         } else if ( condition.equals( "unlock" ) ) {
-            if ( contract.getIs_locked() != 2 ) {
+            if ( contract.getIsLocked() != 2 ) {
                 contract.setIs_locked( 0 );
                 contractDao.update( contract );
                 message = " Your contract was successfully unlocked";
