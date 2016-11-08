@@ -16,7 +16,6 @@
     </header>
     <nav>
 
-        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
@@ -40,11 +39,14 @@
                 <td>address:</td><br>
                 <td><input type="text" name="address"></td><br>
 
-                <td>e-mail:</td><br>
+                <td>e-mail: *</td><br>
                 <td><input type="text" name="email"></td><br>
 
                 <td>password: *</td><br>
                 <td><input type="text" name="password"></td><br>
+
+                <td>role: *</td><br>
+                <td><input type="text" name="role"></td><br>
 
                 <br>
                 <input type="submit" value="Add a new client" />
@@ -56,10 +58,11 @@
             </form>
 
 
-
         </section>
         <aside>
-            --this is an aside block--
+
+            <jsp:include page="navBar.jsp" />
+
         </aside>
     </section>
     <div id="empty-div">

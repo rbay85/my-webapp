@@ -29,11 +29,11 @@ public class ContractService {
         String message;
 
         if ( condition.equals( "lock" )){
-            contract.setIs_locked( 2 );
+            contract.setIsLocked( 2 );
             contractDao.update( contract );
             message = " Contract was successfully locked";
         } else if ( condition.equals( "unlock" ) ) {
-            contract.setIs_locked( 0 );
+            contract.setIsLocked( 0 );
             contractDao.update( contract );
             message = " Contract was successfully unlocked";
         } else {
@@ -52,7 +52,7 @@ public class ContractService {
 
         if ( condition.equals( "lock" )){
             if ( contract.getIsLocked() != 2 ) {
-                contract.setIs_locked( 1 );
+                contract.setIsLocked( 1 );
                 contractDao.update( contract );
                 message = " Your contract was successfully locked";
             } else {
@@ -61,7 +61,7 @@ public class ContractService {
 
         } else if ( condition.equals( "unlock" ) ) {
             if ( contract.getIsLocked() != 2 ) {
-                contract.setIs_locked( 0 );
+                contract.setIsLocked( 0 );
                 contractDao.update( contract );
                 message = " Your contract was successfully unlocked";
             } else {

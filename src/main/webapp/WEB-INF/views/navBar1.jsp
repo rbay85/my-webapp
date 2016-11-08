@@ -5,9 +5,7 @@
 </head>
 <body>
 
-        <span>
-            <a href="http://localhost:8080/lockUnlock1">Lock Unlock My Contract</a>
-        </span>
+    <br><a href="http://localhost:8080/lockUnlock1">Lock Unlock My Contract</a>
 
 </body>
 </html>

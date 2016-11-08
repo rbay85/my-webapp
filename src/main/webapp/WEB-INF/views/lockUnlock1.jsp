@@ -18,7 +18,7 @@
     </header>
     <nav>
 
-        <jsp:include page="navBar1.jsp" />
+        <p><h2>Dear ${client.getFirstName()} ${client.getLastName()}, welcome!!</h2></p>
 
     </nav>
     <section id="content" class="clearfix">
@@ -49,7 +49,7 @@
         </section>
         <aside>
 
-            <p><h2>Dear ${client.getFirstName()} ${client.getLastName()}, <br> welcome!!</h2></p>
+            <jsp:include page="navBar1.jsp" />
 
         </aside>
     </section>

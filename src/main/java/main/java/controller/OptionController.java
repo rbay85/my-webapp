@@ -22,6 +22,8 @@ public class OptionController {
                                           Model model ){
 
         try{
+
+
             model.addAttribute( "message", optionService.setOptionRelations( optionId1, optionId2, action ));
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " Choose an action, please! " );

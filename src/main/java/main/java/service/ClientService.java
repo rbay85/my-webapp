@@ -47,7 +47,8 @@ public class ClientService {
                             String passport,
                             String address,
                             String email,
-                            String password ) {
+                            String password,
+                            String role) {
         // создеам клиента
         Client client = new Client();
 
@@ -70,6 +71,7 @@ public class ClientService {
         // заполняем поля юзера
         user.setEmail( email );
         user.setPassWord( password );
+        user.setRole( role );
 
         // получаем по уникальному номеру паспорта клиента, только что засунутого в БД уже с присвоенным ID
         Client client1 = clientDao.getByPassNo( passport );

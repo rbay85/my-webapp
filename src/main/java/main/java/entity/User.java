@@ -46,11 +46,13 @@ public class User implements Serializable{
     // сеттеры
     public void setEmail     ( String email )      { this.email = email; }
     public void setPassWord  ( String passWord )   { this.passWord = passWord; }
+    public void setRole      ( String role )       { this.role = role; }
     public void setClient    ( Client client )     { this.client = client; }
 
     // геттеры
     public String getEmail()     { return email; }
     public String getPassWord()  { return passWord; }
+    public String getRole()      { return role; }
     public Client getClient()    { return client; }
 
     @Override

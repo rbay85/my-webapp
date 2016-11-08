@@ -16,7 +16,6 @@
     </header>
     <nav>
 
-        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
@@ -52,7 +51,9 @@
 
         </section>
         <aside>
-            --this is an aside block--
+
+            <jsp:include page="navBar.jsp" />
+
         </aside>
     </section>
     <div id="empty-div">

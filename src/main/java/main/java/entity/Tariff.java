@@ -35,8 +35,13 @@ public class Tariff implements Serializable{
 
     // Цена
     @Column( name = "price", nullable = false )
-    @Min(value = 0, message = "must be positive!")
+    @Min( value = 0, message = "must be positive!" )
     private double price;
+
+    // подключенные контракты
+    @OneToMany( mappedBy = "tariff", cascade = CascadeType.ALL )
+    @LazyCollection( LazyCollectionOption.FALSE )
+    private List<Contract> contractList;
 
     // список доступных опций
     @ManyToMany
@@ -52,15 +57,17 @@ public class Tariff implements Serializable{
     public Tariff() {}
 
     // сеттеры
-    public void setName       ( String name )              { this.name = name; }
-    public void setPrice      ( double price )             { this.price = price; }
-    public void setOptionList ( List<Option> optionList )  { this.optionList = optionList; }
+    public void setName          ( String name )                  { this.name = name; }
+    public void setPrice         ( double price )                 { this.price = price; }
+    public void setContractList  ( List<Contract> contractList )  { this.contractList = contractList; }
+    public void setOptionList    ( List<Option> optionList )      { this.optionList = optionList; }
 
     // геттеры
-    public int getId()                   { return id; }
-    public String getName()              { return name; }
-    public double getPrice()             { return price; }
-    public List<Option> getOptionList()  { return optionList; }
+    public int getId()                       { return id; }
+    public String getName()                  { return name; }
+    public double getPrice()                 { return price; }
+    public List<Contract> getContractList()  { return contractList; }
+    public List<Option> getOptionList()      { return optionList; }
 
     // переопределения
     @Override

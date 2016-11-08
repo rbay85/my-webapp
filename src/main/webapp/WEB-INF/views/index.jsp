@@ -18,17 +18,13 @@
             </header>
             <nav>
 
-                <jsp:include page="navBar.jsp" />
 
             </nav>
             <section id="content" class="clearfix">
                 <section id="page-content">
-                    --this is page content--
-                </section>
-                <aside>
 
                     <form action="action.html">
-                        <h2>Login please</h2>
+                        <h3>Login please</h3>
                         <div class="form-element">
                             <label for="username">Username:</label>
                             <input type="text" name="username"/>
@@ -41,6 +37,11 @@
                             <input type="submit" value="Log in"/>
                         </div>
                     </form>
+
+                </section>
+                <aside>
+
+                    <jsp:include page="navBar.jsp" />
 
                 </aside>
             </section>

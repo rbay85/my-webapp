@@ -6,6 +6,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.List;
 
@@ -34,10 +35,12 @@ public class Option implements Serializable{
 
     // Цена
     @Column( name = "price", nullable = false)
+    @Min( value = 0, message = "must be positive!" )
     private double price;
 
     // Стоимость подключения
     @Column( name = "onCost", nullable = false )
+    @Min( value = 0, message = "must be positive!" )
     private double onCost;
 
     // список необходимых опций

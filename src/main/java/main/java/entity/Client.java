@@ -51,6 +51,10 @@ public class Client implements Serializable {
     @Column( name = "address" )
     private String address;
 
+    // Юзер
+    @OneToOne(mappedBy = "client")
+    private User user;
+
     // номера контрактов
     @OneToMany( mappedBy = "client", cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
@@ -66,6 +70,7 @@ public class Client implements Serializable {
     public void setBirthDay     ( Date birthDay )               { this.birthDay = birthDay; }
     public void setPassNo       ( String passNo )               { this.passNo = passNo; }
     public void setAddress      ( String address )              { this.address = address; }
+    public void setUser         ( User user )                   { this.user = user; }
     public void setContractList ( List<Contract> contractList ) { this.contractList = contractList; }
 
 
@@ -75,6 +80,7 @@ public class Client implements Serializable {
     public String getLastName()             { return lastName; }
     public String getPassNo()               { return passNo; }
     public String getAddress()              { return address; }
+    public User getUser()                   { return user; }
     public List<Contract> getContractList() { return contractList; }
     public String getBirthDay() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -24,6 +24,7 @@ public class AddClient extends HttpServlet {
         String address = req.getParameter( "address" );
         String email = req.getParameter( "email" );
         String password = req.getParameter( "password" );
+        String role = req.getParameter( "role" );
 
         String url = "/addClient.jsp";
 
@@ -47,7 +48,8 @@ public class AddClient extends HttpServlet {
                         passport,
                         address,
                         email,
-                        password );
+                        password,
+                        role);
 
                 req.setAttribute( "message", "New client was successfully added" );
                 req.setAttribute( "error", "" );

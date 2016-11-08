@@ -45,7 +45,7 @@ public class ContractDaoTest {
                 option5 );
         // список в контракт
         contract1.setOptionList( optionList );
-        contract1.setIs_locked( 0 );
+        contract1.setIsLocked( 0 );
 
         //Записали в БД
         contractDao.update( contract1 );

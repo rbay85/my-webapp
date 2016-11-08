@@ -40,7 +40,7 @@ public class Contract implements Serializable{
     private Client client;
 
     // Тариф
-    @OneToOne
+    @ManyToOne
     @JoinColumn( name = "tariff_id", nullable = false )
     private Tariff tariff;
 
@@ -66,7 +66,7 @@ public class Contract implements Serializable{
     public void setClient       ( Client client )           { this.client = client; }
     public void setTariff       ( Tariff tariff )           { this.tariff = tariff; }
     public void setOptionList   ( List<Option> optionList ) { this.optionList = optionList; }
-    public void setIs_locked    ( int is_locked )           { this.isLocked = is_locked; }
+    public void setIsLocked     ( int isLocked )            { this.isLocked = isLocked; }
 
     // геттеры
     public int getId()                  { return id; }
@@ -74,7 +74,7 @@ public class Contract implements Serializable{
     public Client getClient()           { return client; }
     public Tariff getTariff()           { return tariff; }
     public List<Option> getOptionList() { return optionList; }
-    public int getIsLocked()           { return isLocked; }
+    public int getIsLocked()            { return isLocked; }
 
     // переопределения
     @Override

@@ -4,7 +4,7 @@ form{
 a{
     text-decoration: none;
     padding: 0px 15px;
-    margin: 0;
+    margin: 5px 5px 5px 5px;
     border: 1px solid #333;
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
 
@@ -57,15 +57,15 @@ nav{
     margin-top: 30px;
 }
 #page-content{
-    float: left;
+    float: right;
     width: 70%;
-    margin-right: 5%;
     min-height: 300px;
     background: #FDF5E6;
 }
 aside{
-    float: right;
+    float: left;
     width: 25%;
+    margin-right: 5%;
     min-height: 300px;
     background: #FDF5E6;
 }

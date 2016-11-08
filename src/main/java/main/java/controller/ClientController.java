@@ -46,6 +46,7 @@ public class ClientController {
                               @RequestParam( value = "address",   required = false ) String address,
                               @RequestParam( value = "email",     required = false ) String email,
                               @RequestParam( value = "password",  required = false ) String password,
+                              @RequestParam( value = "role",  required = false ) String role,
                               Model model ){
         try {
             if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
@@ -58,7 +59,8 @@ public class ClientController {
                                          passport,
                                          address,
                                          email,
-                                         password);
+                                         password,
+                                         role);
                 model.addAttribute( "message", "New client was successfully added" );
             }
         } catch (  NullPointerException e ) {
