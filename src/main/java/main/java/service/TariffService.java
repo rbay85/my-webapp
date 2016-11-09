@@ -6,22 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TariffService {
 
     @Autowired
     private TariffDao tariffDao;
 
+    // выводим все тарифы
+    @Transactional
+    public List<Tariff> getAll() {
+
+        List<Tariff> tariffList = tariffDao.getAll();
+        return tariffList;
+    }
+
     // добавляем тарифф
     @Transactional
-    public void addTariff() {
+    public void addTariff( String name, String price) {
 
         Tariff tariff = new Tariff();
-        tariff.setName( "Maximum" );
-        tariff.setPrice( 250 );
+        tariff.setName( name );
+        tariff.setPrice( Double.parseDouble( price ));
 
         tariffDao.add( tariff );
     }
 
-    // перенести сюда действия из TariffDaoTest !!!
+    // удаляем тарифф по Id
+    @Transactional
+    public void delete( String id ) {
+
+        tariffDao.delete( Integer.parseInt( id ) );
+    }
 }

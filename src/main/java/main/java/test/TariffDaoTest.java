@@ -17,7 +17,6 @@ public class TariffDaoTest {
         Tariff tariff1 = new Tariff();
         tariff1.setName( "Maximum" );
         tariff1.setPrice( 250 );
-        //tariff1.setOptionList( );
 
         //Записали в БД
         tariffDao.add( tariff1 );
