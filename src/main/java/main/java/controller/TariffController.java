@@ -31,7 +31,7 @@ public class TariffController {
 
         try{
             if ( name != null ){
-                tariffService.addTariff( name, price );
+                tariffService.add( name, price );
                 model.addAttribute( "message", " New tariff was successfully added" );
             } else {
                 model.addAttribute( "message", " tariff name must not be null!" );
@@ -65,7 +65,7 @@ public class TariffController {
 
         try{
 
-
+           tariffService.addOptionInTariff( tariffId, optionId );
 
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );

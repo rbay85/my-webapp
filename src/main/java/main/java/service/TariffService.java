@@ -1,5 +1,6 @@
 package main.java.service;
 
+import main.java.dao.OptionDao;
 import main.java.dao.TariffDao;
 import main.java.entity.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class TariffService {
     @Autowired
     private TariffDao tariffDao;
 
+    @Autowired
+    private OptionDao optionDao;
+
     // выводим все тарифы
     @Transactional
     public List<Tariff> getAll() {
@@ -24,7 +28,7 @@ public class TariffService {
 
     // добавляем тарифф
     @Transactional
-    public void addTariff( String name, String price) {
+    public void add( String name, String price) {
 
         Tariff tariff = new Tariff();
         tariff.setName( name );
@@ -38,5 +42,13 @@ public class TariffService {
     public void delete( String id ) {
 
         tariffDao.delete( Integer.parseInt( id ) );
+    }
+
+    @Transactional
+    public void addOptionInTariff( String tariffId, String optionId ) {
+
+        Tariff tariff = tariffDao.get( Integer.parseInt( tariffId ));
+        tariff.getOptionList().add( optionDao.get( Integer.parseInt( optionId )));
+        tariffDao.update( tariff );
     }
 }

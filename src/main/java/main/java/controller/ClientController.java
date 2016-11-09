@@ -46,7 +46,7 @@ public class ClientController {
                               @RequestParam( value = "address",   required = false ) String address,
                               @RequestParam( value = "email",     required = false ) String email,
                               @RequestParam( value = "password",  required = false ) String password,
-                              @RequestParam( value = "role",  required = false ) String role,
+                              @RequestParam( value = "role",      required = false ) String role,
                               Model model ){
         try {
             if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
