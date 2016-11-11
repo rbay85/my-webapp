@@ -72,8 +72,8 @@ public class TariffService {
             } else {
                 message = "the tariff does not contain this option!";
             }
-        }
 
+        }
         return message;
     }
 }
