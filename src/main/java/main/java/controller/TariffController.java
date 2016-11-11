@@ -18,9 +18,11 @@ public class TariffController {
     private TariffService tariffService;
 
     @RequestMapping( value = "tariff", method = RequestMethod.GET )
-    public String showAllClients( Model model ){
+    public String showAllTariffs( Model model ){
 
-        model.addAttribute( "tariffList", tariffService.getAll() );
+        model.addAttribute( "tariffList", tariffService.getAllTariffs() );
+        model.addAttribute( "optionList", tariffService.getAllOptions() );
+
         return "tariff";
     }
 

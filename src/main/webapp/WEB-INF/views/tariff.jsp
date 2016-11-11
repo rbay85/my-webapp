@@ -49,7 +49,7 @@
 
             </form>
 
-            <!-- форма добавления опции в тариф -->
+            <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
 
             <form action="optionInTariff" method="GET">
 
@@ -64,7 +64,6 @@
                     </tr>
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr>
-                            <%--<td>${tariff.getId()}</td>--%>
                             <td><input type="radio" name="tariffId" value="${tariff.getId()}"> </td>
                             <td>${tariff.getName()}</td>
                             <td>${tariff.getPrice()}</td>
@@ -87,20 +86,11 @@
                 <!-- выпадающий список -->
                 <select name="optionId" required>
                     <option value="0"> </option>
-                    <option value="1">2 GB internet</option>
-                    <option value="2">4 GB internet</option>
-                    <option value="3">10 GB internet</option>
-                    <option value="4">100 sms</option>
-                    <option value="5">200 sms</option>
-                    <option value="6">400 sms</option>
-                    <option value="7">200 minute</option>
-                    <option value="8">300 minute</option>
-                    <option value="9">500 minute</option>
-                    <option value="10">internet service</option>
-                    <option value="11">sms service</option>
+                    <c:forEach var="option" items="${optionList}">
+                        <option value="${option.getId()}">${option.getName()}</option>
+                    </c:forEach>
                 </select>
                 in the tariff chosen above
-
                 <br><br>
 
             </form>

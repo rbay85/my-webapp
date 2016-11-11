@@ -21,10 +21,18 @@ public class TariffService {
 
     // выводим все тарифы
     @Transactional
-    public List<Tariff> getAll() {
+    public List<Tariff> getAllTariffs() {
 
         List<Tariff> tariffList = tariffDao.getAll();
         return tariffList;
+    }
+
+    // выводим все опции
+    @Transactional
+    public List<Option> getAllOptions() {
+
+        List<Option> optionList = optionDao.getAll();
+        return optionList;
     }
 
     // добавляем тарифф
