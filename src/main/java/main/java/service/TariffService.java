@@ -51,7 +51,7 @@ public class TariffService {
     public String delete( String id ) {
 
         tariffDao.delete( Integer.parseInt( id ) );
-        return "tariff successfully delete";
+        return "tariff successfully deleted";
     }
 
     // добавляем или удаляем опции тарифа

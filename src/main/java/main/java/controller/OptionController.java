@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.PersistenceException;
+
 
 @Controller
 public class OptionController {
@@ -17,12 +19,50 @@ public class OptionController {
 
     // вывод списка опций
     @RequestMapping( value = "option", method = RequestMethod.GET )
-    public String showAllTariffs( Model model ){
+    public String showAllOptions( Model model ){
 
         model.addAttribute( "optionList", optionService.getAllOptions() );
         return "option";
     }
 
+    // добавление опции
+    @RequestMapping( value = "/addOption", method = RequestMethod.GET )
+    public String addOption ( @RequestParam( value = "name",  required = false ) String name,
+                              @RequestParam( value = "price", required = false ) String price,
+                              @RequestParam( value = "cost",  required = false ) String cost,
+                              Model model ){
+
+        try{
+            if ( name != null ){
+                optionService.add( name, price, cost );
+                model.addAttribute( "message", " new option successfully added" );
+            } else {
+                model.addAttribute( "message", " option name must not be null!" );
+            }
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", " price & cost must be a number!" );
+        } catch ( PersistenceException e ) {
+            model.addAttribute( "error", " option with the same name already exists!" );
+        }
+        return "redirect:/option";
+    }
+
+    // удаление тарифа
+    @RequestMapping( value = "/deleteOption", method = RequestMethod.GET )
+    public String delete ( @RequestParam( value = "id", required = false ) String id,
+                           Model model ){
+
+        try{
+            model.addAttribute( "message", optionService.delete( id ) );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", " NumberFormatException " );
+        }
+        return "redirect:/option";
+    }
+
+    //управление отношениями опций
     @RequestMapping( value = "/manageOptionRelations", method = RequestMethod.GET )
     public String manageOptionRelations ( @RequestParam( value = "optionId1", required = false ) String optionId1,
                                           @RequestParam( value = "optionId2", required = false ) String optionId2,
@@ -30,7 +70,6 @@ public class OptionController {
                                           Model model ){
 
         try{
-
             model.addAttribute( "message", optionService.setOptionRelations( optionId1, optionId2, action ));
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " Choose an action, please! " );

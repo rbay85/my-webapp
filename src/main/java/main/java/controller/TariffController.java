@@ -36,12 +36,12 @@ public class TariffController {
         try{
             if ( name != null ){
                 tariffService.add( name, price );
-                model.addAttribute( "message", " new tariff was successfully added" );
+                model.addAttribute( "message", " new tariff successfully added" );
             } else {
                 model.addAttribute( "message", " tariff name must not be null!" );
             }
         } catch ( NumberFormatException e ) {
-            model.addAttribute( "error", " price must be a double !" );
+            model.addAttribute( "error", " price must be a number !" );
         } catch ( PersistenceException e ) {
             model.addAttribute( "error", " tariff with the same name already exists !" );
         }

@@ -23,7 +23,27 @@ public class OptionService {
         return optionList;
     }
 
-    // устанавливаем отношения опций
+    // добавляем опцию
+    @Transactional
+    public void add( String name, String price, String cost ) {
+
+        Option option = new Option();
+        option.setName( name );
+        option.setPrice( Double.parseDouble( price ));
+        option.setOnCost( Double.parseDouble( cost ));
+
+        optionDao.add( option );
+    }
+
+    // удаляем опцию по Id
+    @Transactional
+    public String delete( String id ) {
+
+        optionDao.delete( Integer.parseInt( id ) );
+        return "option successfully deleted";
+    }
+
+    // устанавливаем отношениями опций
     @Transactional
     public String setOptionRelations ( String optionId1, String optionId2, String action ) {
 
