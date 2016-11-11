@@ -50,17 +50,16 @@
             </form>
 
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
-
             <form action="optionInTariff" method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
                     <tr>
                         <td><b> </b></td>
-                        <td><b>Name</b></td>
+                        <td><b>Tariff</b></td>
                         <td><b>Price</b></td>
                         <td><b>Options</b></td>
-                        <td><b>Action</b></td>
+                        <td><b>Delete</b></td>
                     </tr>
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr>
@@ -73,16 +72,16 @@
                                     <br/>
                                 </c:forEach>
                             </td>
-                            <td><a href="deleteTariff?id=${tariff.getId()}">delete</a></td>
+                            <td><a href="deleteTariff?id=${tariff.getId()}" style="color:red;">X</a></td>
                         </tr>
                     </c:forEach>
                 </table>
 
-                <br>
                 <!-- кнопки -->
                 <input type="submit" name="action" value="Add" /> or
                 <input type="submit" name="action" value="Delete" />
                 option
+
                 <!-- выпадающий список -->
                 <select name="optionId" required>
                     <option value="0"> </option>

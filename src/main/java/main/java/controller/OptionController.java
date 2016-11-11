@@ -15,14 +15,21 @@ public class OptionController {
     @Autowired
     private OptionService optionService;
 
+    // вывод списка опций
+    @RequestMapping( value = "option", method = RequestMethod.GET )
+    public String showAllTariffs( Model model ){
+
+        model.addAttribute( "optionList", optionService.getAllOptions() );
+        return "option";
+    }
+
     @RequestMapping( value = "/manageOptionRelations", method = RequestMethod.GET )
     public String manageOptionRelations ( @RequestParam( value = "optionId1", required = false ) String optionId1,
                                           @RequestParam( value = "optionId2", required = false ) String optionId2,
-                                          @RequestParam( value = "action", required = false ) String action,
+                                          @RequestParam( value = "action",    required = false ) String action,
                                           Model model ){
 
         try{
-
 
             model.addAttribute( "message", optionService.setOptionRelations( optionId1, optionId2, action ));
         } catch ( NullPointerException e ) {
@@ -30,6 +37,6 @@ public class OptionController {
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " ");
         }
-        return "manageOptionRelations";
+        return "redirect:/option";
     }
 }

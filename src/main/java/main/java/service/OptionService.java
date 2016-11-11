@@ -15,6 +15,14 @@ public class OptionService {
     @Autowired
     private OptionDao optionDao;
 
+    // выводим все опции
+    @Transactional
+    public List<Option> getAllOptions() {
+
+        List<Option> optionList = optionDao.getAll();
+        return optionList;
+    }
+
     // устанавливаем отношения опций
     @Transactional
     public String setOptionRelations ( String optionId1, String optionId2, String action ) {

@@ -17,6 +17,7 @@ public class TariffController {
     @Autowired
     private TariffService tariffService;
 
+    // вывод списка тарифов
     @RequestMapping( value = "tariff", method = RequestMethod.GET )
     public String showAllTariffs( Model model ){
 
@@ -26,8 +27,9 @@ public class TariffController {
         return "tariff";
     }
 
+    // добавление тарифа
     @RequestMapping( value = "/addTariff", method = RequestMethod.GET )
-    public String addTariff ( @RequestParam( value = "name", required = false ) String name,
+    public String addTariff ( @RequestParam( value = "name",  required = false ) String name,
                               @RequestParam( value = "price", required = false ) String price,
                               Model model ){
 
@@ -46,6 +48,7 @@ public class TariffController {
         return "redirect:/tariff";
     }
 
+    // удаление тарифа
     @RequestMapping( value = "/deleteTariff", method = RequestMethod.GET )
     public String delete ( @RequestParam( value = "id", required = false ) String id,
                               Model model ){
@@ -61,11 +64,12 @@ public class TariffController {
         return "redirect:/tariff";
     }
 
+    // управление опциями в тарифе
     @RequestMapping( value = "/optionInTariff", method = RequestMethod.GET )
     public String optionInTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
-                                      @RequestParam( value = "optionId", required = false ) String optionId,
-                                      @RequestParam( value = "action",   required = false ) String action,
-                                      Model model ){
+                                   @RequestParam( value = "optionId", required = false ) String optionId,
+                                   @RequestParam( value = "action",   required = false ) String action,
+                                   Model model ){
 
         try{
             String massage = tariffService.optionInTariff( tariffId, optionId, action );

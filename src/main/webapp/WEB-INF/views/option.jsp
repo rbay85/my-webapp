@@ -23,8 +23,42 @@
     <section id="content" class="clearfix">
         <section id="page-content">
 
+            <!-- таблица с опциями -->
+            <table>
+                <tr>
+                    <td><b>Id</b></td>
+                    <td><b>Option</b></td>
+                    <td><b>Price</b></td>
+                    <td><b>Cost</b></td>
+                    <td><b>Requires</b></td>
+                    <td><b>Mismatches</b></td>
+                    <td><b>Delete</b></td>
+                </tr>
+                <c:forEach var="option" items="${optionList}">
+                    <tr>
+                        <td>${option.getId()}</td>
+                        <td>${option.getName()}</td>
+                        <td>${option.getPrice()}</td>
+                        <td>${option.getOnCost()}</td>
+                        <td>
+                            <c:forEach var="reqOption" items="${option.getNecessaryOptionList()}">
+                                ${reqOption.getName()}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="incOption" items="${option.getIncompatibleOptionList()}">
+                                ${incOption.getName()}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td><a href="deleteOption?id=${option.getId()}" style="color:red;">X</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-            <form action="" method="GET">
+            <!-- управление отношениями опций -->
+            <form action="manageOptionRelations" method="GET">
                 choose an option <br>
                 <select name="optionId1" required>
                     <option value="0"> </option>

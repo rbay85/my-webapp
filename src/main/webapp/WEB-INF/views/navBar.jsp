@@ -14,7 +14,7 @@
         <br>
         <br> <a href="http://localhost:8080/tariff">Tariffs</a>
         <br>
-        <br> <a href="http://localhost:8080/manageOptionRelations">Manage Option Relations</a>
+        <br> <a href="http://localhost:8080/option">Options</a>
 
 </body>
 </html>
