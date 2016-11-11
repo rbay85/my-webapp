@@ -40,9 +40,10 @@ public class TariffService {
 
     // удаляем тарифф по Id
     @Transactional
-    public void delete( String id ) {
+    public String delete( String id ) {
 
         tariffDao.delete( Integer.parseInt( id ) );
+        return "tariff successfully delete";
     }
 
     // добавляем или удаляем опции

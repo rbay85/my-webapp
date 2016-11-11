@@ -32,7 +32,7 @@ public class TariffController {
         try{
             if ( name != null ){
                 tariffService.add( name, price );
-                model.addAttribute( "message", " New tariff was successfully added" );
+                model.addAttribute( "message", " new tariff was successfully added" );
             } else {
                 model.addAttribute( "message", " tariff name must not be null!" );
             }
@@ -49,7 +49,8 @@ public class TariffController {
                               Model model ){
 
         try{
-            tariffService.delete( id );
+            String message = tariffService.delete( id );
+            model.addAttribute( "message", message );
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {

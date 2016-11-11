@@ -31,15 +31,21 @@
             <!-- Форма добавления тарифа -->
             <form action="addTariff" method="GET">
 
-                <td>Tariff name: *</td><br>
-                <td><input type="text" name="name"></td><br>
+                <div class="form-element">
+                    <label for="name">Tariff name:</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="form-element">
+                    <label for="price">Price:</label>
+                    <input type="text" name="price">
+                </div>
 
-                <td>Price: *</td><br>
-                <td><input type="text" name="price"></td><br>
-
-                <!-- кнопка -->
+                <!-- кнопки -->
+                <div class="form-element">
+                    <input type="reset" value="Clear" />
+                    <input type="submit" value="Add a new tariff" />
+                </div>
                 <br>
-                <input type="submit" value="Add a new tariff" />
 
             </form>
 
@@ -74,7 +80,11 @@
                 </table>
 
                 <br>
-                Add option
+                <!-- кнопки -->
+                <input type="submit" name="action" value="Add" /> or
+                <input type="submit" name="action" value="Delete" />
+                option
+                <!-- выпадающий список -->
                 <select name="optionId" required>
                     <option value="0"> </option>
                     <option value="1">2 GB internet</option>
@@ -91,9 +101,6 @@
                 </select>
                 in the tariff chosen above
 
-                <!-- кнопки -->
-                <input type="submit" name="action" value="Add" />
-                <input type="submit" name="action" value="Delete" />
                 <br><br>
 
             </form>

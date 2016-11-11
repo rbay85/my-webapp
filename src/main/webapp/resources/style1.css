@@ -78,7 +78,7 @@ footer {
     background-color: #FDF5E6;
 }
 
-/* для формы логина */
+/* для формы  */
 .form-element{
     margin: 5px 0;
 }
@@ -92,3 +92,9 @@ input[type="submit"]{
     padding: 5px 10px;
     border: 1px solid #ccc;
 }
+input[type="reset"]{
+     background: #e20074;
+     color: #fff;
+     padding: 5px 10px;
+     border: 1px solid #ccc;
+ }

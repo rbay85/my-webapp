@@ -92,3 +92,9 @@ input[type="submit"]{
     padding: 5px 10px;
     border: 1px solid #ccc;
 }
+input[type="reset"]{
+    background: #1F8E94;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
