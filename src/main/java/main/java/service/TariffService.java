@@ -2,6 +2,7 @@ package main.java.service;
 
 import main.java.dao.OptionDao;
 import main.java.dao.TariffDao;
+import main.java.entity.Option;
 import main.java.entity.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,11 +45,35 @@ public class TariffService {
         tariffDao.delete( Integer.parseInt( id ) );
     }
 
+    // добавляем или удаляем опции
     @Transactional
-    public void addOptionInTariff( String tariffId, String optionId ) {
+    public String optionInTariff( String tariffId, String optionId, String action ) {
+
+        String message = "";
 
         Tariff tariff = tariffDao.get( Integer.parseInt( tariffId ));
-        tariff.getOptionList().add( optionDao.get( Integer.parseInt( optionId )));
-        tariffDao.update( tariff );
+        Option option = optionDao.get( Integer.parseInt( optionId ));
+
+        if ( action.equals( "Add" )){
+
+            if ( tariff.getOptionList().contains( option )){
+                message = "the tariff already contains this option!";
+            } else {
+                tariff.getOptionList().add( option );
+                tariffDao.update( tariff );
+                message = "the option successfully added in the tariff";
+            }
+
+        } else if ( action.equals( "Delete" )){
+
+            if ( tariff.getOptionList().contains( option )){
+                tariff.getOptionList().remove( option );
+                message = "the option successfully removed from the tariff";
+            } else {
+                message = "the tariff does not contain this option!";
+            }
+        }
+
+        return message;
     }
 }

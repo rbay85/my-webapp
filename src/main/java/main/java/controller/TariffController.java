@@ -58,15 +58,15 @@ public class TariffController {
         return "redirect:/tariff";
     }
 
-    @RequestMapping( value = "/addOptionInTariff", method = RequestMethod.GET )
-    public String addOptionInTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
+    @RequestMapping( value = "/optionInTariff", method = RequestMethod.GET )
+    public String optionInTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
                                       @RequestParam( value = "optionId", required = false ) String optionId,
+                                      @RequestParam( value = "action",   required = false ) String action,
                                       Model model ){
 
         try{
-
-           tariffService.addOptionInTariff( tariffId, optionId );
-
+            String massage = tariffService.optionInTariff( tariffId, optionId, action );
+            model.addAttribute( "message", massage );
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
