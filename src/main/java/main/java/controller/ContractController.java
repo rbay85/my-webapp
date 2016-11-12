@@ -21,6 +21,15 @@ public class ContractController {
     @Autowired
     private ClientService clientService;
 
+    // вывод списка контрактов
+    @RequestMapping( value = "contract", method = RequestMethod.GET )
+    public String showAllContracts( Model model ){
+
+        model.addAttribute( "contractList", contractService.getAllContracts() );
+        return "contract";
+    }
+
+    // поиск контракта по телефону
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )
     public String contractByPhone( @RequestParam( value = "phone", required = false ) String phone, Model model ){
 
@@ -32,6 +41,7 @@ public class ContractController {
         return "contractByPhone";
     }
 
+    // блокировка/разблокировка админом
     @RequestMapping( value = "/lockUnlock", method = RequestMethod.GET )
     public String lockUnlock ( @RequestParam( value = "phone", required = false ) String phone,
                                @RequestParam( value = "condition", required = false ) String condition,
@@ -47,6 +57,7 @@ public class ContractController {
         return "lockUnlock";
     }
 
+    // блокировка/разблокировка клиентом
     @RequestMapping( value = "/lockUnlock1", method = RequestMethod.GET )
     public String lockUnlock1 ( @RequestParam( value = "contractId", required = false ) String contractId,
                                @RequestParam( value = "condition", required = false ) String condition,

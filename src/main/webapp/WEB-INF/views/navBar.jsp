@@ -12,6 +12,8 @@
         <br> <a href="http://localhost:8080/contractByPhone">Find Contract By Phone</a>
         <br> <a href="http://localhost:8080/lockUnlock">Lock Unlock Contract</a>
         <br>
+        <br> <a href="http://localhost:8080/contract">Contracts</a>
+        <br>
         <br> <a href="http://localhost:8080/tariff">Tariffs</a>
         <br>
         <br> <a href="http://localhost:8080/option">Options</a>

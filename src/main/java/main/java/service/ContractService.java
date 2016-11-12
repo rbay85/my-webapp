@@ -6,12 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 public class ContractService {
 
     @Autowired
     private ContractDao contractDao;
+
+    // выводим все контракты
+    @Transactional
+    public List<Contract> getAllContracts() {
+
+        List<Contract> contractList = contractDao.getAll();
+        return contractList;
+    }
 
     // возврещаем контрак по номеру телефона
     @Transactional
@@ -73,6 +83,4 @@ public class ContractService {
         }
         return message;
     }
-
-    // перенести сюда действия из ContractDaoTest !
 }
