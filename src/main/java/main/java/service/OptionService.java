@@ -56,6 +56,24 @@ public class OptionService {
         return "required option successfully deleted";
     }
 
+    // удаляем несовместимую опцию
+    @Transactional
+    public String deleteIncOption( String optionId1, String optionId2 ){
+
+        // находим две опции
+        Option option1 = optionDao.get( Integer.parseInt( optionId1 ) );
+        Option option2 = optionDao.get( Integer.parseInt( optionId2 ) );
+
+        // для каждой из списка несовместимых удаляем другую
+        option1.getIncompatibleOptionList().remove( option2 );
+        option2.getIncompatibleOptionList().remove( option1 );
+
+        // апдейтим обе
+        optionDao.update( option1 );
+        optionDao.update( option2 );
+        return " options incompatibility successfully deleted";
+    }
+
     // устанавливаем отношениями опций
     @Transactional
     public String setOptionRelations ( String optionId1, String optionId2, String action ) {

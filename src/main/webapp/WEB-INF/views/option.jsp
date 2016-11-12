@@ -68,20 +68,25 @@
                         <td>${option.getName()}</td>
                         <td>${option.getPrice()}</td>
                         <td>${option.getOnCost()}</td>
+                        <!-- необходимые опции -->
                         <td>
                             <c:forEach var="reqOption" items="${option.getNecessaryOptionList()}">
                                 ${reqOption.getName()}
+                                <!-- удаление -->
                                 <a href="deleteReqOption?optionId=${option.getId()}&reqOptionId=${reqOption.getId()}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>
+                        <!-- несовместимые опции -->
                         <td>
                             <c:forEach var="incOption" items="${option.getIncompatibleOptionList()}">
                                 ${incOption.getName()}
-                                <a href="deleteIncOption?optionId=${option.getId()}&incOptionId=${incOption.getId()}" style="color:red;">x</a>
+                                <!-- удаление -->
+                                <a href="deleteIncOption?optionId1=${option.getId()}&optionId2=${incOption.getId()}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>
+                        <!-- удаление самой опции -->
                         <td><a href="deleteOption?id=${option.getId()}" style="color:red;">X</a></td>
                     </tr>
                 </c:forEach>
@@ -113,7 +118,6 @@
                 <p><b>action:</b><br>
                     <input type="radio" name="action" value="required">set as 1st requires 2nd option<br>
                     <input type="radio" name="action" value="incompatible">set as incompatible options<br>
-                    <input type="radio" name="action" value="remove">remove any relations of selected options<br>
                 </p>
 
                 <!-- кнопка -->

@@ -64,12 +64,28 @@ public class OptionController {
 
     // удаление необходимой опции
     @RequestMapping( value = "/deleteReqOption", method = RequestMethod.GET )
-    public String deleteReqOption ( @RequestParam( value = "optionId", required = false ) String optionId,
+    public String deleteReqOption ( @RequestParam( value = "optionId",    required = false ) String optionId,
                                     @RequestParam( value = "reqOptionId", required = false ) String reqOptionId,
                                     Model model ){
 
         try{
             model.addAttribute( "message", optionService.deleteReqOption( optionId, reqOptionId ) );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", " NumberFormatException " );
+        }
+        return "redirect:/option";
+    }
+
+    // удаление несовместимой опции
+    @RequestMapping( value = "/deleteIncOption", method = RequestMethod.GET )
+    public String deleteIncOption ( @RequestParam( value = "optionId1", required = false ) String optionId1,
+                                    @RequestParam( value = "optionId2", required = false ) String optionId2,
+                                    Model model ){
+
+        try{
+            model.addAttribute( "message", optionService.deleteIncOption( optionId1, optionId2 ) );
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
