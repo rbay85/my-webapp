@@ -71,12 +71,14 @@
                         <td>
                             <c:forEach var="reqOption" items="${option.getNecessaryOptionList()}">
                                 ${reqOption.getName()}
+                                <a href="deleteReqOption?optionId=${option.getId()}&reqOptionId=${reqOption.getId()}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>
                         <td>
                             <c:forEach var="incOption" items="${option.getIncompatibleOptionList()}">
                                 ${incOption.getName()}
+                                <a href="deleteIncOption?optionId=${option.getId()}&incOptionId=${incOption.getId()}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>

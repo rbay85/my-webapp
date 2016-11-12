@@ -43,6 +43,19 @@ public class OptionService {
         return "option successfully deleted";
     }
 
+    // удаляем необходимую опцию
+    @Transactional
+    public String deleteReqOption( String optionId, String reqOptionId ){
+
+        Option option = optionDao.get( Integer.parseInt( optionId ) );
+        Option reqOption = optionDao.get( Integer.parseInt( reqOptionId ) );
+
+        option.getNecessaryOptionList().remove( reqOption );
+
+        optionDao.update( option );
+        return "required option successfully deleted";
+    }
+
     // устанавливаем отношениями опций
     @Transactional
     public String setOptionRelations ( String optionId1, String optionId2, String action ) {

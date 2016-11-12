@@ -47,13 +47,29 @@ public class OptionController {
         return "redirect:/option";
     }
 
-    // удаление тарифа
+    // удаление опции
     @RequestMapping( value = "/deleteOption", method = RequestMethod.GET )
     public String delete ( @RequestParam( value = "id", required = false ) String id,
                            Model model ){
 
         try{
             model.addAttribute( "message", optionService.delete( id ) );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", " NumberFormatException " );
+        }
+        return "redirect:/option";
+    }
+
+    // удаление необходимой опции
+    @RequestMapping( value = "/deleteReqOption", method = RequestMethod.GET )
+    public String deleteReqOption ( @RequestParam( value = "optionId", required = false ) String optionId,
+                                    @RequestParam( value = "reqOptionId", required = false ) String reqOptionId,
+                                    Model model ){
+
+        try{
+            model.addAttribute( "message", optionService.deleteReqOption( optionId, reqOptionId ) );
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
