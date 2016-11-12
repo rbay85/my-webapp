@@ -50,7 +50,7 @@ public class TariffController {
 
     // удаление тарифа
     @RequestMapping( value = "/deleteTariff", method = RequestMethod.GET )
-    public String delete ( @RequestParam( value = "id", required = false ) String id,
+    public String deleteTariff ( @RequestParam( value = "id", required = false ) String id,
                               Model model ){
 
         try{
@@ -64,20 +64,36 @@ public class TariffController {
         return "redirect:/tariff";
     }
 
-    // управление опциями в тарифе
-    @RequestMapping( value = "/optionInTariff", method = RequestMethod.GET )
-    public String optionInTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
-                                   @RequestParam( value = "optionId", required = false ) String optionId,
-                                   @RequestParam( value = "action",   required = false ) String action,
-                                   Model model ){
+    // удаление опции
+    @RequestMapping( value = "/deleteOptionFromTariff", method = RequestMethod.GET )
+    public String deleteOptionFromTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
+                                           @RequestParam( value = "optionId", required = false ) String optionId,
+                                           Model model ){
 
         try{
-            String massage = tariffService.optionInTariff( tariffId, optionId, action );
-            model.addAttribute( "message", massage );
+            String message = tariffService.deleteOption( tariffId, optionId );
+            model.addAttribute( "message", message );
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
+        }
+        return "redirect:/tariff";
+    }
+
+    // управление опциями в тарифе
+    @RequestMapping( value = "/addOptionInTariff", method = RequestMethod.GET )
+    public String addOptionInTariff ( @RequestParam( value = "tariffId", required = false ) String tariffId,
+                                      @RequestParam( value = "optionId", required = false ) String optionId,
+                                      Model model ){
+
+        try{
+            String massage = tariffService.addOptionInTariff( tariffId, optionId );
+            model.addAttribute( "message", massage );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", " NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", " Choose a tariff from the table " );
         }
         return "redirect:/tariff";
     }

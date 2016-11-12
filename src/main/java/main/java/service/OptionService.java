@@ -64,7 +64,7 @@ public class OptionService {
         Option option1 = optionDao.get( Integer.parseInt( optionId1 ) );
         Option option2 = optionDao.get( Integer.parseInt( optionId2 ) );
 
-        // для каждой из списка несовместимых удаляем другую
+        // для каждой из списка её несовместимых удаляем другую
         option1.getIncompatibleOptionList().remove( option2 );
         option2.getIncompatibleOptionList().remove( option1 );
 
@@ -82,44 +82,52 @@ public class OptionService {
         int id1 = Integer.parseInt( optionId1 );
         int id2 = Integer.parseInt( optionId2 );
 
+        //проверка айдишников
         if ( id1 == 0 || id2 == 0 ) {
             message = " error: Choose TWO options, please !";
-
         } else if ( id1 == id2 ) {
             message = " error: Choose two DIFFERENT options, please !";
-
         } else {
 
+            // берем две опции
             Option option1 = optionDao.get( id1 );
             Option option2 = optionDao.get( id2 );
 
+            // если надо установить как требуемую
             if ( action.equals( "required" )) {
-                List<Option> option1NecessaryList = option1.getNecessaryOptionList();
-                option1NecessaryList.add( option2 );
-                option1.setNecessaryOptionList( option1NecessaryList ); // ДОБАВИТЬ ПРОВЕРКУ ( option.areListsContradict ) Где добавить??
-                optionDao.update( option1 );
 
-                message = " Options requirements successfully set";
+                // проверяем, что опции не имеют уже отношений
+                if ( option1.getNecessaryOptionList().contains( option2 ) || option2.getNecessaryOptionList().contains( option1 ) ) {
+                    message = "options is already set as required";
+                } else if (option1.getIncompatibleOptionList().contains( option2 ) || option2.getIncompatibleOptionList().contains( option1 ) ) {
+                    message = "options is already set as incompatible";
+                } else {
+                    // устанавливаем как требуемую
+                    option1.getNecessaryOptionList().add( option2 );
+                    optionDao.update( option1 );
+                    message = " Options requirements successfully set";
+                }
 
+            // если надо установить как несовместимые
             } else if ( action.equals( "incompatible" )) {
-                List<Option> option1IncompatibleList = option1.getIncompatibleOptionList();
-                option1IncompatibleList.add( option2 );
-                option1.setIncompatibleOptionList( option1IncompatibleList );
-                optionDao.update( option1 );
 
-                List<Option> option2IncompatibleList = option2.getIncompatibleOptionList();
-                option2IncompatibleList.add( option1 );
-                option2.setIncompatibleOptionList( option2IncompatibleList );
-                optionDao.update( option2 );
-
-                message = " Options incompatibility successfully set";
-
+                // проверяем, что опции не имеют уже отношений
+                if ( option1.getNecessaryOptionList().contains( option2 ) || option2.getNecessaryOptionList().contains( option1 ) ) {
+                    message = "options is already set as required";
+                } else if (option1.getIncompatibleOptionList().contains( option2 ) || option2.getIncompatibleOptionList().contains( option1 ) ) {
+                    message = "options is already set as incompatible";
+                } else {
+                    // устанавливаем как требуемую
+                    option1.getIncompatibleOptionList().add( option2 );
+                    option2.getIncompatibleOptionList().add( option1 );
+                    optionDao.update( option1 );
+                    optionDao.update( option2 );
+                    message = "Options incompatibility successfully set";
+                }
             } else {
-                message = " error: Choose an action, please!";
-
+                message = "error: Choose an action, please!";
             }
         }
-
         return message;
     }
 }

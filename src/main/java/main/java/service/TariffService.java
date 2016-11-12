@@ -54,35 +54,35 @@ public class TariffService {
         return "tariff successfully deleted";
     }
 
-    // добавляем или удаляем опции тарифа
+    // удаляем опцию из тарифа
     @Transactional
-    public String optionInTariff( String tariffId, String optionId, String action ) {
+    public String deleteOption( String tariffId, String optionId ){
 
-        String message = "";
+        Tariff tariff = tariffDao.get( Integer.parseInt( tariffId ));
+        Option option = optionDao.get( Integer.parseInt( optionId ));
+
+        tariff.getOptionList().remove( option );
+
+        tariffDao.update( tariff );
+        return "option successfully deleted from tariff";
+    }
+
+    // добавляем опцию в тариф
+    @Transactional
+    public String addOptionInTariff( String tariffId, String optionId ) {
+
+        String message;
 
         if (!optionId.equals( "0" )){
             Tariff tariff = tariffDao.get( Integer.parseInt( tariffId ));
             Option option = optionDao.get( Integer.parseInt( optionId ));
 
-            if ( action.equals( "Add" )){
-
-                if ( tariff.getOptionList().contains( option )){
-                    message = "the tariff already contains this option!";
-                } else {
-                    tariff.getOptionList().add( option );
-                    tariffDao.update( tariff );
-                    message = "the option successfully added in the tariff";
-                }
-
-            } else if ( action.equals( "Delete" )){
-
-                if ( tariff.getOptionList().contains( option )){
-                    tariff.getOptionList().remove( option );
-                    message = "the option successfully removed from the tariff";
-                } else {
-                    message = "the tariff does not contain this option!";
-                }
-
+            if ( tariff.getOptionList().contains( option )){
+                message = "the tariff already contains this option!";
+            } else {
+                tariff.getOptionList().add( option );
+                tariffDao.update( tariff );
+                message = "the option successfully added in the tariff";
             }
         } else {
             message = "choose an option in dropdown!";

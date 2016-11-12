@@ -50,38 +50,35 @@
             </form>
 
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
-            <form action="optionInTariff" method="GET">
+            <form action="addOptionInTariff" method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
                     <tr>
-                        <td><b> </b></td>
-                        <td><b>Tariff</b></td>
+                        <td><b>Tariff name</b></td>
                         <td><b>Price</b></td>
                         <td><b>Options</b></td>
-                        <td><b>Delete</b></td>
                     </tr>
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr>
-                            <td><input type="radio" name="tariffId" value="${tariff.getId()}"> </td>
-                            <td>${tariff.getName()}</td>
+                            <td>
+                                <input type="radio" name="tariffId" value="${tariff.getId()}">
+                                ${tariff.getName()}
+                                <a href="deleteTariff?id=${tariff.getId()}" style="color:red;">X</a>
+                            </td>
                             <td>${tariff.getPrice()}</td>
                             <td>
                                 <c:forEach var="option" items="${tariff.getOptionList()}">
                                     ${option.getName()}
+                                    <a href="deleteOptionFromTariff?tariffId=${tariff.getId()}&optionId=${option.getId()}" style="color:red;">x</a>
                                     <br/>
                                 </c:forEach>
                             </td>
-                            <td><a href="deleteTariff?id=${tariff.getId()}" style="color:red;">X</a></td>
                         </tr>
                     </c:forEach>
                 </table>
 
-                <!-- кнопки -->
-                <input type="submit" name="action" value="Add" /> or
-                <input type="submit" name="action" value="Delete" />
-                option
-
+                Add option
                 <!-- выпадающий список -->
                 <select name="optionId" required>
                     <option value="0"> </option>
@@ -90,6 +87,9 @@
                     </c:forEach>
                 </select>
                 in the tariff chosen above
+
+                <!-- кнопка -->
+                <input type="submit" value="Add" />
                 <br><br>
 
             </form>

@@ -61,11 +61,14 @@
                     <td><b>Cost</b></td>
                     <td><b>Requires</b></td>
                     <td><b>Incompatible</b></td>
-                    <td><b>Delete</b></td>
                 </tr>
                 <c:forEach var="option" items="${optionList}">
                     <tr>
-                        <td>${option.getName()}</td>
+                        <td>
+                            ${option.getName()}
+                            <!-- удаление опции -->
+                            <a href="deleteOption?id=${option.getId()}" style="color:red;">X</a>
+                        </td>
                         <td>${option.getPrice()}</td>
                         <td>${option.getOnCost()}</td>
                         <!-- необходимые опции -->
@@ -86,8 +89,6 @@
                                 <br/>
                             </c:forEach>
                         </td>
-                        <!-- удаление самой опции -->
-                        <td><a href="deleteOption?id=${option.getId()}" style="color:red;">X</a></td>
                     </tr>
                 </c:forEach>
 
