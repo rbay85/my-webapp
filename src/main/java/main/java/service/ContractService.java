@@ -61,9 +61,9 @@ public class ContractService {
 
     // администратор блокирует и разблокирует
     @Transactional
-    public String adminLock (String phone, String condition) {
+    public String adminLock (String id, String condition) {
 
-        Contract contract = contractDao.getByPhone( phone );
+        Contract contract = contractDao.get( Integer.parseInt( id ));
         String message;
 
         if ( condition.equals( "lock" )){

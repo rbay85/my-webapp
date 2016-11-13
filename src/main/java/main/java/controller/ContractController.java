@@ -40,7 +40,7 @@ public class ContractController {
 
     // добавляем новый контракт
     @RequestMapping( value = "/addContract", method = RequestMethod.GET )
-    public String addContract ( @RequestParam( value = "phone",  required = false ) String phone,
+    public String addContract ( @RequestParam( value = "phone",     required = false ) String phone,
                                 @RequestParam( value = "clientId",  required = false ) String clientId,
                                 @RequestParam( value = "tariffId",  required = false ) String tariffId,
                                 Model model ){
@@ -90,19 +90,19 @@ public class ContractController {
     }
 
     // блокировка/разблокировка админом
-    @RequestMapping( value = "/lockUnlock", method = RequestMethod.GET )
-    public String lockUnlock ( @RequestParam( value = "phone", required = false ) String phone,
+    @RequestMapping( value = "/adminLockContract", method = RequestMethod.GET )
+    public String lockUnlock ( @RequestParam( value = "id",        required = false ) String id,
                                @RequestParam( value = "condition", required = false ) String condition,
                                Model model ){
 
         try{
-            model.addAttribute( "message", contractService.adminLock( phone, condition ));
+            model.addAttribute( "message", contractService.adminLock( id, condition ));
         } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " Choose an action, please! " );
+            model.addAttribute( "error", "Choose an action, please!" );
         } catch ( NoResultException e ) {
-            model.addAttribute( "error", " Fill in the field properly, please! " );
+            model.addAttribute( "error", "Fill in the field properly, please!" );
         }
-        return "lockUnlock";
+        return "redirect:/contract";
     }
 
     // блокировка/разблокировка клиентом

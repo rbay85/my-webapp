@@ -69,8 +69,8 @@
 
             </form>
 
-            <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
-            <%--<form action="addOptionInTariff" method="GET">--%>
+            <!-- форма добавления опции в контракт ( тут же удаление опции ) -->
+            <form action="addOptionInContract" method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
@@ -79,6 +79,7 @@
                         <td><b>Client</b></td>
                         <td><b>Tariff</b></td>
                         <td><b>Options</b></td>
+                        <td><b>Lock</b></td>
                     </tr>
                     <c:forEach var="contract" items="${contractList}">
                         <tr>
@@ -86,14 +87,25 @@
                                 <input type="radio" name="contractId" value="${contract.getId()}">
                                 ${contract.getPhone()}
                                 <%--<a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>--%>
-                                <a href="adminLockContract?id=${contract.getId()}">lock</a>
+                                <br>
+                                <a href="adminLockContract?id=${contract.getId()}&condition=lock">lock</a>
+                                <a href="adminLockContract?id=${contract.getId()}&condition=unlock">unlock</a>
                             </td>
                             <td>
                                 ${contract.getClient().getFirstName()}
                                 <br/>
                                 ${contract.getClient().getLastName()}
                             </td>
-                            <td>${contract.getTariff().getName()}</td>
+                            <td>
+                                ${contract.getTariff().getName()}
+                                <!-- выпадающий список -->
+                                <select name="optionId" onchange="this.form.submit()" required>
+                                    <option value="0"> </option>
+                                    <c:forEach var="option" items="${optionList}">
+                                        <option value="${option.getId()}&contractId=${contract.getId()}">${option.getName()}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
                             <td>
                                 <c:forEach var="option" items="${contract.getOptionList()}">
                                     ${option.getName()}
@@ -101,25 +113,19 @@
                                     <br/>
                                 </c:forEach>
                             </td>
+                            <td>${contract.getIsLocked()}</td>
                         </tr>
                     </c:forEach>
                 </table>
 
 
-                <!-- выпадающий список -->
-                <select name="optionId" required>
-                    <option value="0"> </option>
-                    <c:forEach var="option" items="${optionList}">
-                        <option value="${option.getId()}">${option.getName()}</option>
-                    </c:forEach>
-                </select>
 
 
-                <%--<!-- кнопка -->--%>
-                <%--<input type="submit" value="Add" />--%>
-                <%--<br><br>--%>
+                <!-- кнопка -->
+                <input type="submit" value="Add" />
+                <br><br>
 
-            <%--</form>--%>
+            </form>
 
         </section>
         <aside>
