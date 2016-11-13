@@ -33,7 +33,7 @@ public class ClientService {
 
     // возвращаем всех клиентов
     @Transactional
-    public List<Client> getAll() {
+    public List<Client> getAllClients() {
 
         List<Client> clientList = clientDao.getAll();
         return clientList;

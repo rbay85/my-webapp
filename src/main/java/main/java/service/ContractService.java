@@ -23,6 +23,16 @@ public class ContractService {
         return contractList;
     }
 
+    // добавляем тарифф
+    @Transactional
+    public void add( String phone ) {
+
+        Contract contract = new Contract();
+        contract.setPhone( phone );
+
+        contractDao.add( contract );
+    }
+
     // возврещаем контрак по номеру телефона
     @Transactional
     public Contract getByPhone ( String phone ){

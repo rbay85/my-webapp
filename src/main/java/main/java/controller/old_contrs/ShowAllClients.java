@@ -20,7 +20,7 @@ public class ShowAllClients extends HttpServlet {
         try{
             ClientService clientService = new ClientService();
 
-            req.setAttribute( "clientList", clientService.getAll() );
+            req.setAttribute( "clientList", clientService.getAllClients() );
 
             // закидываем в .jsp
             req.getRequestDispatcher( url ).forward( req, resp );

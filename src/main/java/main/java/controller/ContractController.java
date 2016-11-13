@@ -2,6 +2,7 @@ package main.java.controller;
 
 import main.java.service.ClientService;
 import main.java.service.ContractService;
+import main.java.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
+import javax.validation.ValidationException;
 
 
 @Controller
@@ -21,13 +24,40 @@ public class ContractController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private TariffService tariffService;
+
     // вывод списка контрактов
     @RequestMapping( value = "contract", method = RequestMethod.GET )
     public String showAllContracts( Model model ){
 
         model.addAttribute( "contractList", contractService.getAllContracts() );
+        model.addAttribute( "clientList", clientService.getAllClients() );
+        model.addAttribute( "tariffList", tariffService.getAllTariffs() );
+
         return "contract";
     }
+
+    // добавляем новый контракт
+    @RequestMapping( value = "/addContract", method = RequestMethod.GET )
+    public String addContract ( @RequestParam( value = "phone",  required = false ) String phone,
+                                Model model ){
+
+        try{
+            if ( phone != null ){
+                contractService.add( phone );
+                model.addAttribute( "message", "new contract successfully added" );
+            } else {
+                model.addAttribute( "message", "phone number must not be null" );
+            }
+        } catch ( PersistenceException e ) {
+            model.addAttribute( "error", "this phone number already exists in database" );
+        } catch ( ValidationException e ) {
+            model.addAttribute( "error", "input phone number properly, please");
+        }
+        return "redirect:/contract";
+    }
+
 
     // поиск контракта по телефону
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )

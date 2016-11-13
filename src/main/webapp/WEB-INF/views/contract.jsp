@@ -28,26 +28,46 @@
             ${message} ${error}
             <br>
 
-            <!-- Форма добавления тарифа -->
-            <%--<form action="addContract" method="GET">--%>
+            <!-- Форма добавления контракта -->
+            <form action="addContract" method="GET">
 
-                <%--<div class="form-element">--%>
-                    <%--<label for="name">contract:</label>--%>
-                    <%--<input type="text" name="name">--%>
-                <%--</div>--%>
-                <%--<div class="form-element">--%>
-                    <%--<label for="price">Price:</label>--%>
-                    <%--<input type="text" name="price">--%>
-                <%--</div>--%>
+                <!-- номер телефона -->
+                <div class="form-element">
+                    <label for="phone">Phone number:</label>
+                    <input type="text" name="phone" id="phone">
+                    <br>
+                    <small>format: (xxx)xxx-xxxx</small>
+                </div>
 
-                <%--<!-- кнопки -->--%>
-                <%--<div class="form-element">--%>
-                    <%--<input type="reset" value="Clear" />--%>
-                    <%--<input type="submit" value="Add a new tariff" />--%>
-                <%--</div>--%>
-                <%--<br>--%>
+                <!-- клиент -->
+                <div class="form-element">
+                    <label for="client">Client:</label>
+                    <select name="clientId" required id="client">
+                        <option value="0"> </option>
+                        <c:forEach var="client" items="${clientList}">
+                            <option value="${client.getId()}"><pre>${client.getFirstName()} ${client.getLastName()}</pre></option>
+                        </c:forEach>
+                    </select>
+                </div>
 
-            <%--</form>--%>
+                <!-- тариф -->
+                <div class="form-element">
+                    <label for="tariff">Tariff:</label>
+                    <select name="tariffId" required id="tariff">
+                        <option value="0"> </option>
+                        <c:forEach var="tariff" items="${tariffList}">
+                            <option value="${tariff.getId()}">${tariff.getName()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <!-- кнопка-->
+                <div class="form-element">
+                    <input type="submit" value="Add a new contract" />
+                </div>
+                <br>
+
+            </form>
 
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
             <%--<form action="addOptionInTariff" method="GET">--%>
@@ -63,9 +83,9 @@
                     <c:forEach var="contract" items="${contractList}">
                         <tr>
                             <td>
-                                <%--<input type="radio" name="tariffId" value="${tariff.getId()}">--%>
+                                <input type="radio" name="contractId" value="${contract.getId()}">
                                 ${contract.getPhone()}
-                                <%--<a href="deleteTariff?id=${tariff.getId()}" style="color:red;">X</a>--%>
+                                <a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>
                             </td>
                             <td>
                                 ${contract.getClient().getFirstName()}
@@ -84,15 +104,15 @@
                     </c:forEach>
                 </table>
 
-                <%--Add option--%>
-                <%--<!-- выпадающий список -->--%>
-                <%--<select name="optionId" required>--%>
-                    <%--<option value="0"> </option>--%>
-                    <%--<c:forEach var="option" items="${optionList}">--%>
-                        <%--<option value="${option.getId()}">${option.getName()}</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</select>--%>
-                <%--in the tariff chosen above--%>
+
+                <!-- выпадающий список -->
+                <select name="optionId" required>
+                    <option value="0"> </option>
+                    <c:forEach var="option" items="${optionList}">
+                        <option value="${option.getId()}">${option.getName()}</option>
+                    </c:forEach>
+                </select>
+
 
                 <%--<!-- кнопка -->--%>
                 <%--<input type="submit" value="Add" />--%>

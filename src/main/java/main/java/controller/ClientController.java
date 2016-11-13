@@ -34,7 +34,7 @@ public class ClientController {
     @RequestMapping( value = "showAllClients", method = RequestMethod.GET )
     public String showAllClients( Model model ){
 
-        model.addAttribute( "clientList", clientService.getAll() );
+        model.addAttribute( "clientList", clientService.getAllClients() );
         return "showAllClients";
     }
 

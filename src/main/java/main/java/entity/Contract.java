@@ -3,7 +3,6 @@ package main.java.entity;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
