@@ -41,11 +41,13 @@ public class ContractController {
     // добавляем новый контракт
     @RequestMapping( value = "/addContract", method = RequestMethod.GET )
     public String addContract ( @RequestParam( value = "phone",  required = false ) String phone,
+                                @RequestParam( value = "clientId",  required = false ) String clientId,
+                                @RequestParam( value = "tariffId",  required = false ) String tariffId,
                                 Model model ){
 
         try{
             if ( phone != null ){
-                contractService.add( phone );
+                contractService.add( phone, clientId, tariffId );
                 model.addAttribute( "message", "new contract successfully added" );
             } else {
                 model.addAttribute( "message", "phone number must not be null" );
@@ -54,6 +56,22 @@ public class ContractController {
             model.addAttribute( "error", "this phone number already exists in database" );
         } catch ( ValidationException e ) {
             model.addAttribute( "error", "input phone number properly, please");
+        }
+        return "redirect:/contract";
+    }
+
+    // удаление контракта
+    @RequestMapping( value = "/deleteContract", method = RequestMethod.GET )
+    public String deleteContract ( @RequestParam( value = "id", required = false ) String id,
+                                   Model model ){
+
+        try{
+            String message = contractService.delete( id );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException" );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
         }
         return "redirect:/contract";
     }

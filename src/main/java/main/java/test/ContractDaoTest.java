@@ -89,6 +89,6 @@ public class ContractDaoTest {
     public void testDelete() throws Exception {
 
         //Удалем первую запись в БД
-        contractDao.delete( 1 );     // ловить IllegalArgumentException
+        contractDao.delete( 12 );     // ловить IllegalArgumentException
     }
 }

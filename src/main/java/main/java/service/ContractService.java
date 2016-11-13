@@ -1,6 +1,8 @@
 package main.java.service;
 
+import main.java.dao.ClientDao;
 import main.java.dao.ContractDao;
+import main.java.dao.TariffDao;
 import main.java.entity.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,12 @@ public class ContractService {
     @Autowired
     private ContractDao contractDao;
 
+    @Autowired
+    private ClientDao clientDao;
+
+    @Autowired
+    private TariffDao tariffDao;
+
     // выводим все контракты
     @Transactional
     public List<Contract> getAllContracts() {
@@ -25,15 +33,25 @@ public class ContractService {
 
     // добавляем тарифф
     @Transactional
-    public void add( String phone ) {
+    public void add( String phone, String clientId, String tariffId ) {
 
         Contract contract = new Contract();
         contract.setPhone( phone );
+        contract.setClient( clientDao.get( Integer.parseInt( clientId )));
+        contract.setTariff( tariffDao.get( Integer.parseInt( tariffId )));
 
         contractDao.add( contract );
     }
 
-    // возврещаем контрак по номеру телефона
+    // удаляем контракт по Id
+    @Transactional
+    public String delete( String id ) {
+
+        contractDao.delete( Integer.parseInt( id ) );
+        return "contract successfully deleted";
+    }
+
+    // возврещаем контракт по номеру телефона
     @Transactional
     public Contract getByPhone ( String phone ){
 

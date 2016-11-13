@@ -85,7 +85,8 @@
                             <td>
                                 <input type="radio" name="contractId" value="${contract.getId()}">
                                 ${contract.getPhone()}
-                                <a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>
+                                <%--<a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>--%>
+                                <a href="adminLockContract?id=${contract.getId()}">lock</a>
                             </td>
                             <td>
                                 ${contract.getClient().getFirstName()}
