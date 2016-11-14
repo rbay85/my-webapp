@@ -76,6 +76,23 @@ public class ContractController {
         return "redirect:/contract";
     }
 
+    // добавление опции в контракт
+    @RequestMapping( value = "/addOptionInContract", method = RequestMethod.GET )
+    public String addOptionInContract ( @RequestParam( value = "optionId",   required = false ) String optionId,
+                                        @RequestParam( value = "contractId", required = false ) String contractId,
+                                        Model model ){
+
+        try{
+            String message = contractService.addOptionInContract( optionId, contractId );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException" );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
+        }
+        return "redirect:/contract";
+    }
+
 
     // поиск контракта по телефону
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )

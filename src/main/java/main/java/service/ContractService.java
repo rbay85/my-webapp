@@ -2,8 +2,10 @@ package main.java.service;
 
 import main.java.dao.ClientDao;
 import main.java.dao.ContractDao;
+import main.java.dao.OptionDao;
 import main.java.dao.TariffDao;
 import main.java.entity.Contract;
+import main.java.entity.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,9 @@ public class ContractService {
     @Autowired
     private TariffDao tariffDao;
 
+    @Autowired
+    private OptionDao optionDao;
+
     // выводим все контракты
     @Transactional
     public List<Contract> getAllContracts() {
@@ -31,7 +36,7 @@ public class ContractService {
         return contractList;
     }
 
-    // добавляем тарифф
+    // добавляем контракт
     @Transactional
     public void add( String phone, String clientId, String tariffId ) {
 
@@ -41,6 +46,20 @@ public class ContractService {
         contract.setTariff( tariffDao.get( Integer.parseInt( tariffId )));
 
         contractDao.add( contract );
+    }
+
+    // добавляем опцию из тарифа в контракт
+    @Transactional
+    public String addOptionInContract( String optionId, String contractId ){
+
+        String message = "";
+
+        //Option option = optionDao.get( Integer.parseInt( optionId ));
+        //Contract contract = contractDao.get( Integer.parseInt( contractId ));
+
+        message = "it is OK" + optionId  + contractId;
+
+        return message;
     }
 
     // удаляем контракт по Id
