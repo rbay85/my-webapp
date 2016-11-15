@@ -52,14 +52,49 @@ public class ContractService {
     @Transactional
     public String addOptionInContract( String optionId, String contractId ){
 
-        String message = "";
+        String message;
 
         Option option = optionDao.get( Integer.parseInt( optionId ));
         Contract contract = contractDao.get( Integer.parseInt( contractId ));
 
-        message = optionId  + contractId;
+        if ( contract.getOptionList().contains( option )) {
+            message = "contract already contains this option";
+        } else if ( optionConflictInContract( option, contract )){
+            message = "contract contains incompatible option";
+        } else if ( contractContainsRequiredOption( option, contract )) {
+            contract.getOptionList().add( option );
+            contractDao.update( contract );
+            message = "option successfully added in the contract";
+        } else {
+            contract.getOptionList().add( option );
+            for ( Option o : option.getNecessaryOptionList()){
+                contract.getOptionList().add( o );
+            }
+            contractDao.update( contract );
+            message = "option with requirements successfully added in the contract";
+        }
 
         return message;
+    }
+
+    // проверяем на несовметимость опций в контракте
+    public boolean optionConflictInContract ( Option option, Contract contract ){
+        for ( Option o : contract.getOptionList()){
+            if ( option.getIncompatibleOptionList().contains( o )){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //роверяем на наличие требуемой опции в контракте
+    public boolean contractContainsRequiredOption ( Option option, Contract contract ){
+        for ( Option o : contract.getOptionList()){
+            if ( option.getNecessaryOptionList().contains( o )){
+                return true;
+            }
+        }
+        return false;
     }
 
     // удаляем контракт по Id

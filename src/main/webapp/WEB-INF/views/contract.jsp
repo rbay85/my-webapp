@@ -70,7 +70,7 @@
             </form>
 
             <!-- форма добавления опции в контракт ( тут же удаление опции ) -->
-            <form action="addOptionInContract" method="GET">
+            <form action=" " method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
@@ -99,13 +99,10 @@
                             <td>
                                 ${contract.getTariff().getName()}
                                 <br/>
-                                <!-- выпадающий список -->
-                                <select name="optionId" onchange="this.form.submit()" required>
-                                    <option value="0&contractId=${contract.getId()}"> </option>
+                                <!-- ссылка добавления опции -->
                                     <c:forEach var="option" items="${contract.tariff.optionList}">
-                                        <option value="${option.getId()}&contractId=${contract.getId()}">${option.getName()}</option>
+                                        <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}" style="color:red;">${option.name}-></a>
                                     </c:forEach>
-                                </select>
                             </td>
                             <td>
                                 <c:forEach var="option" items="${contract.getOptionList()}">
