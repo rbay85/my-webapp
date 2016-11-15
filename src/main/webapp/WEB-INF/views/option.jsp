@@ -18,6 +18,7 @@
     </header>
     <nav>
 
+        <a href="j_spring_security_logout" /> LogOut </a>
 
     </nav>
     <section id="content" class="clearfix">

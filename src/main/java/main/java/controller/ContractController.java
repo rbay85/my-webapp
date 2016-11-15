@@ -123,10 +123,10 @@ public class ContractController {
     }
 
     // блокировка/разблокировка клиентом
-    @RequestMapping( value = "/lockUnlock1", method = RequestMethod.GET )
-    public String lockUnlock1 ( @RequestParam( value = "contractId", required = false ) String contractId,
-                               @RequestParam( value = "condition", required = false ) String condition,
-                               Model model ){
+    @RequestMapping( value = "/personalArea", method = RequestMethod.GET )
+    public String personalArea ( @RequestParam( value = "contractId", required = false ) String contractId,
+                                 @RequestParam( value = "condition", required = false ) String condition,
+                                 Model model ){
 
         int clientId = 6;
         try {
@@ -141,6 +141,6 @@ public class ContractController {
         } catch ( NoResultException e ) {
             model.addAttribute( "error", " NoResultException " );
         }
-        return "lockUnlock1";
+        return "personalArea";
     }
 }

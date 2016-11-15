@@ -54,10 +54,10 @@ public class ContractService {
 
         String message = "";
 
-        //Option option = optionDao.get( Integer.parseInt( optionId ));
-        //Contract contract = contractDao.get( Integer.parseInt( contractId ));
+        Option option = optionDao.get( Integer.parseInt( optionId ));
+        Contract contract = contractDao.get( Integer.parseInt( contractId ));
 
-        message = "it is OK" + optionId  + contractId;
+        message = optionId  + contractId;
 
         return message;
     }

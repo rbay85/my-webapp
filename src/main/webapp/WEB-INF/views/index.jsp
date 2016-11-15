@@ -18,25 +18,13 @@
             </header>
             <nav>
 
+                <a href="j_spring_security_logout" /> LogOut </a>
 
             </nav>
             <section id="content" class="clearfix">
                 <section id="page-content">
 
-                    <form action="action.html">
-                        <h3>Login please</h3>
-                        <div class="form-element">
-                            <label for="username">Username:</label>
-                            <input type="text" name="username"/>
-                        </div>
-                        <div class="form-element">
-                            <label for="password">Password:</label>
-                            <input type="password" name="password"/>
-                        </div>
-                        <div class="form-element">
-                            <input type="submit" value="Log in"/>
-                        </div>
-                    </form>
+
 
                 </section>
                 <aside>

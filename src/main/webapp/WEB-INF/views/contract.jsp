@@ -18,7 +18,7 @@
     </header>
     <nav>
 
-        <a href="<c:url value="/logout" />"> LogOut </a>
+        <a href="j_spring_security_logout"/> LogOut </a>
 
     </nav>
     <section id="content" class="clearfix">
@@ -98,10 +98,11 @@
                             </td>
                             <td>
                                 ${contract.getTariff().getName()}
+                                <br/>
                                 <!-- выпадающий список -->
                                 <select name="optionId" onchange="this.form.submit()" required>
-                                    <option value="0"> </option>
-                                    <c:forEach var="option" items="${optionList}">
+                                    <option value="0&contractId=${contract.getId()}"> </option>
+                                    <c:forEach var="option" items="${contract.tariff.optionList}">
                                         <option value="${option.getId()}&contractId=${contract.getId()}">${option.getName()}</option>
                                     </c:forEach>
                                 </select>
