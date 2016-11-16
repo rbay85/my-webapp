@@ -108,9 +108,9 @@ public class ContractController {
 
     // блокировка/разблокировка админом
     @RequestMapping( value = "/adminLockContract", method = RequestMethod.GET )
-    public String lockUnlock ( @RequestParam( value = "id",        required = false ) String id,
-                               @RequestParam( value = "condition", required = false ) String condition,
-                               Model model ){
+    public String adminLockContract ( @RequestParam( value = "id",        required = false ) String id,
+                                      @RequestParam( value = "condition", required = false ) String condition,
+                                      Model model ){
 
         try{
             model.addAttribute( "message", contractService.adminLock( id, condition ));

@@ -71,7 +71,7 @@ public class ContractService {
                 contract.getOptionList().add( o );
             }
             contractDao.update( contract );
-            message = "option with requirements successfully added in the contract";
+            message = "option with requirements added in the contract";
         }
 
         return message;

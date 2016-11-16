@@ -45,7 +45,7 @@
                     <select name="clientId" required id="client">
                         <option value="0"> </option>
                         <c:forEach var="client" items="${clientList}">
-                            <option value="${client.getId()}"><pre>${client.getFirstName()} ${client.getLastName()}</pre></option>
+                            <option value="${client.id}"><pre>${client.firstName} ${client.lastName}</pre></option>
                         </c:forEach>
                     </select>
                 </div>
@@ -56,7 +56,7 @@
                     <select name="tariffId" required id="tariff">
                         <option value="0"> </option>
                         <c:forEach var="tariff" items="${tariffList}">
-                            <option value="${tariff.getId()}">${tariff.getName()}</option>
+                            <option value="${tariff.id}">${tariff.name}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -84,39 +84,41 @@
                     <c:forEach var="contract" items="${contractList}">
                         <tr>
                             <td>
-                                <input type="radio" name="contractId" value="${contract.getId()}">
-                                ${contract.getPhone()}
+                                <input type="radio" name="contractId" value="${contract.id}">
+                                ${contract.phone}
                                 <%--<a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>--%>
                                 <br>
-                                <a href="adminLockContract?id=${contract.getId()}&condition=lock">lock</a>
-                                <a href="adminLockContract?id=${contract.getId()}&condition=unlock">unlock</a>
+                                <a href="adminLockContract?id=${contract.id}&condition=lock">lock</a>
+                                <a href="adminLockContract?id=${contract.id}&condition=unlock">unlock</a>
                             </td>
                             <td>
-                                ${contract.getClient().getFirstName()}
+                                ${contract.client.firstName}
                                 <br/>
-                                ${contract.getClient().getLastName()}
+                                ${contract.client.lastName}
                             </td>
                             <td>
-                                ${contract.getTariff().getName()}
+                                ${contract.tariff.name}
                                 <br/>
                                 <!-- ссылка добавления опции -->
                                     <c:forEach var="option" items="${contract.tariff.optionList}">
-                                        <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}" style="color:red;">${option.name}-></a>
+                                        <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}""><small>${option.name}</small></a>
+                                        <br/>
                                     </c:forEach>
                             </td>
+                            <!-- удаление опции -->
                             <td>
-                                <c:forEach var="option" items="${contract.getOptionList()}">
-                                    ${option.getName()}
+                                <c:forEach var="option" items="${contract.optionList}">
+                                    ${option.name}
                                     <%--<a href="deleteOptionFromTariff?tariffId=${tariff.getId()}&optionId=${option.getId()}" style="color:red;">x</a>--%>
                                     <br/>
                                 </c:forEach>
                             </td>
-                            <td>${contract.getIsLocked()}</td>
+                            <td>
+                                ${contract.isLocked}
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
-
-
 
 
                 <!-- кнопка -->
