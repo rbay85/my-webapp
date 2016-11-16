@@ -93,6 +93,22 @@ public class ContractController {
         return "redirect:/contract";
     }
 
+    // удаелние опции из контракта
+    @RequestMapping( value = "/deleteOptionFromContract", method = RequestMethod.GET )
+    public String deleteOptionFromContract ( @RequestParam( value = "contractId", required = false ) String contractId,
+                                             @RequestParam( value = "optionId",   required = false ) String optionId,
+                                             Model model ){
+
+        try{
+            String message = contractService.deleteOptionFromContract( contractId, optionId );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException" );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
+        }
+        return "redirect:/contract";
+    }
 
     // поиск контракта по телефону
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )

@@ -109,7 +109,7 @@
                             <td>
                                 <c:forEach var="option" items="${contract.optionList}">
                                     ${option.name}
-                                    <%--<a href="deleteOptionFromTariff?tariffId=${tariff.getId()}&optionId=${option.getId()}" style="color:red;">x</a>--%>
+                                    <a href="deleteOptionFromContract?contractId=${contract.id}&optionId=${option.id}" style="color:red;">x</a>
                                     <br/>
                                 </c:forEach>
                             </td>

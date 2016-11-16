@@ -73,9 +73,18 @@ public class ContractService {
             contractDao.update( contract );
             message = "option with requirements added in the contract";
         }
-
         return message;
     }
+
+    // удаляем опцию контракта
+    @Transactional
+    public String deleteOptionFromContract( String contractId, String optionId ){
+
+        String message = "it's ok" + contractId + optionId;
+        return message;
+    }
+
+
 
     // проверяем на несовметимость опций в контракте
     public boolean optionConflictInContract ( Option option, Contract contract ){
