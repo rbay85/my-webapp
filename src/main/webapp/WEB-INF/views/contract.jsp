@@ -69,8 +69,8 @@
 
             </form>
 
-            <!-- форма добавления опции в контракт ( тут же удаление опции ) -->
-            <form action=" " method="GET">
+            <!-- форма смены тарифа в контракте -->
+            <form action="changeTariffInContract" method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
@@ -86,8 +86,8 @@
                             <td>
                                 <input type="radio" name="contractId" value="${contract.id}">
                                 ${contract.phone}
-                                <%--<a href="deleteContract?id=${contract.getId()}" style="color:red;">X</a>--%>
                                 <br>
+                                <!-- блокировка/разблокировка -->
                                 <a href="adminLockContract?id=${contract.id}&condition=lock">lock</a>
                                 <a href="adminLockContract?id=${contract.id}&condition=unlock">unlock</a>
                             </td>
@@ -120,9 +120,17 @@
                     </c:forEach>
                 </table>
 
+                <!-- смена тарифа -->
+                Change tariff in the contract chosen above to
+                <select name="tariffId" required>
+                    <option value="0"> </option>
+                    <c:forEach var="tariff" items="${tariffList}">
+                        <option value="${tariff.id}">${tariff.name}</option>
+                    </c:forEach>
+                </select>
 
                 <!-- кнопка -->
-                <input type="submit" value="Add" />
+                <input type="submit" value="Change" />
                 <br><br>
 
             </form>
@@ -135,11 +143,11 @@
         </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

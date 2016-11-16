@@ -6,6 +6,7 @@ import main.java.dao.OptionDao;
 import main.java.dao.TariffDao;
 import main.java.entity.Contract;
 import main.java.entity.Option;
+import main.java.entity.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +48,31 @@ public class ContractService {
         contractDao.add( contract );
     }
 
+
+    // добавляем контракт
+    @Transactional
+    public String changeTariffInContract( String contractId, String tariffId ) {
+
+        String message;
+
+        Contract contract = contractDao.get( Integer.parseInt( contractId ));
+
+        if ( tariffId.equals( "0" )) {
+            message = "choose a tariff in the dropdown";
+        } else if ( contract.getTariff().getId() == Integer.parseInt( tariffId )){
+            message = "the contract already contains this tariff";
+        } else {
+            Tariff tariff = tariffDao.get( Integer.parseInt( tariffId ));
+
+            contract.getOptionList().clear(); // удаляем все опции
+            contract.setTariff( tariff ); // меняем тариф
+
+            contractDao.update( contract );
+            message = "tariff successfully changed";
+        }
+        return message;
+    }
+
     // добавляем опцию из тарифа в контракт
     @Transactional
     public String addOptionInContract( String optionId, String contractId ){
@@ -75,25 +101,6 @@ public class ContractService {
         return message;
     }
 
-    // удаляем опцию контракта
-    @Transactional
-    public String deleteOptionFromContract( String contractId, String optionId ){
-
-        String message;
-
-        Contract contract = contractDao.get( Integer.parseInt( contractId ));
-        Option option = optionDao.get( Integer.parseInt( optionId ));
-
-        if (contractContainsRequiredOption( option, contract )){
-            message = "sorry, this is required option for another option in contract";
-        } else {
-            contract.getOptionList().remove( option );
-            contractDao.update( contract );
-            message = "option successfully deleted from contract";
-        }
-        return message;
-    }
-
     // проверяем на несовметимость опций в контракте
     private boolean optionConflictInContract ( Option option, Contract contract ){
         for ( Option o : contract.getOptionList()){
@@ -108,6 +115,35 @@ public class ContractService {
     private boolean contractContainsRequiredOption ( Option option, Contract contract ){
         for ( Option o : contract.getOptionList()){
             if ( option.getNecessaryOptionList().contains( o )){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // удаляем опцию контракта
+    @Transactional
+    public String deleteOptionFromContract( String contractId, String optionId ){
+
+        String message;
+
+        Contract contract = contractDao.get( Integer.parseInt( contractId ));
+        Option option = optionDao.get( Integer.parseInt( optionId ));
+
+        if ( isRequired( option, contract )){
+            message = "sorry, this is required option for another option in contract";
+        } else {
+            contract.getOptionList().remove( option );
+            contractDao.update( contract );
+            message = "option successfully deleted from contract";
+        }
+        return message;
+    }
+
+    //проверяем не является ли опция необходимой для другой
+    private boolean isRequired ( Option option, Contract contract ){
+        for ( Option o: contract.getOptionList()){
+            if ( o.getNecessaryOptionList().contains( option )){
                 return true;
             }
         }
