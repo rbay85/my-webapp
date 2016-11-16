@@ -32,8 +32,7 @@ public class ContractService {
     @Transactional
     public List<Contract> getAllContracts() {
 
-        List<Contract> contractList = contractDao.getAll();
-        return contractList;
+        return contractDao.getAll();
     }
 
     // добавляем контракт
@@ -80,14 +79,23 @@ public class ContractService {
     @Transactional
     public String deleteOptionFromContract( String contractId, String optionId ){
 
-        String message = "it's ok" + contractId + optionId;
+        String message;
+
+        Contract contract = contractDao.get( Integer.parseInt( contractId ));
+        Option option = optionDao.get( Integer.parseInt( optionId ));
+
+        if (contractContainsRequiredOption( option, contract )){
+            message = "sorry, this is required option for another option in contract";
+        } else {
+            contract.getOptionList().remove( option );
+            contractDao.update( contract );
+            message = "option successfully deleted from contract";
+        }
         return message;
     }
 
-
-
     // проверяем на несовметимость опций в контракте
-    public boolean optionConflictInContract ( Option option, Contract contract ){
+    private boolean optionConflictInContract ( Option option, Contract contract ){
         for ( Option o : contract.getOptionList()){
             if ( option.getIncompatibleOptionList().contains( o )){
                 return true;
@@ -97,7 +105,7 @@ public class ContractService {
     }
 
     //роверяем на наличие требуемой опции в контракте
-    public boolean contractContainsRequiredOption ( Option option, Contract contract ){
+    private boolean contractContainsRequiredOption ( Option option, Contract contract ){
         for ( Option o : contract.getOptionList()){
             if ( option.getNecessaryOptionList().contains( o )){
                 return true;
@@ -118,8 +126,7 @@ public class ContractService {
     @Transactional
     public Contract getByPhone ( String phone ){
 
-        Contract contract = contractDao.getByPhone( phone );
-        return contract;
+        return contractDao.getByPhone( phone );
     }
 
     // администратор блокирует и разблокирует
@@ -164,13 +171,13 @@ public class ContractService {
             if ( contract.getIsLocked() != 2 ) {
                 contract.setIsLocked( 0 );
                 contractDao.update( contract );
-                message = " Your contract was successfully unlocked";
+                message = "Your contract was successfully unlocked";
             } else {
-                message = " Sorry, but your contract is locked by our operator";
+                message = "Sorry, but your contract is locked by our operator";
             }
 
         } else {
-            message = " Choose an action, please! ";
+            message = "Choose an action, please!";
         }
         return message;
     }
