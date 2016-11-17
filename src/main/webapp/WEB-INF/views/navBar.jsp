@@ -6,7 +6,6 @@
 <body>
 
         <br> <a href="http://localhost:8080/clientById">Find Client By ID</a>
-        <br> <a href="http://localhost:8080/addClient">Add New Client</a>
         <br>
         <br> <a href="http://localhost:8080/contractByPhone">Find Contract By Phone</a>
         <br>

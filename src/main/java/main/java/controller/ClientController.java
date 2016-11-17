@@ -81,4 +81,7 @@ public class ClientController {
 
     @RequestMapping( value = "login", method = RequestMethod.GET )
     public String login( ){ return "/login"; }
+
+    @RequestMapping( value = "403", method = RequestMethod.GET )
+    public String e403( ){ return "/403"; }
 }
