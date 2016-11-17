@@ -15,7 +15,7 @@ public class ShowAllClients extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
-        String url = "/showAllClients.jsp";
+        String url = "/client.jsp";
 
         try{
             ClientService clientService = new ClientService();

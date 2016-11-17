@@ -20,21 +20,19 @@
                     username-parameter="email"
                     password-parameter="password"
                     login-processing-url="/j_spring_security_check" />
-        <!--always-use-default-target="true"-->
-        <logout logout-success-url="/login" />
+
+        <logout logout-url="j_spring_security_logout"
+                logout-success-url="/login"
+                invalidate-session="true"/>
 
         <csrf disabled="true"/>
 
-        <!--<http-basic/>-->
-        <!--<remember-me/>-->
-        <!--<headers/>-->
-        <!--<csrf/>-->
     </http>
 
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="aaaa" authorities="ROLE_USER, ROLE_ADMIN" />
+                <user name="admin" password="aaaa" authorities="ROLE_ADMIN" />
                 <user name="user"  password="uuuu" authorities="ROLE_USER" />
             </user-service>
             <!--<jdbc-user-service data-source-ref="dataSource"

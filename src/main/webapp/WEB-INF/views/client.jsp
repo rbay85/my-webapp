@@ -6,13 +6,15 @@
     <!-- Объявляем заголовк, кодироку стили и т.д -->
     <meta contentType="text/html" charset="utf-8">
     <title>--This is a title--</title>
-    <link href="resources/style.css" rel="stylesheet">
+    <link href="../../resources/style.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
+
         <jsp:include page="header.jsp" />
+
     </header>
     <nav>
 
@@ -56,6 +58,52 @@
                 <br>
 
             </form>
+
+
+            <!-- таблица с клиентами -->
+            <table>
+                <tr>
+                    <td><b>Passport</b></td>
+                    <td><b>Client</b></td>
+                    <td><b>Username</b></td>
+                    <td><b>Address</b></td>
+                    <td><b>Date of birth</b></td>
+                    <td><b>Contract</b></td>
+                    <td><b>Tariff</b></td>
+                    <td><b>Lock</b></td>
+                </tr>
+                <c:forEach var="client" items="${clientList}">
+                    <tr>
+                        <td>${client.passNo}</td>
+                        <td>
+                            ${client.firstName}
+                            <br>
+                            ${client.lastName}
+                        </td>
+                        <td>${client.user.email}</td>
+                        <td>${client.address}</td>
+                        <td>${client.birthDay}</td>
+                        <td>
+                            <c:forEach var="contract" items="${client.contractList}">
+                                ${contract.phone}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="contract" items="${client.contractList}">
+                                ${contract.tariff.name}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="contract" items="${client.contractList}">
+                                ${contract.isLocked}
+                                <br/>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
 
 
         </section>

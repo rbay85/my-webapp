@@ -41,14 +41,11 @@ public class ClientService {
 
     // создаем нового клиента
     @Transactional
-    public void addClient ( String firstName,
+    public String addClient ( String firstName,
                             String lastName,
                             String birthDay,
-                            String passport,
-                            String address,
-                            String email,
-                            String password,
-                            String role) {
+                            String passNo,
+                            String address) {
         // создеам клиента
         Client client = new Client();
 
@@ -59,27 +56,11 @@ public class ClientService {
         String mmS = birthDay.substring( 5,7 );
         String ddS = birthDay.substring( 8,10 );
         client.setBirthDay( new Date( Integer.parseInt( yyS ),Integer.parseInt( mmS ) - 1, Integer.parseInt( ddS )));
-        client.setPassNo( passport );
+        client.setPassNo( passNo );
         client.setAddress( address );
 
         // пихеам клиента в БД
         clientDao.add( client );
-
-        // создаем юзера
-        User user = new User();
-
-        // заполняем поля юзера
-        user.setEmail( email );
-        user.setPassWord( password );
-        user.setRole( role );
-
-        // получаем по уникальному номеру паспорта клиента, только что засунутого в БД уже с присвоенным ID
-        Client client1 = clientDao.getByPassNo( passport );
-
-        // связывваем клиента с юзером внешним ключем
-        user.setClient( client1 );
-
-        // пихеам клиента в БД
-        userDao.add( user );
+        return "client successfully added";
     }
 }

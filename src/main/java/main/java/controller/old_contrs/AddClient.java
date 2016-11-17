@@ -46,10 +46,7 @@ public class AddClient extends HttpServlet {
                         lastName,
                         birthDay,
                         passport,
-                        address,
-                        email,
-                        password,
-                        role);
+                        address);
 
                 req.setAttribute( "message", "New client was successfully added" );
                 req.setAttribute( "error", "" );

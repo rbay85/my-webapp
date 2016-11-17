@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Exit</title>
+    <title>Logout</title>
 </head>
 <body>
     <h2>
-        Good bye dear user!
+        <br>
+        Good bye !
         <br>
         We would be glad to see you next time :)
     </h2>

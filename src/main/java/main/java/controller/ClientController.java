@@ -18,6 +18,50 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    // выводим всех клиентов
+    @RequestMapping( value = "client", method = RequestMethod.GET )
+    public String client( Model model ){
+
+        model.addAttribute( "clientList", clientService.getAllClients() );
+        return "client";
+    }
+
+    @RequestMapping( value = "addClient", method = RequestMethod.GET )
+    public String addClient ( @RequestParam( value = "firstName", required = false ) String firstName,
+                              @RequestParam( value = "lastName",  required = false ) String lastName,
+                              @RequestParam( value = "birthDay",  required = false ) String birthDay,
+                              @RequestParam( value = "passNo",    required = false ) String passNo,
+                              @RequestParam( value = "address",   required = false ) String address,
+                              Model model ){
+        try {
+            if ( firstName.equals( "" ) ||
+                 lastName.equals( "" ) ||
+                 birthDay.equals( "" ) ||
+                 passNo.equals( "" ) ||
+                 address.equals( "" ) ){
+
+                model.addAttribute( "error", "fill in all fields" );
+            } else {
+                model.addAttribute(
+                        "message",
+                        clientService.addClient(
+                                firstName,
+                                lastName,
+                                birthDay,
+                                passNo,
+                                address
+                        )
+                );
+            }
+        } catch (  NullPointerException e ) {
+            model.addAttribute("error", " ");
+        } catch (  ConstraintViolationException e ){
+            model.addAttribute( "error", "error: Please, input valid e-mail !" );
+        }
+        return "redirect:/client";
+    }
+
+    // поиск клиента по id
     @RequestMapping( value = "clientById", method = RequestMethod.GET )
     public String clientById( @RequestParam( value = "id", required = false ) String id, Model model ){
 
@@ -31,47 +75,7 @@ public class ClientController {
         return "clientById";
     }
 
-    @RequestMapping( value = "showAllClients", method = RequestMethod.GET )
-    public String showAllClients( Model model ){
-
-        model.addAttribute( "clientList", clientService.getAllClients() );
-        return "showAllClients";
-    }
-
-    @RequestMapping( value = "addClient", method = RequestMethod.GET )
-    public String addClient ( @RequestParam( value = "firstName", required = false ) String firstName,
-                              @RequestParam( value = "lastName",  required = false ) String lastName,
-                              @RequestParam( value = "birthDay",  required = false ) String birthDay,
-                              @RequestParam( value = "passport",  required = false ) String passport,
-                              @RequestParam( value = "address",   required = false ) String address,
-                              @RequestParam( value = "email",     required = false ) String email,
-                              @RequestParam( value = "password",  required = false ) String password,
-                              @RequestParam( value = "role",      required = false ) String role,
-                              Model model ){
-        try {
-            if ( firstName.equals( "" ) || lastName.equals( "" ) || passport.equals( "" ) || birthDay.equals( "" ) || password.equals( "" ) ){
-                model.addAttribute( "error", "error: Fill in all * fields, please !" );
-            } else {
-
-                clientService.addClient( firstName,
-                                         lastName,
-                                         birthDay,
-                                         passport,
-                                         address,
-                                         email,
-                                         password,
-                                         role);
-                model.addAttribute( "message", "New client was successfully added" );
-            }
-        } catch (  NullPointerException e ) {
-            model.addAttribute("error", " ");
-        } catch (  ConstraintViolationException e ){
-            model.addAttribute( "error", "error: Please, input valid e-mail !" );
-        }
-        return "addClient";
-    }
-
-    // что далее НЕ связано с клиентом !
+    // что далее НЕ связано с клиентом !!!
     @RequestMapping( value = "/", method = RequestMethod.GET )
     public String index( ){ return "index"; }
 
