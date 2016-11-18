@@ -25,6 +25,7 @@
         <aside>
 
             <!-- Форма добавления контракта -->
+            <br>
             <form action="addContract" method="GET">
 
                 <!-- номер телефона -->

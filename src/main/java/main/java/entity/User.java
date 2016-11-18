@@ -36,7 +36,6 @@ public class User implements Serializable{
 
     // роль
     @Column( name = "role", nullable = false )
-    @Email( message = "Input correct e-mail, please !" )
     private String role;
 
     @OneToOne

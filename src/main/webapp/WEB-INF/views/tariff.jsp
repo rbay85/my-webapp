@@ -25,6 +25,7 @@
         <aside>
 
             <!-- Форма добавления тарифа -->
+            <br>
             <form action="addTariff" method="GET">
 
                 <div class="form-element">

@@ -7,8 +7,12 @@
                 http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
     <http auto-config="true" use-expressions="false" >
-        <intercept-url pattern="/"               access="ROLE_ADMIN"/>
-        <intercept-url pattern="/personalArea"   access="ROLE_USER"/>
+        <intercept-url pattern="/"              access="ROLE_ADMIN"/>
+        <intercept-url pattern="/client*"       access="ROLE_ADMIN"/>
+        <intercept-url pattern="/contract*"     access="ROLE_ADMIN"/>
+        <intercept-url pattern="/tariff*"       access="ROLE_ADMIN"/>
+        <intercept-url pattern="/option*"       access="ROLE_ADMIN"/>
+        <intercept-url pattern="/personalArea"  access="ROLE_USER"/>
         <form-login login-page='/login'
                     default-target-url="/"
                     authentication-failure-url="/login?error=true"

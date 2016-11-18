@@ -65,9 +65,12 @@ public class ClientController {
                                     @RequestParam( value = "role",     required = false ) String role,
                                     Model model ){
         try {
+            if ( role==null ) {
+                role = "";
+            }
             model.addAttribute( "message", clientService.addUserInClient( clientId, email, role ));
         } catch (  NullPointerException e ) {
-            model.addAttribute("error", " ");
+            model.addAttribute( "error", "NullPointerException");
         } catch (  ConstraintViolationException e ){
             model.addAttribute( "error", "please, input valid e-mail" );
         }

@@ -36,7 +36,7 @@
                 <br/><br/>
                 ${contract.phone} ${error}
                 <br/><br/>
-                ${contract.tariff.name()}
+                ${contract.tariff.name}
                 <br/><br/>
                 ${contract.client.firstName}
                 <br/>
