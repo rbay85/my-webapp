@@ -12,7 +12,7 @@
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
-        <jsp:include page="header.jsp" />
+        <jsp:include page="../header.jsp" />
     </header>
     <nav>
 
@@ -61,7 +61,7 @@
         </section>
         <aside>
 
-            <jsp:include page="navBar.jsp" />
+            <jsp:include page="../navBar.jsp" />
 
         </aside>
     </section>

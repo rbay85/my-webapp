@@ -26,6 +26,7 @@ public class ClientController {
         return "client";
     }
 
+    // добавляем нового клиента
     @RequestMapping( value = "addClient", method = RequestMethod.GET )
     public String addClient ( @RequestParam( value = "firstName", required = false ) String firstName,
                               @RequestParam( value = "lastName",  required = false ) String lastName,
@@ -49,14 +50,26 @@ public class ClientController {
                                 lastName,
                                 birthDay,
                                 passNo,
-                                address
-                        )
-                );
+                                address));
             }
         } catch (  NullPointerException e ) {
             model.addAttribute("error", " ");
+        }
+        return "redirect:/client";
+    }
+
+    // добавляем юзера в клиент
+    @RequestMapping( value = "addUserInClient", method = RequestMethod.GET )
+    public String addUserInClient ( @RequestParam( value = "clientId", required = false ) String clientId,
+                                    @RequestParam( value = "email",    required = false ) String email,
+                                    @RequestParam( value = "role",     required = false ) String role,
+                                    Model model ){
+        try {
+            model.addAttribute( "message", clientService.addUserInClient( clientId, email, role ));
+        } catch (  NullPointerException e ) {
+            model.addAttribute("error", " ");
         } catch (  ConstraintViolationException e ){
-            model.addAttribute( "error", "error: Please, input valid e-mail !" );
+            model.addAttribute( "error", "please, input valid e-mail" );
         }
         return "redirect:/client";
     }
@@ -72,7 +85,7 @@ public class ClientController {
         } catch ( IllegalArgumentException e ){
             model.addAttribute( "error", "client not found" );
         }
-        return "clientById";
+        return "OLD/clientById";
     }
 
     // что далее НЕ связано с клиентом !!!
@@ -84,4 +97,7 @@ public class ClientController {
 
     @RequestMapping( value = "403", method = RequestMethod.GET )
     public String e403( ){ return "/403"; }
+
+    @RequestMapping( value = "j_spring_security_logout", method = RequestMethod.GET )
+    public String logout( ){ return "/login"; }
 }

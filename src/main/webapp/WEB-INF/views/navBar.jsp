@@ -3,19 +3,13 @@
 <head>
     <title></title>
 </head>
-<body>
+    <body>
 
-        <br> <a href="http://localhost:8080/clientById">Find Client By ID</a>
-        <br>
-        <br> <a href="http://localhost:8080/contractByPhone">Find Contract By Phone</a>
-        <br>
-        <br> <a href="http://localhost:8080/client">Clients</a>
-        <br>
-        <br> <a href="http://localhost:8080/contract">Contracts</a>
-        <br>
-        <br> <a href="http://localhost:8080/tariff">Tariffs</a>
-        <br>
-        <br> <a href="http://localhost:8080/option">Options</a>
+        <a href="http://localhost:8080/client"   class="navBar"> Clients</a>
+        <a href="http://localhost:8080/contract" class="navBar"> Contracts</a>
+        <a href="http://localhost:8080/tariff"   class="navBar"> Tariffs</a>
+        <a href="http://localhost:8080/option"   class="navBar"> Options</a>
+        <a href="j_spring_security_logout"       class="navBar"> LogOut </a>
 
-</body>
+    </body>
 </html>

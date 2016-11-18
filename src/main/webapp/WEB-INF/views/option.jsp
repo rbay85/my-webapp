@@ -18,15 +18,11 @@
     </header>
     <nav>
 
-        <a href="j_spring_security_logout" /> LogOut </a>
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${message} ${error}
-            <br>
+        <aside>
 
             <!-- Форма добавления тарифа -->
             <form action="addOption" method="GET">
@@ -53,6 +49,13 @@
 
             </form>
 
+        </aside>
+        <section id="page-content">
+
+            <!-- сообщение или ощибка -->
+            ${message} ${error}
+            <br>
+
             <!-- таблица с опциями -->
             <table>
 
@@ -66,27 +69,27 @@
                 <c:forEach var="option" items="${optionList}">
                     <tr>
                         <td>
-                            ${option.getName()}
+                            ${option.name}
                             <!-- удаление опции -->
-                            <a href="deleteOption?id=${option.getId()}" style="color:red;">X</a>
+                            <a href="deleteOption?id=${option.id}" style="color:red;">X</a>
                         </td>
-                        <td>${option.getPrice()}</td>
-                        <td>${option.getOnCost()}</td>
+                        <td>${option.price}</td>
+                        <td>${option.onCost}</td>
                         <!-- необходимые опции -->
                         <td>
-                            <c:forEach var="reqOption" items="${option.getNecessaryOptionList()}">
-                                ${reqOption.getName()}
+                            <c:forEach var="reqOption" items="${option.necessaryOptionList}">
+                                ${reqOption.name}
                                 <!-- удаление -->
-                                <a href="deleteReqOption?optionId=${option.getId()}&reqOptionId=${reqOption.getId()}" style="color:red;">x</a>
+                                <a href="deleteReqOption?optionId=${option.id}&reqOptionId=${reqOption.id}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>
                         <!-- несовместимые опции -->
                         <td>
-                            <c:forEach var="incOption" items="${option.getIncompatibleOptionList()}">
-                                ${incOption.getName()}
+                            <c:forEach var="incOption" items="${option.incompatibleOptionList}">
+                                ${incOption.name}
                                 <!-- удаление -->
-                                <a href="deleteIncOption?optionId1=${option.getId()}&optionId2=${incOption.getId()}" style="color:red;">x</a>
+                                <a href="deleteIncOption?optionId1=${option.id}&optionId2=${incOption.id}" style="color:red;">x</a>
                                 <br/>
                             </c:forEach>
                         </td>
@@ -103,7 +106,7 @@
                 <select name="optionId1" required>
                     <option value="0"> </option>
                     <c:forEach var="option" items="${optionList}">
-                        <option value="${option.getId()}">${option.getName()}</option>
+                        <option value="${option.id}">${option.name}</option>
                     </c:forEach>
                 </select>
                 <br>
@@ -112,7 +115,7 @@
                 <select name="optionId2" required>
                     <option value="0"> </option>
                     <c:forEach var="option" items="${optionList}">
-                        <option value="${option.getId()}">${option.getName()}</option>
+                        <option value="${option.id}">${option.name}</option>
                     </c:forEach>
                 </select>
 
@@ -129,20 +132,14 @@
 
             </form>
 
-
         </section>
-        <aside>
-
-            <jsp:include page="navBar.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

@@ -18,15 +18,11 @@
     </header>
     <nav>
 
-        <a href="j_spring_security_logout"/> LogOut </a>
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${message} ${error}
-            <br>
+        <aside>
 
             <!-- Форма добавления контракта -->
             <form action="addContract" method="GET">
@@ -68,6 +64,16 @@
                 <br>
 
             </form>
+
+        </aside>
+        <section id="page-content">
+
+            <!-- сообщение или ощибка -->
+            ${message} ${error}
+
+            <!-- поиск клиента по номеру -->
+            <br> <a href="http://localhost:8080/contractByPhone">Find Client By Phone</a>
+            <br>
 
             <!-- форма смены тарифа в контракте -->
             <form action="changeTariffInContract" method="GET">
@@ -136,11 +142,6 @@
             </form>
 
         </section>
-        <aside>
-
-            <jsp:include page="navBar.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
 

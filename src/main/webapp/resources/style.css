@@ -1,13 +1,17 @@
 form{
     margin: 10px;
 }
-
+.navBar{
+    text-decoration: none;
+    padding: 5px 5px;
+    margin: 5px 5px 5px 5px;
+    border: 1px solid #333;
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
+}
 a{
     text-decoration: none;
     padding: 5px 5px;
     margin: 5px 5px 5px 5px;
-    /*border: 1px solid #333;
-    background: linear-gradient(to bottom, #fcfff4, #e9e9ce);*/
 }
 table{
     border-collapse: collapse;
@@ -64,8 +68,8 @@ nav{
 }
 aside{
     float: left;
-    width: 25%;
-    margin-right: 5%;
+    width: 28%;
+    margin-right: 2%;
     min-height: 300px;
     background: #e9e9ce;
 }

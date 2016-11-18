@@ -6,15 +6,16 @@
     <!-- Объявляем заголовк, кодироку стили и т.д -->
     <meta contentType="text/html" charset="utf-8">
     <title>--This is a title--</title>
-    <link href="../resources/style.css" rel="stylesheet">
+    <link href="../../../resources/style.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrapper">
     <!-- Обертка  -->
     <header>
-        <jsp:include page="header.jsp" />
+        <jsp:include page="../header.jsp" />
     </header>
     <nav>
+
 
 
     </nav>
@@ -23,25 +24,22 @@
 
 
             <form action="" method="GET">
-                <p>Input phone number:<br/>
-                    <input type="text" name="phone"><br>
-                    <small>(xxx)xxx-xxxx for example</small>
-                </p>
-                <p><b>action:</b><br>
-                    <input type="radio" name="condition" value="lock">lock<br>
-                    <input type="radio" name="condition" value="unlock">unlock<br>
-                </p>
-                <input type="submit" value="Apply"/>
-                <br>
-                <br>
-                ${message} ${error}
+                <p>Input client ID: <input type="number" name="id"></p>
+                <input type="submit" value="Submit" />
+                <br/>
+                <br/>
+                ${client.getFirstName()} ${error}
+                <br/>
+                ${client.getLastName()}
+                <br/>
+                ${client.getBirthDay()}
             </form>
 
 
         </section>
         <aside>
 
-            <jsp:include page="navBar.jsp" />
+            <jsp:include page="../navBar.jsp" />
 
         </aside>
     </section>
@@ -54,3 +52,4 @@
 </footer>
 </body>
 </html>
+

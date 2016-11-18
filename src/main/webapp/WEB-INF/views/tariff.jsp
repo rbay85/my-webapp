@@ -18,15 +18,11 @@
     </header>
     <nav>
 
-        <a href="j_spring_security_logout" /> LogOut </a>
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${message} ${error}
-            <br>
+        <aside>
 
             <!-- Форма добавления тарифа -->
             <form action="addTariff" method="GET">
@@ -49,6 +45,13 @@
 
             </form>
 
+        </aside>
+        <section id="page-content">
+
+            <!-- сообщение или ощибка -->
+            ${message} ${error}
+            <br>
+
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
             <form action="addOptionInTariff" method="GET">
 
@@ -62,15 +65,15 @@
                     <c:forEach var="tariff" items="${tariffList}">
                         <tr>
                             <td>
-                                <input type="radio" name="tariffId" value="${tariff.getId()}">
-                                ${tariff.getName()}
-                                <a href="deleteTariff?id=${tariff.getId()}" style="color:red;">X</a>
+                                <input type="radio" name="tariffId" value="${tariff.id}">
+                                ${tariff.name}
+                                <a href="deleteTariff?id=${tariff.id}" style="color:red;">X</a>
                             </td>
-                            <td>${tariff.getPrice()}</td>
+                            <td>${tariff.price}</td>
                             <td>
-                                <c:forEach var="option" items="${tariff.getOptionList()}">
-                                    ${option.getName()}
-                                    <a href="deleteOptionFromTariff?tariffId=${tariff.getId()}&optionId=${option.getId()}" style="color:red;">x</a>
+                                <c:forEach var="option" items="${tariff.optionList}">
+                                    ${option.name}
+                                    <a href="deleteOptionFromTariff?tariffId=${tariff.id}&optionId=${option.id}" style="color:red;">x</a>
                                     <br/>
                                 </c:forEach>
                             </td>
@@ -83,7 +86,7 @@
                 <select name="optionId" required>
                     <option value="0"> </option>
                     <c:forEach var="option" items="${optionList}">
-                        <option value="${option.getId()}">${option.getName()}</option>
+                        <option value="${option.id}">${option.name}</option>
                     </c:forEach>
                 </select>
                 in the tariff chosen above
@@ -95,18 +98,13 @@
             </form>
 
         </section>
-        <aside>
-
-            <jsp:include page="navBar.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

@@ -2,6 +2,7 @@ package main.java.controller;
 
 import main.java.service.OptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,10 +55,8 @@ public class OptionController {
 
         try{
             model.addAttribute( "message", optionService.delete( id ) );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
-        } catch ( NumberFormatException e ) {
-            model.addAttribute( "error", " NumberFormatException " );
+        } catch ( DataIntegrityViolationException e ) {
+            model.addAttribute( "error", "option can not be deleted because it is used in contracts and tariffs" );
         }
         return "redirect:/option";
     }

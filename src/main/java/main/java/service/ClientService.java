@@ -22,7 +22,6 @@ public class ClientService {
     @Autowired
     private UserDao userDao;
 
-
     // возвращаем клиента по id
     @Transactional
     public Client getById ( int id ){
@@ -42,10 +41,10 @@ public class ClientService {
     // создаем нового клиента
     @Transactional
     public String addClient ( String firstName,
-                            String lastName,
-                            String birthDay,
-                            String passNo,
-                            String address) {
+                              String lastName,
+                              String birthDay,
+                              String passNo,
+                              String address) {
         // создеам клиента
         Client client = new Client();
 
@@ -62,5 +61,36 @@ public class ClientService {
         // пихеам клиента в БД
         clientDao.add( client );
         return "client successfully added";
+    }
+
+    // добавляем юзера в клиент
+    @Transactional
+    public String addUserInClient ( String clientId,
+                                    String email,
+                                    String role) {
+
+        String message;
+
+        Client client = clientDao.get( Integer.parseInt( clientId ));
+        User user = new User();
+
+        if ( role.equals( "admin" )){
+            user.setEmail( email );
+            user.setPassWord( "aaaa" );
+            user.setRole( "ROLE_ADMIN" );
+            user.setClient( client );
+
+            userDao.add( user );
+            message = "user successfully added, client marked as admin";
+        } else {
+            user.setEmail( email );
+            user.setPassWord( "uuuu" );
+            user.setRole( "ROLE_USER" );
+            user.setClient( client );
+
+            userDao.add( user );
+            message = "user successfully added, client marked as plain user";
+        }
+        return message;
     }
 }

@@ -18,14 +18,11 @@
     </header>
     <nav>
 
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${message} ${error}
-            <br>
+        <aside>
 
             <!-- Форма добавления клиента -->
             <form action="/addClient" method="GET">
@@ -59,66 +56,89 @@
 
             </form>
 
+        </aside>
+        <section id="page-content">
 
-            <!-- таблица с клиентами -->
-            <table>
-                <tr>
-                    <td><b>Passport</b></td>
-                    <td><b>Client</b></td>
-                    <td><b>Username</b></td>
-                    <td><b>Address</b></td>
-                    <td><b>Date of birth</b></td>
-                    <td><b>Contract</b></td>
-                    <td><b>Tariff</b></td>
-                    <td><b>Lock</b></td>
-                </tr>
-                <c:forEach var="client" items="${clientList}">
+            <!-- сообщение или ощибка -->
+            ${message} ${error}
+            <br>
+
+            <!-- форма добавления юзера в клинета -->
+            <form action="addUserInClient" method="GET">
+
+                <!-- таблица с клиентами -->
+                <table>
                     <tr>
-                        <td>${client.passNo}</td>
-                        <td>
-                            ${client.firstName}
-                            <br>
-                            ${client.lastName}
-                        </td>
-                        <td>${client.user.email}</td>
-                        <td>${client.address}</td>
-                        <td>${client.birthDay}</td>
-                        <td>
-                            <c:forEach var="contract" items="${client.contractList}">
-                                ${contract.phone}
-                                <br/>
-                            </c:forEach>
-                        </td>
-                        <td>
-                            <c:forEach var="contract" items="${client.contractList}">
-                                ${contract.tariff.name}
-                                <br/>
-                            </c:forEach>
-                        </td>
-                        <td>
-                            <c:forEach var="contract" items="${client.contractList}">
-                                ${contract.isLocked}
-                                <br/>
-                            </c:forEach>
-                        </td>
+                        <td><b>Passport</b></td>
+                        <td><b>Client</b></td>
+                        <td><b>Username</b></td>
+                        <td><b>Address</b></td>
+                        <td><b>Date of birth</b></td>
+                        <td><b>Contract</b></td>
+                        <td><b>Tariff</b></td>
+                        <td><b>Lock</b></td>
                     </tr>
-                </c:forEach>
-            </table>
+                    <c:forEach var="client" items="${clientList}">
+                        <tr>
+                            <td>
+                                <input type="radio" name="clientId" value="${client.id}">
+                                ${client.passNo}
+                            </td>
+                            <td>
+                                    ${client.firstName}
+                                <br>
+                                    ${client.lastName}
+                            </td>
+                            <td>${client.user.email}</td>
+                            <td>${client.address}</td>
+                            <td>${client.birthDay}</td>
+                            <td>
+                                <c:forEach var="contract" items="${client.contractList}">
+                                    ${contract.phone}
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach var="contract" items="${client.contractList}">
+                                    ${contract.tariff.name}
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                <c:forEach var="contract" items="${client.contractList}">
+                                    ${contract.isLocked}
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <br>
 
+                <div class="form-element">
+                    <label for="email">Username:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" name="role" value="admin">mark as admin<br>
+                </div>
+
+                <!-- кнопка -->
+                <div class="form-element">
+                    <input type="submit" value="Add user for client" />
+                </div>
+                <br>
+
+            </form>
 
         </section>
-        <aside>
-
-            <jsp:include page="navBar.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

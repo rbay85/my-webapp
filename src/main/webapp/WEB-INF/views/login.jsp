@@ -49,16 +49,16 @@
         </section>
         <aside>
 
-            <%--<jsp:include page="navBar.jsp" />--%>
+
 
         </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

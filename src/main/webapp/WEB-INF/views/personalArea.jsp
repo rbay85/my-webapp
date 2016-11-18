@@ -18,20 +18,25 @@
     </header>
     <nav>
 
-        <p><h2>Dear ${client.getFirstName()} ${client.getLastName()}, welcome!!</h2></p>
-        <br/>
-        <a href="j_spring_security_logout" /> LogOut </a>
+        <a href="j_spring_security_logout" class="navBar" > LogOut </a>
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
+        <aside>
 
+            <h2>
+                &nbsp;&nbsp;
+                Dear ${client.firstName} ${client.lastName}, welcome :)
+            </h2>
+
+        </aside>
+        <section id="page-content">
 
             <form action="" method="GET">
                 <p>
                     Your contract(s):<br/>
-                    <c:forEach var="contract" items="${client.getContractList()}">
-                        <input type="radio" name="contractId" value="${contract.getId()}">${contract.getPhone()}
+                    <c:forEach var="contract" items="${client.contractList}">
+                        <input type="radio" name="contractId" value="${contract.id}">${contract.phone}
                         <br/>
                     </c:forEach>
                 </p>
@@ -47,20 +52,14 @@
                 <br>
             </form>
 
-
         </section>
-        <aside>
-
-            <jsp:include page="navBar1.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>

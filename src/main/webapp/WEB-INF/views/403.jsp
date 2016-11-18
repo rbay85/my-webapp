@@ -22,12 +22,12 @@
     <section id="content" class="clearfix">
         <section id="page-content">
 
-            <h2>
-                HTTP Status 403:
+            <h3>
+                &nbsp; HTTP Status 403:
                 <br>
                 <br>
-                Sorry, access forbidden!
-            </h2>
+                &nbsp; Sorry, access forbidden!
+            </h3>
 
         </section>
         <aside>

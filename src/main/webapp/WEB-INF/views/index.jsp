@@ -18,27 +18,31 @@
             </header>
             <nav>
 
-                <a href="j_spring_security_logout" /> LogOut </a>
+                <jsp:include page="navBar.jsp" />
 
             </nav>
             <section id="content" class="clearfix">
                 <section id="page-content">
 
-
+                    <h3>
+                        &nbsp;&nbsp;
+                        Dear Admin, welcome :)
+                        <br>
+                    </h3>
 
                 </section>
                 <aside>
 
-                    <jsp:include page="navBar.jsp" />
+
 
                 </aside>
             </section>
             <div id="empty-div">
-                --this is an "empty" div--
+
             </div>
         </div>
         <footer>
-            --this is a footer--
+
         </footer>
     </body>
 </html>

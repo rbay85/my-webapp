@@ -16,11 +16,16 @@
     </header>
     <nav>
 
+        <jsp:include page="navBar.jsp" />
 
     </nav>
     <section id="content" class="clearfix">
-        <section id="page-content">
+        <aside>
 
+
+
+        </aside>
+        <section id="page-content">
 
             <form action="" method="GET">
                 <p>Input phone number:<br/>
@@ -29,39 +34,33 @@
                 </p>
                 <input type="submit" value="Submit" />
                 <br/><br/>
-                ${contract.getPhone()} ${error}
+                ${contract.phone} ${error}
                 <br/><br/>
-                ${contract.getTariff().getName()}
+                ${contract.tariff.name()}
                 <br/><br/>
-                ${contract.getClient().getFirstName()}
+                ${contract.client.firstName}
                 <br/>
-                ${contract.getClient().getLastName()}
+                ${contract.client.lastName}
                 <br/>
-                ${contract.getClient().getBirthDay()}
+                ${contract.client.birthDay}
                 <br/><br/>
-                <c:forEach var="option" items="${contract.getOptionList()}">
-                    ${option.getName()}
+                <c:forEach var="option" items="${contract.optionList}">
+                    ${option.name}
                     <br/>
                 </c:forEach>
                 <br/>
-                ${contract.getIsLocked()}
+                ${contract.isLocked}
                 <br/><br/><br/>
             </form>
 
-
         </section>
-        <aside>
-
-            <jsp:include page="navBar.jsp" />
-
-        </aside>
     </section>
     <div id="empty-div">
-        --this is an "empty" div--
+
     </div>
 </div>
 <footer>
-    --this is a footer--
+
 </footer>
 </body>
 </html>
