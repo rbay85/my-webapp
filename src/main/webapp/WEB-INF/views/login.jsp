@@ -27,7 +27,6 @@
                 ${error}
             </c:if>
 
-
             <form name='form_login' action="j_spring_security_check" method='POST'>
 
                     <div class="form-element">

@@ -44,6 +44,12 @@ public class UserDao{
         Query query = em.createQuery( "SELECT u FROM User u" );
         return query.getResultList();
     }
+
+    // ищем контракт по email
+    public User getByEmail(String email ) {
+        Query query = em.createQuery( "SELECT u FROM User u WHERE u.email = :email" ).setParameter( "email", email );
+        return (User) query.getSingleResult() ;
+    }
 }
 
 

@@ -49,6 +49,7 @@ public class User implements Serializable{
     public void setClient    ( Client client )     { this.client = client; }
 
     // геттеры
+    public int getId()           { return id; }
     public String getEmail()     { return email; }
     public String getPassWord()  { return passWord; }
     public String getRole()      { return role; }

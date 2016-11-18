@@ -4,6 +4,9 @@ import main.java.service.ClientService;
 import main.java.service.ContractService;
 import main.java.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -155,24 +158,30 @@ public class ContractController {
         return "redirect:/contract";
     }
 
+    // ТО ЧТО ДАЛЕЕ ДЕЛАЕТ КЛИЕНТ В ЛИЧНОМ КАБИНЕТЕ
+
     // блокировка/разблокировка клиентом
     @RequestMapping( value = "/personalArea", method = RequestMethod.GET )
     public String personalArea ( @RequestParam( value = "contractId", required = false ) String contractId,
-                                 @RequestParam( value = "condition", required = false ) String condition,
+                                 @RequestParam( value = "condition",  required = false ) String condition,
                                  Model model ){
 
-        int clientId = 6;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = currentUser.getUsername();
+
+        int clientId = clientService.getClientIdByUserEmail( email );
+
         try {
-            model.addAttribute(clientService.getById(clientId));
-            int id = new Integer(contractId);
-            String message = contractService.clientLock(id, condition);
-            model.addAttribute("message", message);
+            model.addAttribute( clientService.getById( clientId ));
+            int id = new Integer( contractId );
+            String message = contractService.clientLock( id, condition );
+            model.addAttribute( "message", message );
         } catch ( NumberFormatException e ){
-            model.addAttribute( "error", " " );
+            model.addAttribute( "error", "NumberFormatException" );
         } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " choose an action, please! " );
+            model.addAttribute( "error", "choose an action, please!" );
         } catch ( NoResultException e ) {
-            model.addAttribute( "error", " NoResultException " );
+            model.addAttribute( "error", "NoResultException" );
         }
         return "personalArea";
     }

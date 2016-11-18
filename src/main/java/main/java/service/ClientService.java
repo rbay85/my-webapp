@@ -54,7 +54,9 @@ public class ClientService {
         String yyS = birthDay.substring( 2,4 );
         String mmS = birthDay.substring( 5,7 );
         String ddS = birthDay.substring( 8,10 );
-        client.setBirthDay( new Date( Integer.parseInt( yyS ),Integer.parseInt( mmS ) - 1, Integer.parseInt( ddS )));
+        client.setBirthDay( new Date( Integer.parseInt( yyS ),
+                                      Integer.parseInt( mmS ) - 1,
+                                      Integer.parseInt( ddS )));
         client.setPassNo( passNo );
         client.setAddress( address );
 
@@ -92,5 +94,12 @@ public class ClientService {
             message = "user successfully added, client marked as plain user";
         }
         return message;
+    }
+
+    // ищем id клиета по email юзера
+    @Transactional
+    public int getClientIdByUserEmail ( String email ){
+
+        return userDao.getByEmail( email ).getClient().getId();
     }
 }
