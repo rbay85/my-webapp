@@ -32,6 +32,7 @@
         </aside>
         <section id="page-content">
 
+            <!--
             <form action="" method="GET">
                 <p>
                     Your contract(s):<br/>
@@ -50,6 +51,67 @@
                 <br>
                 ${message}${error}
                 <br>
+            </form>
+            -->
+
+            <!-- форма смены тарифа в контракте -->
+            <form action="changeTariffInContract" method="GET">
+
+                <!-- таблица с тарифами -->
+                <table>
+                    <tr>
+                        <td><b>Contract</b></td>
+                        <td><b>Tariff</b></td>
+                        <td><b>Options</b></td>
+                        <td><b>Lock</b></td>
+                    </tr>
+                    <c:forEach var="contract" items="${client.contractList}">
+                        <tr>
+                            <td>
+                                <input type="radio" name="contractId" value="${contract.id}">
+                                    ${contract.phone}
+                                <br>
+                                <!-- блокировка/разблокировка -->
+                                <a href="userLockContract?id=${contract.id}&condition=lock">lock</a>
+                                <a href="userLockContract?id=${contract.id}&condition=unlock">unlock</a>
+                            </td>
+                            <td>
+                                    ${contract.tariff.name}
+                                <br/>
+                                <!-- ссылка добавления опции -->
+                                <c:forEach var="option" items="${contract.tariff.optionList}">
+                                    <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}"><small>${option.name}</small></a>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <!-- удаление опции -->
+                            <td>
+                                <c:forEach var="option" items="${contract.optionList}">
+                                    ${option.name}
+                                    <a href="deleteOptionFromContract?contractId=${contract.id}&optionId=${option.id}" style="color:red;">x</a>
+                                    <br/>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                    ${contract.isLocked}
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+
+                <!-- смена тарифа -->
+                Change tariff in the contract chosen above to
+                <select name="tariffId" required>
+                    <option value="0"> </option>
+                    <c:forEach var="tariff" items="${tariffList}">
+                        <option value="${tariff.id}">${tariff.name}</option>
+                    </c:forEach>
+                </select>
+
+                <!-- кнопка -->
+                <input type="submit" value="Change" />
+                <br><br>
+
             </form>
 
         </section>

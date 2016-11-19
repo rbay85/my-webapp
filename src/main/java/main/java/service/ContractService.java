@@ -175,32 +175,32 @@ public class ContractService {
         if ( condition.equals( "lock" )){
             contract.setIsLocked( 2 );
             contractDao.update( contract );
-            message = " Contract was successfully locked";
+            message = "Contract was successfully locked";
         } else if ( condition.equals( "unlock" ) ) {
             contract.setIsLocked( 0 );
             contractDao.update( contract );
-            message = " Contract was successfully unlocked";
+            message = "Contract was successfully unlocked";
         } else {
-            message = " Choose an action, please! ";
+            message = "Choose an action, please! ";
         }
         return message;
     }
 
-    // клиент блокирует и разблокирует
+    // юзер блокирует и разблокирует
     @Transactional
-    public String clientLock ( int id, String condition ) {
+    public String userLock ( String contractId, String condition ) {
 
         String message;
 
-        Contract contract = contractDao.get( id );
+        Contract contract = contractDao.get( Integer.parseInt( contractId ));
 
         if ( condition.equals( "lock" )){
             if ( contract.getIsLocked() != 2 ) {
                 contract.setIsLocked( 1 );
                 contractDao.update( contract );
-                message = " Your contract was successfully locked";
+                message = "Your contract was successfully locked";
             } else {
-                message = " Your contract is already locked by our operator";
+                message = "Your contract is already locked by our operator";
             }
 
         } else if ( condition.equals( "unlock" ) ) {

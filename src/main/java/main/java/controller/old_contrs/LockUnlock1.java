@@ -32,11 +32,11 @@ public class LockUnlock1 extends HttpServlet{
             req.setAttribute( "client", client );
             req.getRequestDispatcher( url ).forward( req, resp );
 
-            int contractId = Integer.parseInt( req.getParameter( "contractId" ) );
+            String contractId = req.getParameter( "contractId" );
             String condition = req.getParameter( "condition" );
 
             ContractService contractService = new ContractService();
-            String message = contractService.clientLock( contractId, condition );
+            String message = contractService.userLock( contractId, condition );
 
             req.setAttribute( "message", message );
             req.getRequestDispatcher( url ).forward( req, resp );

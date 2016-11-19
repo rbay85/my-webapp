@@ -108,7 +108,7 @@
                                 <br/>
                                 <!-- ссылка добавления опции -->
                                     <c:forEach var="option" items="${contract.tariff.optionList}">
-                                        <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}""><small>${option.name}</small></a>
+                                        <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}"><small>${option.name}</small></a>
                                         <br/>
                                     </c:forEach>
                             </td>

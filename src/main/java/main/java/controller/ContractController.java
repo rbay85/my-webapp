@@ -158,24 +158,22 @@ public class ContractController {
         return "redirect:/contract";
     }
 
-    // ТО ЧТО ДАЛЕЕ ДЕЛАЕТ КЛИЕНТ В ЛИЧНОМ КАБИНЕТЕ
+//--------------------- ТО ЧТО ДАЛЕЕ ДЕЛАЕТ КЛИЕНТ В ЛИЧНОМ КАБИНЕТЕ -------------------------------------------------------------------------------------------
 
     // блокировка/разблокировка клиентом
     @RequestMapping( value = "/personalArea", method = RequestMethod.GET )
-    public String personalArea ( @RequestParam( value = "contractId", required = false ) String contractId,
-                                 @RequestParam( value = "condition",  required = false ) String condition,
-                                 Model model ){
+    public String personalArea ( Model model ){
 
+        // вынимаем из Spring Security залогиненного юзера и его email
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = currentUser.getUsername();
-
+        // получаем по email юзера id соответствующего клиента
         int clientId = clientService.getClientIdByUserEmail( email );
 
         try {
-            model.addAttribute( clientService.getById( clientId ));
-            int id = new Integer( contractId );
-            String message = contractService.clientLock( id, condition );
-            model.addAttribute( "message", message );
+            // выводим на страницу клиента и список тарифов
+            model.addAttribute( "client", clientService.getById( clientId ));
+            model.addAttribute( "tariffList", tariffService.getAllTariffs());
         } catch ( NumberFormatException e ){
             model.addAttribute( "error", "NumberFormatException" );
         } catch ( NullPointerException e ) {
@@ -185,4 +183,28 @@ public class ContractController {
         }
         return "personalArea";
     }
+
+    // блокировка/разблокировка юзером
+    @RequestMapping( value = "/userLockContract", method = RequestMethod.GET )
+    public String userLockContract ( @RequestParam( value = "id",        required = false ) String id,
+                                     @RequestParam( value = "condition", required = false ) String condition,
+                                     Model model ){
+
+        try{
+
+            model.addAttribute( "message", contractService.userLock( id, condition ));
+
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException" );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
+        }
+        return "redirect:/personalArea";
+    }
+
+
+
+
+
+
 }
