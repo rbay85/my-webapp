@@ -4,7 +4,6 @@ import main.java.service.ClientService;
 import main.java.service.ContractService;
 import main.java.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -202,9 +201,54 @@ public class ContractController {
         return "redirect:/personalArea";
     }
 
+    // смена тариффа в контракте юзером
+    @RequestMapping( value = "/userChangesTariffInContract", method = RequestMethod.GET )
+    public String userChangesTariffInContract( @RequestParam( value = "contractId",  required = false ) String contractId,
+                                               @RequestParam( value = "tariffId",    required = false ) String tariffId,
+                                               Model model ){
 
+        try{
+            String message = contractService.changeTariffInContract( contractId, tariffId );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "Choose a contract, please" );
+        }
+        return "redirect:/personalArea";
+    }
 
+    // добавление опции в контракт юзером
+    @RequestMapping( value = "/userAddsOptionInContract", method = RequestMethod.GET )
+    public String userAddsOptionInContract ( @RequestParam( value = "optionId",   required = false ) String optionId,
+                                             @RequestParam( value = "contractId", required = false ) String contractId,
+                                             Model model ){
 
+        try{
+            String message = contractService.addOptionInContract( optionId, contractId );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
+        }
+        return "redirect:/personalArea";
+    }
 
+    // удаелние опции из контракта юзером
+    @RequestMapping( value = "/userDeleteOptionFromContract", method = RequestMethod.GET )
+    public String userDeleteOptionFromContract ( @RequestParam( value = "contractId", required = false ) String contractId,
+                                                 @RequestParam( value = "optionId",   required = false ) String optionId,
+                                                 Model model ){
 
+        try{
+            String message = contractService.deleteOptionFromContract( contractId, optionId );
+            model.addAttribute( "message", message );
+        } catch ( NullPointerException e ) {
+            model.addAttribute( "error", "NullPointerException " );
+        } catch ( NumberFormatException e ) {
+            model.addAttribute( "error", "NumberFormatException" );
+        }
+        return "redirect:/personalArea";
+    }
 }

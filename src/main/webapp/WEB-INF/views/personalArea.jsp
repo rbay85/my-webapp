@@ -55,7 +55,7 @@
             -->
 
             <!-- форма смены тарифа в контракте -->
-            <form action="changeTariffInContract" method="GET">
+            <form action="userChangesTariffInContract" method="GET">
 
                 <!-- таблица с тарифами -->
                 <table>
@@ -80,7 +80,7 @@
                                 <br/>
                                 <!-- ссылка добавления опции -->
                                 <c:forEach var="option" items="${contract.tariff.optionList}">
-                                    <a href="addOptionInContract?optionId=${option.id}&contractId=${contract.id}"><small>${option.name}</small></a>
+                                    <a href="userAddsOptionInContract?optionId=${option.id}&contractId=${contract.id}"><small>${option.name}</small></a>
                                     <br/>
                                 </c:forEach>
                             </td>
@@ -88,7 +88,7 @@
                             <td>
                                 <c:forEach var="option" items="${contract.optionList}">
                                     ${option.name}
-                                    <a href="deleteOptionFromContract?contractId=${contract.id}&optionId=${option.id}" style="color:red;">x</a>
+                                    <a href="userDeleteOptionFromContract?contractId=${contract.id}&optionId=${option.id}" style="color:red;">x</a>
                                     <br/>
                                 </c:forEach>
                             </td>
