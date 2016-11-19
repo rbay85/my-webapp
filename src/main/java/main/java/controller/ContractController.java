@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.entity.Contract;
 import main.java.service.ClientService;
 import main.java.service.ContractService;
 import main.java.service.TariffService;
@@ -159,13 +160,14 @@ public class ContractController {
 
 //--------------------- ТО ЧТО ДАЛЕЕ ДЕЛАЕТ КЛИЕНТ В ЛИЧНОМ КАБИНЕТЕ -------------------------------------------------------------------------------------------
 
-    // блокировка/разблокировка клиентом
+    // выводим список контрактов вошедшего юзера
     @RequestMapping( value = "/personalArea", method = RequestMethod.GET )
     public String personalArea ( Model model ){
 
         // вынимаем из Spring Security залогиненного юзера и его email
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = currentUser.getUsername();
+
         // получаем по email юзера id соответствующего клиента
         int clientId = clientService.getClientIdByUserEmail( email );
 
@@ -173,6 +175,7 @@ public class ContractController {
             // выводим на страницу клиента и список тарифов
             model.addAttribute( "client", clientService.getById( clientId ));
             model.addAttribute( "tariffList", tariffService.getAllTariffs());
+
         } catch ( NumberFormatException e ){
             model.addAttribute( "error", "NumberFormatException" );
         } catch ( NullPointerException e ) {
@@ -208,8 +211,15 @@ public class ContractController {
                                                Model model ){
 
         try{
-            String message = contractService.changeTariffInContract( contractId, tariffId );
-            model.addAttribute( "message", message );
+            Contract contract = contractService.getById( contractId );
+
+            if ( contract.getIsLocked() == 0 ){
+                String message = contractService.changeTariffInContract( contractId, tariffId );
+                model.addAttribute( "message", message );
+            } else {
+                model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
+            }
+
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {
@@ -225,8 +235,15 @@ public class ContractController {
                                              Model model ){
 
         try{
-            String message = contractService.addOptionInContract( optionId, contractId );
-            model.addAttribute( "message", message );
+            Contract contract = contractService.getById( contractId );
+
+            if ( contract.getIsLocked() == 0 ){
+                String message = contractService.addOptionInContract( optionId, contractId );
+                model.addAttribute( "message", message );
+            } else {
+                model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
+            }
+
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {
@@ -242,8 +259,15 @@ public class ContractController {
                                                  Model model ){
 
         try{
-            String message = contractService.deleteOptionFromContract( contractId, optionId );
-            model.addAttribute( "message", message );
+            Contract contract = contractService.getById( contractId );
+
+            if ( contract.getIsLocked() == 0 ){
+                String message = contractService.deleteOptionFromContract( contractId, optionId );
+                model.addAttribute( "message", message );
+            } else {
+                model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
+            }
+
         } catch ( NullPointerException e ) {
             model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {

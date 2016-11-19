@@ -28,6 +28,7 @@
                 <br>
                 &nbsp; Sorry, access forbidden!
             </h3>
+            &nbsp; Wanna visit your<a href="personalArea">personal Area?</a>
 
         </section>
         <aside>

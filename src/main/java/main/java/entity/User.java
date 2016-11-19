@@ -51,8 +51,8 @@ public class User implements Serializable{
     // геттеры
     public int getId()           { return id; }
     public String getEmail()     { return email; }
-    public String getPassWord()  { return passWord; }
-    public String getRole()      { return role; }
+//  public String getPassWord()  { return passWord; }
+//  public String getRole()      { return role; }
     public Client getClient()    { return client; }
 
     @Override

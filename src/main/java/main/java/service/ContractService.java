@@ -165,6 +165,13 @@ public class ContractService {
         return contractDao.getByPhone( phone );
     }
 
+    // возврещаем контракт по id
+    @Transactional
+    public Contract getById ( String contractId ){
+
+        return contractDao.get( Integer.parseInt( contractId ));
+    }
+
     // администратор блокирует и разблокирует
     @Transactional
     public String adminLock (String id, String condition) {

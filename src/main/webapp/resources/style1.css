@@ -15,17 +15,17 @@ a{
 }
 table{
     border-collapse: collapse;
-    border: 1px solid grey;
+    border: 1px solid #e20074;
     padding: 0px 0px;
     margin: 10px;
 }
 tr{
-    border: 1px solid grey;
+    border: 1px solid #e20074;
     padding: 0px 15px;
     margin: 0;
 }
 td{
-    border: 1px solid grey;
+    border: 1px solid #e20074;
     padding: 0px 15px;
     margin: 0;
 }

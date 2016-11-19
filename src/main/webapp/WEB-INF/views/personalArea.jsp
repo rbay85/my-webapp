@@ -32,27 +32,9 @@
         </aside>
         <section id="page-content">
 
-            <!--
-            <form action="" method="GET">
-                <p>
-                    Your contract(s):<br/>
-                    <c:forEach var="contract" items="${client.contractList}">
-                        <input type="radio" name="contractId" value="${contract.id}">${contract.phone}
-                        <br/>
-                    </c:forEach>
-                </p>
-
-                <p>Choose an action:<br>
-                    <input type="radio" name="condition" value="lock">lock<br>
-                    <input type="radio" name="condition" value="unlock">unlock<br>
-                </p>
-                <input type="submit" value="Apply"/>
-                <br>
-                <br>
-                ${message}${error}
-                <br>
-            </form>
-            -->
+            <!-- сообщение или ощибка -->
+            ${message} ${error}
+            <br>
 
             <!-- форма смены тарифа в контракте -->
             <form action="userChangesTariffInContract" method="GET">
