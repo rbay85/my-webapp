@@ -34,7 +34,7 @@ public class TariffDao {
         return em.find( Tariff.class, id );
     }
 
-    // выводим всех //
+    // выводим всех
     @SuppressWarnings( "unchecked" )
     public List<Tariff> getAll(){
         Query query = em.createQuery( "SELECT t FROM Tariff t" );
