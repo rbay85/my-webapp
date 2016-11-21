@@ -1,6 +1,7 @@
 
 package main.java.entity;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -41,6 +42,7 @@ public class Tariff implements Serializable{
     // подключенные контракты
     @OneToMany( mappedBy = "tariff", cascade = CascadeType.ALL )
     @LazyCollection( LazyCollectionOption.FALSE )
+    @JsonIgnore
     private List<Contract> contractList;
 
     // список доступных опций

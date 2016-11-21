@@ -70,15 +70,14 @@
         <section id="page-content">
 
             <!-- сообщение или ощибка -->
-            ${message} ${error}
 
+            ${param.message} ${param.error}
             <!-- поиск клиента по номеру -->
             <br> <a href="http://localhost:8080/contractByPhone">Find Client By Phone</a>
             <br>
 
             <!-- форма смены тарифа в контракте -->
             <form action="changeTariffInContract" method="GET">
-
                 <!-- таблица с тарифами -->
                 <table>
                     <tr>
