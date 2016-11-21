@@ -54,7 +54,7 @@
         <section id="page-content">
 
             <!-- сообщение или ощибка -->
-            ${message} ${error}
+            ${param.message} ${param.error}
             <br>
 
             <!-- таблица с опциями -->

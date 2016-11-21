@@ -70,8 +70,8 @@
         <section id="page-content">
 
             <!-- сообщение или ощибка -->
-
             ${param.message} ${param.error}
+
             <!-- поиск клиента по номеру -->
             <br> <a href="http://localhost:8080/contractByPhone">Find Client By Phone</a>
             <br>

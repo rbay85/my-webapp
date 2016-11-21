@@ -41,11 +41,11 @@ public class ClientController {
                               @RequestParam( value = "address",   required = false ) String address,
                               Model model ){
 
-            if ("".equals(firstName) ||
-                 lastName.equals( "" ) ||
-                 birthDay.equals( "" ) ||
-                 passNo.equals( "" ) ||
-                 address.equals( "" ) ){
+            if ( "".equals( firstName ) ||
+                 "".equals( lastName ) ||
+                 "".equals( birthDay ) ||
+                 "".equals( passNo ) ||
+                 "".equals( address ) ){
 
                 model.addAttribute( "error", "fill in all fields" );
             } else {
@@ -69,12 +69,10 @@ public class ClientController {
                                     @RequestParam( value = "role",     required = false ) String role,
                                     Model model ){
         try {
-            if ( role==null ) {
+            if ( role == null ) {
                 role = "";
             }
             model.addAttribute( "message", clientService.addUserInClient( clientId, email, role ));
-        } catch (  NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException");
         } catch (  ConstraintViolationException e ){
             model.addAttribute( "error", "please, input valid e-mail" );
         }
@@ -95,7 +93,8 @@ public class ClientController {
         return "OLD/clientById";
     }
 
-    // что далее НЕ связано с клиентом !!!
+//------- что далее НЕ связано с клиентом !!! ---------------------------------------------------------------------------------
+
     @RequestMapping( value = "/", method = RequestMethod.GET )
     public String index( ){ return "index"; }
 
@@ -106,10 +105,10 @@ public class ClientController {
     public String e403( ){ return "/403"; }
 
     @RequestMapping( value = "j_spring_security_logout", method = RequestMethod.GET )
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public String logout( HttpServletRequest request, HttpServletResponse response ){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
+            new SecurityContextLogoutHandler().logout( request, response, auth );
         }
         return "/login";
     }

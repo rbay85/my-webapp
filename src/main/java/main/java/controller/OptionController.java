@@ -69,8 +69,6 @@ public class OptionController {
 
         try{
             model.addAttribute( "message", optionService.deleteReqOption( optionId, reqOptionId ) );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
         }
@@ -85,8 +83,6 @@ public class OptionController {
 
         try{
             model.addAttribute( "message", optionService.deleteIncOption( optionId1, optionId2 ) );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
         }
@@ -101,11 +97,13 @@ public class OptionController {
                                           Model model ){
 
         try{
-            model.addAttribute( "message", optionService.setOptionRelations( optionId1, optionId2, action ));
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " Choose an action, please! " );
+            if ( action == null ){
+                model.addAttribute( "error", "error: Choose an action, please! " );
+            } else {
+                model.addAttribute( "message", optionService.setOptionRelations( optionId1, optionId2, action ));
+            }
         } catch ( NumberFormatException e ) {
-            model.addAttribute( "error", " ");
+            model.addAttribute( "error", "NumberFormatException ");
         }
         return "redirect:/option";
     }

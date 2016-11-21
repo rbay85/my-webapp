@@ -71,8 +71,6 @@ public class ContractController {
         try{
             String message = contractService.delete( id );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException" );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }
@@ -88,8 +86,6 @@ public class ContractController {
         try{
             String message = contractService.changeTariffInContract( contractId, tariffId );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException" );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "Choose a contract, please" );
         }
@@ -105,8 +101,6 @@ public class ContractController {
         try{
             String message = contractService.addOptionInContract( optionId, contractId );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException" );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }
@@ -122,8 +116,6 @@ public class ContractController {
         try{
             String message = contractService.deleteOptionFromContract( contractId, optionId );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException" );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }
@@ -132,7 +124,8 @@ public class ContractController {
 
     // поиск контракта по телефону
     @RequestMapping( value = "/contractByPhone", method = RequestMethod.GET )
-    public String contractByPhone( @RequestParam( value = "phone", required = false ) String phone, Model model ){
+    public String contractByPhone( @RequestParam( value = "phone", required = false ) String phone,
+                                   Model model ){
 
         try {
             model.addAttribute( contractService.getByPhone( phone ));
@@ -150,8 +143,6 @@ public class ContractController {
 
         try{
             model.addAttribute( "message", contractService.adminLock( id, condition ));
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "Choose an action, please!" );
         } catch ( NoResultException e ) {
             model.addAttribute( "error", "Fill in the field properly, please!" );
         }
@@ -175,11 +166,8 @@ public class ContractController {
             // выводим на страницу клиента и список тарифов
             model.addAttribute( "client", clientService.getById( clientId ));
             model.addAttribute( "tariffList", tariffService.getAllTariffs());
-
         } catch ( NumberFormatException e ){
             model.addAttribute( "error", "NumberFormatException" );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "choose an action, please!" );
         } catch ( NoResultException e ) {
             model.addAttribute( "error", "NoResultException" );
         }
@@ -193,11 +181,7 @@ public class ContractController {
                                      Model model ){
 
         try{
-
             model.addAttribute( "message", contractService.userLock( id, condition ));
-
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException" );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }
@@ -220,8 +204,6 @@ public class ContractController {
                 model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
             }
 
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "Choose a contract, please" );
         }
@@ -244,8 +226,6 @@ public class ContractController {
                 model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
             }
 
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }
@@ -268,8 +248,6 @@ public class ContractController {
                 model.addAttribute( "message", "Sorry, your contract is locked. Unlock it before" );
             }
 
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", "NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", "NumberFormatException" );
         }

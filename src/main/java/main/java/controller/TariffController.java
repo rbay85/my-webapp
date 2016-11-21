@@ -56,8 +56,6 @@ public class TariffController {
         try{
             String message = tariffService.delete( id );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
         }
@@ -73,8 +71,6 @@ public class TariffController {
         try{
             String message = tariffService.deleteOption( tariffId, optionId );
             model.addAttribute( "message", message );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
         }
@@ -90,8 +86,6 @@ public class TariffController {
         try{
             String massage = tariffService.addOptionInTariff( tariffId, optionId );
             model.addAttribute( "message", massage );
-        } catch ( NullPointerException e ) {
-            model.addAttribute( "error", " NullPointerException " );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " Choose a tariff from the table " );
         }

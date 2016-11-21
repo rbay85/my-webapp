@@ -50,7 +50,7 @@
         <section id="page-content">
 
             <!-- сообщение или ощибка -->
-            ${message} ${error}
+            ${param.message} ${param.error}
             <br>
 
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->

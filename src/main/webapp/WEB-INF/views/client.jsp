@@ -61,7 +61,7 @@
         <section id="page-content">
 
             <!-- сообщение или ощибка -->
-            ${message} ${error}
+            ${param.message} ${param.error}
             <br>
 
             <!-- форма добавления юзера в клинета -->
