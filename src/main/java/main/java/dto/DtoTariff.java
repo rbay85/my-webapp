@@ -1,6 +1,6 @@
 package main.java.dto;
 
-public class dtoTariff {
+public class DtoTariff {
 
     private String Id;
     private String Name;
@@ -8,19 +8,19 @@ public class dtoTariff {
     public String getId() {
         return Id;
     }
-    public void setId(String id) {
+    public void setId( String id ) {
         Id = id;
     }
     public String getName() {
         return Name;
     }
-    public void setName(String name) {
+    public void setName( String name ) {
         Name = name;
     }
 
     @Override
     public String toString() {
-        return "dtoTariff{" +
+        return "DtoTariff{" +
                 "Id='" + Id + '\'' +
                 ", Name='" + Name + '\'' +
                 '}';

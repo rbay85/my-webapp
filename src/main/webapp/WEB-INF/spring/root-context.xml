@@ -29,10 +29,5 @@
     <!-- Файл с настройками безопасности -->
     <import resource="security.xml" />
 
-    <!--
-    <b:bean class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-        <b:constructor-arg value="/login"/>
-    </b:bean>
-    -->
 
     </beans>

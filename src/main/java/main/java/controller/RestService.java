@@ -1,45 +1,70 @@
 package main.java.controller;
 
 import main.java.dao.TariffDao;
+import main.java.dto.DtoClient;
+import main.java.dto.DtoTariff;
+import main.java.entity.Client;
+import main.java.entity.Contract;
 import main.java.entity.Tariff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 
-//@Path( "/tariff" )
+
 @RestController
 public class RestService {
 
     @Autowired
     private TariffDao tariffDao;
 
-    //@Inject
-    //private RestTariffDao restTariffDao;
+    private List<DtoTariff> dtoTariffList = new ArrayList<DtoTariff>();
 
-//    private RestTariffDao restTariffDao = new RestTariffDao();
+    private List<DtoClient> dtoClientList = new ArrayList<DtoClient>();
 
-    // возвращаем тариф по Id
-//    @Transactional
-//    @GET
-//    @Path( "/{tariffId}" )
-//    @Produces( MediaType.APPLICATION_JSON )
-    @RequestMapping("/json/tariff/{tariffId}")
-    public Tariff getTariff( @PathVariable String tariffId ) {
-        return tariffDao.get( Integer.parseInt( tariffId ));
+    // возвращает список клиентов
+    @RequestMapping( "/json/tariffs" )
+    public List<DtoTariff> getTariffList() {
+
+        dtoTariffList.clear();
+
+        List<Tariff> tariffList = tariffDao.getAll();
+
+        for ( Tariff tariff : tariffList ){
+
+            DtoTariff dtoTariff = new DtoTariff();
+
+            dtoTariff.setId( Integer.toString( tariff.getId() ));
+            dtoTariff.setName( tariff.getName() );
+
+            dtoTariffList.add( dtoTariff );
+        }
+        return dtoTariffList ;
+
     }
 
+    // возвращает список клиентов использующих этот тариф
+    @RequestMapping( "/json/tariff/{tariffId}" )
+    public List<DtoClient> getClientsUsingTariff( @PathVariable String tariffId ) {
 
+        dtoClientList.clear();
 
-    // принимает объект в виде JSON, возвращает новый объект с таким же именем
-//    @POST
-//    @Path( "/post" )
-//    @Consumes( MediaType.APPLICATION_JSON )
-//    @Produces( MediaType.APPLICATION_JSON )
-//    public Car patchCar( Car car ) {
-//        return new Car( car.getModel());
-//    }
+        List<Contract> contractList = tariffDao.get( Integer.parseInt( tariffId )).getContractList();
 
+        for ( Contract contract : contractList ){
 
+            DtoClient dtoClient = new DtoClient();
+            Client client = contract.getClient();
+
+            dtoClient.setFirstName( client.getFirstName() );
+            dtoClient.setLastName( client.getLastName() );
+            dtoClient.setBirthDay( client.getBirthDay() );
+
+            dtoClientList.add( dtoClient );
+        }
+        return dtoClientList;
+    }
 }

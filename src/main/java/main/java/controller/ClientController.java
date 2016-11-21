@@ -79,21 +79,8 @@ public class ClientController {
         return "redirect:/client";
     }
 
-    // поиск клиента по id
-    @RequestMapping( value = "clientById", method = RequestMethod.GET )
-    public String clientById( @RequestParam( value = "id", required = false ) String id, Model model ){
 
-        try{
-            int clientId = new Integer( id );
-
-            model.addAttribute( clientService.getById( clientId ));
-        } catch ( IllegalArgumentException e ){
-            model.addAttribute( "error", "client not found" );
-        }
-        return "OLD/clientById";
-    }
-
-//------- что далее НЕ связано с клиентом !!! ---------------------------------------------------------------------------------
+//------- что далее НЕ связано с клиентом !!! -----------------------------------------------------------------------------------------------
 
     @RequestMapping( value = "/", method = RequestMethod.GET )
     public String index( ){ return "index"; }

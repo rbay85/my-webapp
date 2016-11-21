@@ -1,36 +1,34 @@
 package main.java.dto;
 
 
-import java.util.Date;
-
-public class dtoClient {
+public class DtoClient {
 
     private String firstName;
     private String lastName;
-    private Date birthDay;
+    private String birthDay;
 
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
+    public void setFirstName( String firstName ) {
         this.firstName = firstName;
     }
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
+    public void setLastName( String lastName ) {
         this.lastName = lastName;
     }
-    public Date getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay( String birthDay ) {
         this.birthDay = birthDay;
     }
 
     @Override
     public String toString() {
-        return "dtoClient{" +
+        return "DtoClient{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDay=" + birthDay +

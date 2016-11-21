@@ -82,10 +82,12 @@ public class Client implements Serializable {
     public String getAddress()              { return address; }
     public User getUser()                   { return user; }
     public List<Contract> getContractList() { return contractList; }
+    public Date getBirthDayInDate()         { return birthDay; }
     public String getBirthDay() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format( birthDay );
     }
+
 
     // переопределения
     @Override
