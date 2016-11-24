@@ -24,7 +24,7 @@
     <section id="content" class="clearfix">
         <aside>
 
-            <!-- Форма добавления тарифа -->
+            <!-- Форма добавления опции -->
             <br>
             <form action="addOption" method="GET">
 
@@ -48,14 +48,19 @@
                 </div>
                 <br>
 
+
+                <!-- сообщение или ощибка -->
+                <p>
+                    <font color="red">
+                        <b>${param.message} ${param.error}</b>
+                    </font>
+                </p>
+                <br>
+
             </form>
 
         </aside>
         <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${param.message} ${param.error}
-            <br>
 
             <!-- таблица с опциями -->
             <table>

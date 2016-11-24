@@ -22,7 +22,13 @@
     <section id="content" class="clearfix">
         <aside>
 
-
+            <!-- сообщение или ощибка -->
+            <p>
+                <font color="red">
+                    <b>${param.message} ${param.error}</b>
+                </font>
+            </p>
+            <br>
 
         </aside>
         <section id="page-content">
@@ -34,7 +40,7 @@
                 </p>
                 <input type="submit" value="Submit" />
                 <br/><br/>
-                ${contract.phone} ${error}
+                ${contract.phone}
                 <br/><br/>
                 ${contract.tariff.name}
                 <br/><br/>

@@ -29,12 +29,20 @@
                 Dear ${client.firstName} ${client.lastName}, welcome :)
             </h2>
 
+            <!-- сообщение или ощибка -->
+            <p>
+                <font color="red">
+                    <b>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        ${param.message}
+                        ${param.error}
+                    </b>
+                </font>
+            </p>
+            <br>
+
         </aside>
         <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${param.message} ${param.error}
-            <br>
 
             <!-- форма смены тарифа в контракте -->
             <form action="userChangesTariffInContract" method="GET">

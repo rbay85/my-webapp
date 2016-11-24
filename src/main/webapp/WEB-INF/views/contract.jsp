@@ -64,13 +64,18 @@
                 </div>
                 <br>
 
+                <!-- сообщение или ощибка -->
+                <p>
+                    <font color="red">
+                        <b>${param.message} ${param.error}</b>
+                    </font>
+                </p>
+                <br>
+
             </form>
 
         </aside>
         <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${param.message} ${param.error}
 
             <!-- поиск клиента по номеру -->
             <br> <a href="http://localhost:8080/contractByPhone">Find Client By Phone</a>

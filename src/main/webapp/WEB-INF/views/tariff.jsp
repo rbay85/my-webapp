@@ -44,14 +44,18 @@
                 </div>
                 <br>
 
+                <!-- сообщение или ощибка -->
+                <p>
+                    <font color="red">
+                        <b>${param.message} ${param.error}</b>
+                    </font>
+                </p>
+                <br>
+
             </form>
 
         </aside>
         <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${param.message} ${param.error}
-            <br>
 
             <!-- форма добавления опции в тариф ( тут же удаление тарифа ) -->
             <form action="addOptionInTariff" method="GET">

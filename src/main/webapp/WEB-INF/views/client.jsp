@@ -55,14 +55,18 @@
                 </div>
                 <br>
 
+                <!-- сообщение или ощибка -->
+                <p>
+                    <font color="red">
+                        <b>${param.message} ${param.error}</b>
+                    </font>
+                </p>
+                <br>
+
             </form>
 
         </aside>
         <section id="page-content">
-
-            <!-- сообщение или ощибка -->
-            ${param.message} ${param.error}
-            <br>
 
             <!-- форма добавления юзера в клинета -->
             <form action="addUserInClient" method="GET">
