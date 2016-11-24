@@ -1,12 +1,15 @@
 package main.java.controller;
 
 import main.java.service.TariffService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.NestedServletException;
 
 import javax.persistence.PersistenceException;
 
@@ -53,9 +56,11 @@ public class TariffController {
     public String deleteTariff ( @RequestParam( value = "id", required = false ) String id,
                               Model model ){
 
-        try{
-            String message = tariffService.delete( id );
-            model.addAttribute( "message", message );
+        try {
+            String message = tariffService.delete(id);
+            model.addAttribute("message", message);
+        } catch ( DataIntegrityViolationException e ){
+            model.addAttribute( "error", "Sorry, tariff can't be deleted. Some clients use it." );
         } catch ( NumberFormatException e ) {
             model.addAttribute( "error", " NumberFormatException " );
         }

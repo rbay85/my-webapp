@@ -33,7 +33,7 @@
         </aside>
         <section id="page-content">
 
-            <form action="" method="GET">
+            <form action="contractByPhone" method="GET">
                 <p>Input phone number:<br/>
                     <input type="text" name="phone"><br>
                     <small>(xxx)xxx-xxxx for example</small>
