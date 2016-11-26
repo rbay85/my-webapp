@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-public class RestService {
+public class RestServiceController {
 
     @Autowired
     private TariffDao tariffDao;
